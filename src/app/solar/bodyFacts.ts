@@ -3,7 +3,7 @@
 // only (Math trigonometry is fine here); the launch window is the classic Hohmann estimate
 // for circular, coplanar orbits, so it is approximate for eccentric or inclined ones.
 
-import { meanMotion, orbitalPeriod, solarPositions, type Vec3 } from "../../astro/orbits";
+import { isHyperbolic, meanMotion, orbitalPeriod, solarPositions, type Vec3 } from "../../astro/orbits";
 import type { SolarContent as Content, SpaceBodyDef } from "../../astro/types";
 
 const G = 6.674e-11;
@@ -17,6 +17,7 @@ const DWARF_PLANETS = new Set(["Ceres", "Pluto", "Eris", "Makemake", "Haumea"]);
 
 /** The heading for the panel: "Terrestrial Planet", "Gas Giant", "Planetary Moon"… */
 export function bodyClass(body: SpaceBodyDef): string {
+  if (body.orbit && isHyperbolic(body.orbit)) return "Interstellar Object";
   switch (body.type) {
     case "star":
       return "Star";
@@ -50,9 +51,9 @@ export function escapeVelocity(body: SpaceBodyDef): number | null {
   return Math.sqrt((2 * G * body.massKg) / (body.radiusKm * 1000)) / 1000;
 }
 
-/** Orbital period in days, and mean orbital speed in km/s. */
+/** Orbital period in days, and mean orbital speed in km/s; null on a hyperbola, which has neither. */
 export function orbitFigures(content: Content, body: SpaceBodyDef): { periodDays: number; speedKms: number } | null {
-  if (!body.orbit || !body.parent) return null;
+  if (!body.orbit || !body.parent || isHyperbolic(body.orbit)) return null;
   const parent = byId(content, body.parent);
   const years = orbitalPeriod(body.orbit, parent.massKg, body.massKg);
   const circumferenceKm = 2 * Math.PI * body.orbit.a * AU_KM;
@@ -70,12 +71,12 @@ export function distanceFromEarth(content: Content, id: string, years: number): 
 /**
  * The next Hohmann launch window from the Earth to a body (to its planet, for a moon of
  * another planet): years from now until the window opens, and the transfer's length in years.
- * Null for the Sun, the Earth and the Moon.
+ * Null for the Sun, the Earth, the Moon and a body on a hyperbola.
  */
 export function launchWindow(content: Content, id: string, years: number): { inYears: number; transferYears: number } | null {
   let target = byId(content, id);
   while (target.parent && target.parent !== "Sol" && target.parent !== "Earth") target = byId(content, target.parent);
-  if (target.parent !== "Sol" || target.id === "Earth" || !target.orbit) return null;
+  if (target.parent !== "Sol" || target.id === "Earth" || !target.orbit || isHyperbolic(target.orbit)) return null;
   const sun = byId(content, "Sol");
   const earth = byId(content, "Earth");
   const a1 = earth.orbit!.a;

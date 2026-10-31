@@ -955,6 +955,13 @@ MEASURED = {
 DARK = [(0, (18, 17, 17)), (0.5, (52, 49, 47)), (1, (104, 100, 97))]
 S_TYPE = [(0, (58, 50, 42)), (0.5, (138, 122, 102)), (1, (204, 190, 166))]
 MADE_UP_ASTEROIDS = {
+    # 1I/ʻOumuamua, about 0.1 km in radius, no coma ever seen: reddish, as its spectrum is, drawn long
+    # at the roughly 6:1 its light curve suggests, though a flat disc fits that as well.
+    "oumuamua": (3001, (0.3, 0.05, 0.05), 0.12, 0, 6, [(0, (46, 28, 22)), (0.5, (122, 84, 68)), (1, (186, 142, 118))], None, 1.0, True),
+    # 2I/Borisov, about 0.4 km in radius: as black as a comet nucleus is, its shape made up.
+    "borisov": (3007, (0.46, 0.36, 0.4), 0.19, 0, 12, [(0, (18, 17, 16)), (0.5, (50, 47, 45)), (1, (96, 92, 88))], None),
+    # 3I/ATLAS, somewhere from 0.16 to 2.8 km in radius: black, faintly red like its dust, its shape made up.
+    "atlas3i": (3011, (0.75, 0.6, 0.67), 0.19, 0, 16, [(0, (22, 17, 15)), (0.5, (60, 48, 42)), (1, (112, 94, 84))], None),
     # Pallas, 568 × 532 × 448 km: a B-type, bluish grey (albedo 0.155), so battered by large
     # craters (Marsset et al. 2020) that it looks like a golf ball, its south flattened as if by
     # an old basin, like Vesta's Rheasilvia.

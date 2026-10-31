@@ -7,8 +7,8 @@ const art = readFileSync("src/app/solar/bodyArt.ts", "utf8");
 const listed = JSON.parse(readFileSync("tools/data/bodies.json", "utf8")) as { id: string; source: string; map?: string }[];
 
 describe("the bodies", () => {
-  it("keeps all 485", () => {
-    expect(content.solarSystem.length).toBe(485);
+  it("keeps all 488", () => {
+    expect(content.solarSystem.length).toBe(488);
   });
 
   it("gives each a real size, mass and imagery label", () => {

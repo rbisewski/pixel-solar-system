@@ -9,6 +9,7 @@
   import { content } from "../../content/index";
   import { clock } from "../clock.svelte";
   import { bodyMap, bodyReach, bodyRelief, canvasSize, drawBody, drawComet, drawRock, drawSun, hasMap, SUN_REACH, type MapImage, type Relief } from "../solar/bodyArt";
+  import { isHyperbolic } from "../../astro/orbits";
   import { bodyClass, distanceFromEarth, escapeVelocity, launchWindow, moonsOf, orbitFigures, surfaceGravity } from "../solar/bodyFacts";
   import { ui } from "../ui.svelte";
   import { scientific } from "../ui/format";
@@ -100,6 +101,8 @@
   });
 
   const number = (n: number, digits = 0) => n.toLocaleString("en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  /** Under a kilometre, in metres, so the smallest bodies don't round to nothing. */
+  const diameter = (km: number) => (km < 1 ? `${number(km * 1000)} m` : `${number(km)} km`);
   /** Distance from the parent: AU around the Sun, km around a planet. */
   const reach = (a: number) => (parent?.type === "star" ? `${number(a, a < 10 ? 2 : 1)} AU` : `${number(a * AU_KM)} km`);
   const period = (days: number) => (days < 1000 ? `${number(days, days < 10 ? 1 : 0)} days` : `${number(days / 365.25, 1)} years`);
@@ -128,7 +131,7 @@
         {#if gravity !== null}<span class="gravity" title="Surface gravity">{number(gravity, 2)} g{derivedEstimated ? " (estimate)" : ""}</span>{/if}
         <span class="name" class:long={body.name.length > 14}>{body.name}</span>
         <span class="muted small">
-          {#if !parent}The centre of the Solar System{:else if parent.type === "star"}Orbits the Sun{:else}Moon of {parent.name}{/if}
+          {#if !parent}The centre of the Solar System{:else if body.orbit && isHyperbolic(body.orbit)}Passing through from interstellar space{:else if parent.type === "star"}Orbits the Sun{:else}Moon of {parent.name}{/if}
         </span>
       </div>
     </div>
@@ -152,13 +155,13 @@
           <span class="value">{escape === null ? "?" : `${number(escape, escape < 1 ? 2 : 1)} kps`}</span><span class="label">Escape{derivedEstimated ? " (est.)" : ""}</span>
         </div>
         <div class="figure cell" title="Diameter">
-          <span class="value">{number(body.radiusKm * 2)} km</span><span class="label">Diameter{radiusEstimated ? " (est.)" : ""}</span>
+          <span class="value">{diameter(body.radiusKm * 2)}</span><span class="label">Diameter{radiusEstimated ? " (est.)" : ""}</span>
         </div>
       </div>
     {:else}
       <div class="figures">
         <div class="figure cell wide" title="Diameter">
-          <span class="value">{number(body.radiusKm * 2)} km</span><span class="label">Diameter{radiusEstimated ? " (est.)" : ""}</span>
+          <span class="value">{diameter(body.radiusKm * 2)}</span><span class="label">Diameter{radiusEstimated ? " (est.)" : ""}</span>
         </div>
       </div>
     {/if}

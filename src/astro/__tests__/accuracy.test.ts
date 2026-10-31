@@ -32,6 +32,21 @@ describe("positions against JPL Horizons", () => {
     }
   });
 
+  it("follows the interstellar objects along their hyperbolas", () => {
+    const dates: Record<string, string[]> = {
+      "1IOumuamua": ["2000-01-01", "2017-10-01", "2026-07-01", "2040-01-01"],
+      "2IBorisov": ["2000-01-01", "2019-12-08", "2026-07-01", "2040-01-01"],
+      "3IAtlas": ["2017-10-01", "2025-10-29", "2026-07-01", "2040-01-01"],
+    };
+    for (const [id, list] of Object.entries(dates)) {
+      for (const date of list) {
+        const [x, y, z] = truth[id]![date]!;
+        const at = solarPositions(content, yearsSinceJ2000(Date.parse(`${date}T00:00:00Z`))).get(id)!;
+        expect(Math.hypot(at.x - x, at.y - y, at.z - z), `${id} at ${date}`).toBeLessThan(0.25);
+      }
+    }
+  });
+
   it("puts a small body right near its epoch", () => {
     expect(gapAt("433Eros", "2026-07-01")).toBeLessThan(1);
   });

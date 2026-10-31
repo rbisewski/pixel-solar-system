@@ -1,8 +1,51 @@
 import { describe, expect, it } from "vitest";
 import { content } from "../../content/index";
-import { orbitalPeriod, orbitPath, solarPositions, spaceBody } from "../orbits";
+import { isHyperbolic, orbitalPeriod, orbitPath, orbitPosition, solarPositions, spaceBody, withinView } from "../orbits";
 
 const dist = (p: { x: number; y: number; z: number }, q = { x: 0, y: 0, z: 0 }) => Math.hypot(p.x - q.x, p.y - q.y, p.z - q.z);
+
+describe("hyperbolic orbits", () => {
+  const sun = spaceBody(content, "Sol").massKg;
+  const shown = (id: string, years: number) => {
+    const b = spaceBody(content, id);
+    return withinView(b.orbit!, sun, b.massKg, years);
+  };
+  const distance = (id: string, years: number) => {
+    const b = spaceBody(content, id);
+    return dist(orbitPosition(b.orbit!, sun, b.massKg, years));
+  };
+  /** The time on one side of closest approach at which a body is a distance from the Sun, by bisection. */
+  const when = (id: string, au: number, near: number, far: number) => {
+    for (let k = 0; k < 60; k++) {
+      const mid = (near + far) / 2;
+      if (distance(id, mid) < au) near = mid;
+      else far = mid;
+    }
+    return near;
+  };
+
+  it("marks only the interstellar objects", () => {
+    expect(content.solarSystem.filter((b) => b.orbit && isHyperbolic(b.orbit)).map((b) => b.id)).toEqual(["1IOumuamua", "2IBorisov", "3IAtlas"]);
+  });
+
+  it("shows each within 130 AU, coming in and going out", () => {
+    for (const [id, closest] of [["1IOumuamua", 17.7], ["2IBorisov", 19.9], ["3IAtlas", 25.8]] as const) {
+      const entering = when(id, 130, closest, closest - 100);
+      const leaving = when(id, 130, closest, closest + 100);
+      expect(shown(id, entering - 0.01), id).toBe(false);
+      expect(shown(id, entering + 0.01), id).toBe(true);
+      expect(shown(id, closest), id).toBe(true);
+      expect(shown(id, leaving - 0.01), id).toBe(true);
+      expect(shown(id, leaving + 0.01), id).toBe(false);
+    }
+  });
+
+  it("never hides a body on a closed orbit", () => {
+    const pluto = spaceBody(content, "Pluto");
+    expect(withinView(pluto.orbit!, sun, pluto.massKg, 100)).toBe(true);
+    expect(shown("Sedna", 0)).toBe(true);
+  });
+});
 
 describe("orbits", () => {
   it("lists each body after the one it orbits", () => {
@@ -37,8 +80,8 @@ describe("orbits", () => {
       for (const b of content.solarSystem) {
         const p = at.get(b.id)!;
         expect(Number.isFinite(p.x + p.y + p.z)).toBe(true);
-        // A planet's ellipse itself changes.
-        if (!b.orbit || b.orbit.perCentury) continue;
+        // A planet's ellipse itself changes, and a hyperbola has no apoapsis.
+        if (!b.orbit || b.orbit.perCentury || isHyperbolic(b.orbit)) continue;
         // Between periapsis and apoapsis of its parent.
         const r = dist(p, at.get(b.parent!)!);
         expect(r).toBeGreaterThanOrEqual(b.orbit.a * (1 - b.orbit.e) * 0.999999);

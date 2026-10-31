@@ -10957,6 +10957,30 @@
   ]
  },
  {
+  "id": "1IOumuamua",
+  "name": "1I/ʻOumuamua",
+  "type": "asteroid",
+  "parent": "Sol",
+  "imagery": "illustrative",
+  "designation": "1I",
+  "orbitClass": "Hyperbolic Asteroid",
+  "orbit": {
+   "a": -1.27234500742808,
+   "e": 1.201133796102373,
+   "i": 122.7417062847286,
+   "node": 24.59690955523242,
+   "peri": 241.8105360304898,
+   "meanAnomaly": 51.1576197938249,
+   "epoch": 2017.893224
+  },
+  "radiusKm": 0.1,
+  "massKg": 8377580000.0,
+  "estimated": [
+   "radius",
+   "mass"
+  ]
+ },
+ {
   "id": "SwiftTuttle",
   "name": "109P/Swift-Tuttle",
   "type": "comet",
@@ -11330,6 +11354,54 @@
   "radiusKm": 3.1,
   "massKg": 62394100000000.0,
   "estimated": [
+   "mass"
+  ]
+ },
+ {
+  "id": "2IBorisov",
+  "name": "2I/Borisov",
+  "type": "comet",
+  "parent": "Sol",
+  "imagery": "illustrative",
+  "designation": "2I",
+  "orbitClass": "Hyperbolic Comet",
+  "orbit": {
+   "a": -0.8514922551937886,
+   "e": 3.356475782676596,
+   "i": 44.05264247909138,
+   "node": 308.1477292269942,
+   "peri": 209.1236864378081,
+   "meanAnomaly": 34.4294703072178,
+   "epoch": 2020.009582
+  },
+  "radiusKm": 0.4,
+  "massKg": 134041000000.0,
+  "estimated": [
+   "radius",
+   "mass"
+  ]
+ },
+ {
+  "id": "3IAtlas",
+  "name": "3I/ATLAS",
+  "type": "comet",
+  "parent": "Sol",
+  "imagery": "illustrative",
+  "designation": "3I",
+  "orbitClass": "Hyperbolic Comet",
+  "orbit": {
+   "a": -0.2638835217034532,
+   "e": 6.123467394525528,
+   "i": 175.2403121571192,
+   "node": 323.0251782090054,
+   "peri": 128.7969426041922,
+   "meanAnomaly": 2636.10924225336,
+   "epoch": 2026.818617
+  },
+  "radiusKm": 0.67,
+  "massKg": 629917000000.0,
+  "estimated": [
+   "radius",
    "mass"
   ]
  }

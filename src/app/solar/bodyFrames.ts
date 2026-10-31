@@ -571,6 +571,10 @@ const ROTATIONS: Record<string, Rotation> = {
   Makemake: { ra: [325.9, 0], dec: [56.2, 0], w: [0, 378.505778] },
   Phobos: { ra: [317.67071657, -0.10844326], dec: [52.88627266, -0.06134706], swing: { node: [190.72646643, 15917.10818695], ra: [-1.78428399], dec: [-1.07516537] } },
   "1951Lick": { ra: [62, 0], dec: [38, 0], w: [0, 1629.696695] },
+  // The interstellar objects: on made-up poles; ʻOumuamua at JPL's 7.937 hours (it tumbles in truth), the comets at made-up rates.
+  "1IOumuamua": { ra: [40, 0], dec: [20, 0], w: [0, 1088.6] },
+  "2IBorisov": { ra: [120, 0], dec: [-35, 0], w: [0, 720] },
+  "3IAtlas": { ra: [250, 0], dec: [55, 0], w: [0, 540] },
   "3753Cruithne": { ra: [214, 0], dec: [-47, 0], w: [0, 316.368789] },
   "52762Asteroid": { ra: [331, 0], dec: [21, 0], w: [0, 715.231788] },
   ArendRigaux: { ra: [118, 0], dec: [-28, 0], w: [0, -642.379182] },

@@ -3,7 +3,7 @@
 export type SpaceBodyType = "star" | "planet" | "moon" | "asteroidalMoon" | "dwarf" | "asteroid" | "comet";
 
 export interface OrbitDef {
-  /** Semi-major axis, AU. */
+  /** Semi-major axis, AU; negative on a hyperbolic orbit, whose eccentricity is 1 or more. */
   a: number;
   e: number;
   /** Inclination, ascending node, argument of periapsis and mean anomaly at the epoch, degrees; all from the ecliptic. */

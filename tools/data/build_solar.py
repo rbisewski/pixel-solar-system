@@ -224,7 +224,8 @@ def main():
                 "i": data["i"],
                 "node": data["node"] % 360,
                 "peri": data["peri"] % 360,
-                "meanAnomaly": data["meanAnomaly"] % 360,
+                # A hyperbolic orbit's mean anomaly isn't an angle: it grows without end, so it keeps its turns.
+                "meanAnomaly": data["meanAnomaly"] if data["e"] >= 1 else data["meanAnomaly"] % 360,
                 "epoch": julian_year(data["epochJD"]),
             }
         elif source != "override":

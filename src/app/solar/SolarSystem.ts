@@ -17,7 +17,7 @@
 
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { orbitPath, solarPositions, type Vec3 } from "../../astro/orbits";
+import { isHyperbolic, orbitPath, solarPositions, type Vec3, withinView } from "../../astro/orbits";
 import type { SolarContent as Content, SpaceBodyDef } from "../../astro/types";
 import { GLOBE_FADE_FROM, GLOBE_FARTHEST } from "../globe/Globe";
 import { Pinch, PINCH_IN } from "../pinch";
@@ -59,6 +59,7 @@ const ART_RADIUS: Record<string, number> = {
   Makemake: 2,
   // The asteroids drawn from maps of their own; the rest are small sprites.
   "1951Lick": 2,
+  "1IOumuamua": 2,
   "3753Cruithne": 2,
   "52762Asteroid": 2,
   "4Vesta": 2,
@@ -491,6 +492,9 @@ const SMALLER_CLOSE_ART_RADIUS: Record<string, number> = {
   Sol: 112,
   // The lumpy asteroids: their lumps reach out to nearly twice their radius, and every pixel is ray-marched.
   "1951Lick": 84,
+  "1IOumuamua": 84,
+  "2IBorisov": 84,
+  "3IAtlas": 84,
   "3753Cruithne": 84,
   "52762Asteroid": 84,
   ArendRigaux: 84,
@@ -892,7 +896,7 @@ const SMALLER_CLOSE_ART_RADIUS: Record<string, number> = {
  * a ringed one).
  */
 const CLOSE_ART_RADIUS: Record<string, number> = Object.fromEntries(
-  ["Sol", "1951Lick", "3753Cruithne", "52762Asteroid", "ArendRigaux", "4Vesta", "Charon", "433Eros", "21Lutetia", "253Mathilde", "Tempel", "Halley", "Phoebe", "Hyperion", "Janus", "Epimetheus", "Prometheus", "Pandora", "Atlas", "Pan", "Daphnis", "Calypso", "Telesto", "Helene", "Amalthea", "Thebe", "Proteus", "Larissa", "Puck", "Nix", "Hydra", "2Pallas", "391Ingeborg", "1866Sisyphus", "2099Öpik", "4954Eric", "5731Zeus", "7096Napier", "514041Asteroid", "Mercury", "Venus", "Luna", "Mars", "Ceres", "Jupiter", "Io", "Europa", "Ganymede", "Callisto", "Saturn", "Mimas", "Enceladus", "Tethys", "Dione", "Rhea", "Titan", "Iapetus", "Uranus", "Miranda", "Ariel", "Umbriel", "Titania", "Oberon", "Neptune", "Triton", "Pluto", "Eris", "Haumea", "Makemake", "Gonggong", "Quaoar", "208996KBO", "90482Orcus", "Sedna", "Salacia", "307261KBO", "55565KBO", "532037TNO", "174567Varda", "90568KBO", "145452KBO", "20000Varuna", "2010KZ39KBO", "55637KBO", "2018VG18TNO", "Glkunllhomdima", "2014UZ224TNO", "523794TNO", "28978Ixion", "84922KBO", "278361KBO", "2014WP50KBO", "19521Chaos", "512381TNO", "2014YA50KBO", "2010FX86KBO", "78799KBO", "455502KBO", "612533KBO", "2017OF69KBO", "470308KBO", "470443KBO", "559182KBO", "523645KBO", "523750KBO", "120348KBO", "523681KBO", "202421KBO", "482824KBO", "440030KBO", "472271KBO", "499514KBO", "35671KBO", "119951KBO", "556068KBO", "2012VP113TNO", "84719KBO", "578993KBO", "471288KBO", "469306KBO", "38628Huya", "469372KBO", "175113KBO", "144897KBO", "10Hygiea", "624Hektor", "87Sylvia", "52Europa", "2015QW23KBO", "556416KBO", "15Eunomia", "511Davida", "704Interamnia", "107Camilla", "Nereid", "15874TNO", "10199Chariklo", "2015AH281Centaur", "15789KBO", "523643Centaur", "3Juno", "Hiʻiaka", "65Cybele", "1437Diomedes", "16Psyche", "523695Centaur", "48Doris", "216Kleopatra", "523727Centaur", "121Hermione", "31Euphrosyne", "88Thisbe", "324Bamberga", "145453KBO", "309239Centaur", "7Iris", "41Daphne", "22Kalliope", "451Patientia", "45Eugenia", "95626Centaur", "562274Centaur", "19Fortuna", "94Aurora", "532Herculina", "9Metis", "Leleakuhonua", "39Laetitia", "2060Chiron", "13Egeria", "375Ursula", "130Elektra", "53311Deucalion", "423Diotima", "54598Bienor", "Himalia", "6Hebe", "Galatea", "702Alauda", "316179Centaur", "2013KY18Centaur", "334Chicago", "24Themis", "447178Centaur", "259Aletheia", "5145Pholus", "372Palma", "128Nemesis", "154Bertha", "120Lachesis", "76Freia", "Despina", "85Io", "190Ismene", "444Gyptis", "409Aspasia", "139Juewa", "747Winchester", "153Hilda", "790Praetoria", "Namaka", "18Melpomene", "51Nemausa", "241Germania", "106Dione", "194Prokne", "566Stereoskopia", "96Aegle", "5Astraea", "14Irene", "15760Albion", "911Agamemnon", "386Siegena", "Sycorax", "165Loreley", "59Elpis", "613490Centaur", "104Klymene", "488Kreusa", "2011GN27Centaur", "654Zelinda", "20Massalia", "54Alexandra", "209Dido", "596Scheila", "185Eunike", "Portia", "93Minerva", "354Eleonora", "536Merapi", "11Parthenope", "776Berbericia", "89Julia", "Juliet", "49Pales", "117Lomia", "238Hypatia", "168Sibylla", "137Meliboea", "2011HM102Centaur", "1172Aneas", "47Aglaja", "361Bononia", "308Polyxo", "349Dembowska", "762Pulcova", "196Philomela", "95Arethusa", "8Flora", "588Achilles", "69Hesperia", "15810Arawn", "146Lucina", "356Liguria", "187Lamberta", "419Aurelia", "Belinda", "279Thule", "92Undina", "3451Mentor", "1173Anchises", "1143Odysseus", "612243Centaur", "46Hestia", "27Euterpe", "328Gudrun", "68Leto", "127Johanna", "250Bettina", "28Bellona", "129Antigone", "3317Paris", "1867Deiphobus", "136204Centaur", "29Amphitrite", "63Ausonia", "490Veritas", "38Leda", "56Melete", "34Circe", "57Mnemosyne", "44Nysa", "617Patroclus", "12Victoria", "30Urania", "310071Centaur", "49036Pelion", "233Asterope", "230Athamantis", "37Fides", "Thalassa", "40Harmonia", "23Thalia", "36Atalante", "221Eos", "192Nausikaa", "35Leukothea", "385571Otrera", "42Isis", "472651Centaur", "55576Amycus", "97Klotho", "2008LC18Centaur", "114Kassandra", "Naiad", "62Erato", "43Ariadne", "26Proserpina", "Cressida", "Desdemona", "17Thetis", "32532Thereus", "110Lydia", "Elara", "25Phocaea", "120061Centaur", "Weywot", "135Hertha", "8405Asbolus", "636872Centaur", "325Heidelberga", "248835Centaur", "10370Hylonome", "Rosalind", "Caliban", "52975Cyllarus", "2010THCentaur", "336Lacadiera", "1911Schubart", "342842Centaur", "55Pandora", "Cineos", "Bianca", "2011MM4Centaur", "Halimede", "SchwassmannWachmann", "246Asperina", "Metis", "Neso", "7066Nessus", "83982Crantor", "2011QF99Centaur", "60558Echeclus", "281371Centaur", "Pasiphae", "31824Elatus", "Ophelia", "Cordelia", "Prospero", "52872Okyrhoe", "Setebos", "1870Glaukos", "Carme", "Sao", "132Aethra", "Laomedeia", "Psamathe", "Siarnaq", "Kiviuq", "Sinope", "944Hidalgo", "323Brucia", "Lysithea", "1036Ganymed", "PonsBrooks", "Albiorix", "Stephano", "S2002N5", "315898Centaur", "Perdita", "Ananke", "2204Lyyli", "699Hela", "SwiftTuttle", "Mab", "475Ocllo", "512Taurinensis", "Paaliaq", "Francisco", "Neujmin", "S2023N1", "Adrastea", "Margaret", "Ferdinand", "Ymir", "Kerberos", "3552DonQuixote", "Cupid", "Trinculo", "Hippocamp", "Erriapus", "Leda", "Styx", "Tarvos", "2064Thomsen", "Loneos", "Ijiraq", "102528Asteroid", "1170Siva", "Levy", "434Hungaria", "301964Asteroid", "Gunn", "3353Jarvis", "1627Ivar", "Kowal", "S2025U1", "S2023U1", "4222Nancita", "Callirrhoe", "6500Kodaira", "7505Furusho", "3674Erbisbuhl", "Themisto", "97514Asteroid", "301842Asteroid", "3443Leetsungdao", "1580Betulia", "101742Asteroid", "Skathi", "Hyrrokkin", "Thrymr", "4558Janesick", "Praxidike", "Tarqeq", "Mundilfari", "Narvi", "Suttungr", "Bestla", "53319Asteroid", "3737Beckman", "Kalyke", "14222Asteroid", "Kari", "Machholz", "2335James", "7092Cadmus", "Lovas2", "3200Phaethon", "Megaclite", "Bebhionn", "Skoll", "Greip", "Jarnsaxa", "Hati", "Eggther", "Aegir", "S2004S7", "Surtur", "Loge", "Fornjot", "2212Hephaistos", "8373Stephengould", "88263Asteroid", "1917Cuyo", "5230Asahina", "25916Asteroid", "405058Asteroid", "Bergelmir", "26760Asteroid", "Iocaste", "PonsWinnecke", "89830Asteroid", "Taygete", "Pallene", "S2019S1", "S2005S4", "S2006S20", "S2007S2", "S2006S1", "S2007S3", "Farbauti", "S2006S3", "Alvaldi", "Encke", "S2004S31", "Gridr", "Skrymir", "S2004S28", "Gunnlod", "Beli", "S2004S44", "Phobos", "Deimos"].map((id) => [
+  ["Sol", "1951Lick", "3753Cruithne", "52762Asteroid", "ArendRigaux", "4Vesta", "Charon", "433Eros", "21Lutetia", "253Mathilde", "Tempel", "Halley", "Phoebe", "Hyperion", "Janus", "Epimetheus", "Prometheus", "Pandora", "Atlas", "Pan", "Daphnis", "Calypso", "Telesto", "Helene", "Amalthea", "Thebe", "Proteus", "Larissa", "Puck", "Nix", "Hydra", "2Pallas", "391Ingeborg", "1866Sisyphus", "2099Öpik", "4954Eric", "5731Zeus", "7096Napier", "514041Asteroid", "Mercury", "Venus", "Luna", "Mars", "Ceres", "Jupiter", "Io", "Europa", "Ganymede", "Callisto", "Saturn", "Mimas", "Enceladus", "Tethys", "Dione", "Rhea", "Titan", "Iapetus", "Uranus", "Miranda", "Ariel", "Umbriel", "Titania", "Oberon", "Neptune", "Triton", "Pluto", "Eris", "Haumea", "Makemake", "Gonggong", "Quaoar", "208996KBO", "90482Orcus", "Sedna", "Salacia", "307261KBO", "55565KBO", "532037TNO", "174567Varda", "90568KBO", "145452KBO", "20000Varuna", "2010KZ39KBO", "55637KBO", "2018VG18TNO", "Glkunllhomdima", "2014UZ224TNO", "523794TNO", "28978Ixion", "84922KBO", "278361KBO", "2014WP50KBO", "19521Chaos", "512381TNO", "2014YA50KBO", "2010FX86KBO", "78799KBO", "455502KBO", "612533KBO", "2017OF69KBO", "470308KBO", "470443KBO", "559182KBO", "523645KBO", "523750KBO", "120348KBO", "523681KBO", "202421KBO", "482824KBO", "440030KBO", "472271KBO", "499514KBO", "35671KBO", "119951KBO", "556068KBO", "2012VP113TNO", "84719KBO", "578993KBO", "471288KBO", "469306KBO", "38628Huya", "469372KBO", "175113KBO", "144897KBO", "10Hygiea", "624Hektor", "87Sylvia", "52Europa", "2015QW23KBO", "556416KBO", "15Eunomia", "511Davida", "704Interamnia", "107Camilla", "Nereid", "15874TNO", "10199Chariklo", "2015AH281Centaur", "15789KBO", "523643Centaur", "3Juno", "Hiʻiaka", "65Cybele", "1437Diomedes", "16Psyche", "523695Centaur", "48Doris", "216Kleopatra", "523727Centaur", "121Hermione", "31Euphrosyne", "88Thisbe", "324Bamberga", "145453KBO", "309239Centaur", "7Iris", "41Daphne", "22Kalliope", "451Patientia", "45Eugenia", "95626Centaur", "562274Centaur", "19Fortuna", "94Aurora", "532Herculina", "9Metis", "Leleakuhonua", "39Laetitia", "2060Chiron", "13Egeria", "375Ursula", "130Elektra", "53311Deucalion", "423Diotima", "54598Bienor", "Himalia", "6Hebe", "Galatea", "702Alauda", "316179Centaur", "2013KY18Centaur", "334Chicago", "24Themis", "447178Centaur", "259Aletheia", "5145Pholus", "372Palma", "128Nemesis", "154Bertha", "120Lachesis", "76Freia", "Despina", "85Io", "190Ismene", "444Gyptis", "409Aspasia", "139Juewa", "747Winchester", "153Hilda", "790Praetoria", "Namaka", "18Melpomene", "51Nemausa", "241Germania", "106Dione", "194Prokne", "566Stereoskopia", "96Aegle", "5Astraea", "14Irene", "15760Albion", "911Agamemnon", "386Siegena", "Sycorax", "165Loreley", "59Elpis", "613490Centaur", "104Klymene", "488Kreusa", "2011GN27Centaur", "654Zelinda", "20Massalia", "54Alexandra", "209Dido", "596Scheila", "185Eunike", "Portia", "93Minerva", "354Eleonora", "536Merapi", "11Parthenope", "776Berbericia", "89Julia", "Juliet", "49Pales", "117Lomia", "238Hypatia", "168Sibylla", "137Meliboea", "2011HM102Centaur", "1172Aneas", "47Aglaja", "361Bononia", "308Polyxo", "349Dembowska", "762Pulcova", "196Philomela", "95Arethusa", "8Flora", "588Achilles", "69Hesperia", "15810Arawn", "146Lucina", "356Liguria", "187Lamberta", "419Aurelia", "Belinda", "279Thule", "92Undina", "3451Mentor", "1173Anchises", "1143Odysseus", "612243Centaur", "46Hestia", "27Euterpe", "328Gudrun", "68Leto", "127Johanna", "250Bettina", "28Bellona", "129Antigone", "3317Paris", "1867Deiphobus", "136204Centaur", "29Amphitrite", "63Ausonia", "490Veritas", "38Leda", "56Melete", "34Circe", "57Mnemosyne", "44Nysa", "617Patroclus", "12Victoria", "30Urania", "310071Centaur", "49036Pelion", "233Asterope", "230Athamantis", "37Fides", "Thalassa", "40Harmonia", "23Thalia", "36Atalante", "221Eos", "192Nausikaa", "35Leukothea", "385571Otrera", "42Isis", "472651Centaur", "55576Amycus", "97Klotho", "2008LC18Centaur", "114Kassandra", "Naiad", "62Erato", "43Ariadne", "26Proserpina", "Cressida", "Desdemona", "17Thetis", "32532Thereus", "110Lydia", "Elara", "25Phocaea", "120061Centaur", "Weywot", "135Hertha", "8405Asbolus", "636872Centaur", "325Heidelberga", "248835Centaur", "10370Hylonome", "Rosalind", "Caliban", "52975Cyllarus", "2010THCentaur", "336Lacadiera", "1911Schubart", "342842Centaur", "55Pandora", "Cineos", "Bianca", "2011MM4Centaur", "Halimede", "SchwassmannWachmann", "246Asperina", "Metis", "Neso", "7066Nessus", "83982Crantor", "2011QF99Centaur", "60558Echeclus", "281371Centaur", "Pasiphae", "31824Elatus", "Ophelia", "Cordelia", "Prospero", "52872Okyrhoe", "Setebos", "1870Glaukos", "Carme", "Sao", "132Aethra", "Laomedeia", "Psamathe", "Siarnaq", "Kiviuq", "Sinope", "944Hidalgo", "323Brucia", "Lysithea", "1036Ganymed", "PonsBrooks", "Albiorix", "Stephano", "S2002N5", "315898Centaur", "Perdita", "Ananke", "2204Lyyli", "699Hela", "SwiftTuttle", "Mab", "475Ocllo", "512Taurinensis", "Paaliaq", "Francisco", "Neujmin", "S2023N1", "Adrastea", "Margaret", "Ferdinand", "Ymir", "Kerberos", "3552DonQuixote", "Cupid", "Trinculo", "Hippocamp", "Erriapus", "Leda", "Styx", "Tarvos", "2064Thomsen", "Loneos", "Ijiraq", "102528Asteroid", "1170Siva", "Levy", "434Hungaria", "301964Asteroid", "Gunn", "3353Jarvis", "1627Ivar", "Kowal", "S2025U1", "S2023U1", "4222Nancita", "Callirrhoe", "6500Kodaira", "7505Furusho", "3674Erbisbuhl", "Themisto", "97514Asteroid", "301842Asteroid", "3443Leetsungdao", "1580Betulia", "101742Asteroid", "Skathi", "Hyrrokkin", "Thrymr", "4558Janesick", "Praxidike", "Tarqeq", "Mundilfari", "Narvi", "Suttungr", "Bestla", "53319Asteroid", "3737Beckman", "Kalyke", "14222Asteroid", "Kari", "Machholz", "2335James", "7092Cadmus", "Lovas2", "3200Phaethon", "Megaclite", "Bebhionn", "Skoll", "Greip", "Jarnsaxa", "Hati", "Eggther", "Aegir", "S2004S7", "Surtur", "Loge", "Fornjot", "2212Hephaistos", "8373Stephengould", "88263Asteroid", "1917Cuyo", "5230Asahina", "25916Asteroid", "405058Asteroid", "Bergelmir", "26760Asteroid", "Iocaste", "PonsWinnecke", "89830Asteroid", "Taygete", "Pallene", "S2019S1", "S2005S4", "S2006S20", "S2007S2", "S2006S1", "S2007S3", "Farbauti", "S2006S3", "Alvaldi", "Encke", "S2004S31", "Gridr", "Skrymir", "S2004S28", "Gunnlod", "Beli", "S2004S44", "Phobos", "Deimos", "1IOumuamua", "2IBorisov", "3IAtlas"].map((id) => [
     id,
     SMALLER_CLOSE_ART_RADIUS[id] ?? 256,
   ]),
@@ -1073,6 +1077,8 @@ export class SolarSystem {
   /** Bodies drawn as small sprites, and their points. */
   private readonly dots: SpaceBodyDef[] = [];
   private readonly dotPoints: THREE.Points;
+  /** The bodies too far away to show at the clock's time, unless focused. */
+  private readonly outOfView = new Set<string>();
   /** Whether each dot is drawn: asteroidal moons only once their orbits are wide enough on screen. */
   private readonly dotShown: boolean[] = [];
   /** The selected small body's orbit, and that body. */
@@ -1435,7 +1441,7 @@ export class SolarSystem {
     // A small sprite, or a body drawn from its maps that has no orbit line of its own (the asteroids).
     const view = id ? this.byId.get(id) : undefined;
     const def = id ? (this.dots.find((d) => d.id === id) ?? (view && !view.orbit ? view.def : undefined)) : undefined;
-    if (!def?.orbit) return;
+    if (!def?.orbit || isHyperbolic(def.orbit)) return;
     const line = new THREE.LineLoop(
       new THREE.BufferGeometry().setFromPoints(orbitPath(def.orbit, 360).map((p) => toScene(p))),
       new THREE.LineBasicMaterial({ color: SELECTED_ORBIT.color, transparent: true, opacity: SELECTED_ORBIT.opacity, depthTest: false, depthWrite: false }),
@@ -1467,6 +1473,9 @@ export class SolarSystem {
     if (this.years === this.placedYears || Number.isNaN(this.years)) return;
     this.placedYears = this.years;
     for (const [id, p] of solarPositions(this.content, this.years)) toScene(p, this.positions.get(id)!);
+    this.outOfView.clear();
+    const sunMass = this.byId.get("Sol")!.def.massKg;
+    for (const def of this.content.solarSystem) if (def.orbit && !withinView(def.orbit, sunMass, def.massKg, this.years)) this.outOfView.add(def.id);
     const sunFromEarth = this.positions.get("Sol")!.clone().sub(this.positions.get("Earth")!).normalize();
     globeToScene(this.sunInGlobe, sunFromEarth, this.earthToScene);
     const attr = this.dotPoints.geometry.getAttribute("position") as THREE.BufferAttribute;
@@ -1564,21 +1573,24 @@ export class SolarSystem {
       b.sprite.scale.set(size * unit, size * unit, 1);
       // Moons show when their orbit is wide enough on screen, planets when clear of the Sun.
       const parent = b.def.parent ? this.positions.get(b.def.parent)! : null;
-      const spread = parent ? b.def.orbit!.a * this.pixelsPerUnit(parent) : Infinity;
+      const spread = parent && !isHyperbolic(b.def.orbit!) ? b.def.orbit!.a * this.pixelsPerUnit(parent) : Infinity;
       const focused = b.def.id === this.focusId;
       // Not before the clock has placed the bodies: till then they all sit at the camera, and look huge.
       if (placed && (focused || !backgroundHidden) && hasMap(b.def.id) && !this.alwaysMapped.has(b.def.id) && (focused || truePixels / PIXEL >= b.baseR * MAP_LOAD_AHEAD)) {
         if (this.recentMaps.touch(b.def.id, this.mapTick)) this.loadMaps(b.def.id);
       }
-      b.shown = focused || (!backgroundHidden && spread > (kind(b.def) === "moon" ? MOON_MIN_PIXELS : PLANET_MIN_PIXELS));
+      // Focused, it stays in sight wherever the clock takes it, so the camera isn't left on nothing.
+      const gone = !focused && this.outOfView.has(b.def.id);
+      b.shown = focused || (!gone && !backgroundHidden && spread > (kind(b.def) === "moon" ? MOON_MIN_PIXELS : PLANET_MIN_PIXELS));
       if (b.comet) {
         // Far away, the small sprite with its tails; close up, the nucleus with its own.
         const close = truePixels / PIXEL >= COMET_CLOSE_RADIUS;
         b.shown &&= close;
         const dot = b.comet.dot;
-        if (this.dotShown[dot] === close) {
-          this.dotShown[dot] = !close;
-          setSmallBodyShown(this.dotPoints, dot, !close);
+        const dotted = !close && !gone;
+        if (this.dotShown[dot] !== dotted) {
+          this.dotShown[dot] = dotted;
+          setSmallBodyShown(this.dotPoints, dot, dotted);
         }
         b.comet.sprite.position.copy(at);
         b.comet.sprite.renderOrder = b.sprite.renderOrder + 1e-9;

@@ -46,7 +46,7 @@
       <p>Most small bodies have no measured mass, and many no measured size. A size is then estimated from brightness, and a mass from size at an assumed density, and both are marked as estimates. So are the gravity and escape velocity worked out from them. Launch windows are simple estimates for circular, flat orbits.</p>
 
       <h3>Position accuracy</h3>
-      <p>Planets follow JPL's approximate elements, within 1° of JPL Horizons from 1950 to 2050, and drift further towards 1900 and 2100. Every other body moves on a fixed ellipse with no perturbations, so it drifts as the date leaves its orbit's epoch. Comets and fast inner moons drift the most.</p>
+      <p>Planets follow JPL's approximate elements, within 1° of JPL Horizons from 1950 to 2050, and drift further towards 1900 and 2100. Every other body moves on a fixed ellipse with no perturbations, so it drifts as the date leaves its orbit's epoch. Comets and fast inner moons drift the most. The three interstellar objects follow hyperbolas, and show only within 130 AU of the Sun.</p>
 
       <h3>Country figures</h3>
       <p>Figures are the latest actual values, each with its year, so years differ between countries. The panel names any source other than the World Bank. Disputed areas follow de facto administration, which implies no position on them.</p>

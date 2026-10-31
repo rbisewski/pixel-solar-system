@@ -34,7 +34,9 @@ This spec describes the app as built. Deployment and a check in real Safari rema
 - Labels and hover tooltips.
 
 ### 2.2 Bodies
-All 485 bodies: the Sun, 8 planets, 19 major moons, 125 small moons, 47 dwarf planets and large trans-Neptunian objects, 269 asteroids and 16 comets.
+All 488 bodies: the Sun, 8 planets, 19 major moons, 125 small moons, 47 dwarf planets and large trans-Neptunian objects, 269 asteroids, 16 comets and 3 interstellar objects.
+
+**Interstellar objects:** 1I/ʻOumuamua, 2I/Borisov and 3I/ATLAS follow hyperbolas, with no orbit line, even when selected. Each shows while within 130 AU of the Sun, on its way in and on its way out. Outside that it is hidden, unless it is focused, so that the camera is never left on nothing. Their panels leave out what only a closed orbit has: period, mean speed, semi-major axis and launch window.
 
 ### 2.3 Zoom and close-up art
 - Any mapped body can be zoomed down to 1.35 radii, where it becomes a turning, Sun-lit pixel globe of up to 512 art pixels across.
@@ -121,12 +123,12 @@ Three.js, TypeScript, Svelte 5 and Vite, built as a **static site** with relativ
 There is no Web Worker: everything runs on the main thread.
 
 ### 4.3 Position accuracy
-Planets follow JPL's *Keplerian Elements for Approximate Positions*, including its secular rates. Every other body moves on a fixed Kepler ellipse from its epoch, so small bodies perturbed by planets, comets especially, get less accurate far from their epoch. This is acceptable for the app and is disclosed in the About panel.
+Planets follow JPL's *Keplerian Elements for Approximate Positions*, including its secular rates. The interstellar objects move on hyperbolas from JPL's elements. Every other body moves on a fixed Kepler ellipse from its epoch, so small bodies perturbed by planets, comets especially, get less accurate far from their epoch. This is acceptable for the app and is disclosed in the About panel.
 
 **Target:** each planet's heliocentric ecliptic longitude is within 1° of JPL Horizons from 1950 to 2050, checked by tests against stored Horizons values.
 
 ### 4.4 Performance
-There is no formal budget. `public/map` is 83 MB in 881 files, 51 MB of it relief maps, and maps load on demand (section 2.3). These choices keep phones smooth:
+There is no formal budget. `public/map` is 84 MB in 887 files, 52 MB of it relief maps, and maps load on demand (section 2.3). These choices keep phones smooth:
 
 - **Render scale:** views draw at up to 2 device pixels per CSS pixel, or 1.25 on a touch screen (`renderScale.ts`).
 - **Body art:** 2D canvases are created with `willReadFrequently`, so redrawing them doesn't load the GPU.
@@ -150,7 +152,7 @@ Everything shipped comes from the published sources in `docs/data-sources.md`, o
 | Planets' and dwarf planets' physical data | JPL *Planetary Physical Parameters* |
 | Moons' orbits | JPL planetary satellite mean elements (`jpl_satellites.json`, from `build_satellites.py`) |
 | Moons' sizes and masses | JPL Horizons, where it gives them |
-| Asteroids, dwarf planets and comets: orbits, diameter, albedo, spectral type and GM where known | JPL Small-Body Database API |
+| Asteroids, dwarf planets, comets and interstellar objects: orbits, diameter, albedo, spectral type and GM where known | JPL Small-Body Database API |
 | Gaps in the above | `solar_overrides.json`, with each entry naming its published source |
 | Rotational elements | IAU WGCCRE reports (in `bodyFrames.ts`) |
 

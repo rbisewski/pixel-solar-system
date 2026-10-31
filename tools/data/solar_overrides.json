@@ -276,5 +276,20 @@
   "_source": "Discovery reports (Sheppard, 2024; JWST, 2025), from their magnitudes.",
   "radiusKm": 5,
   "radiusEstimated": true
+ },
+ "1IOumuamua": {
+  "_source": "Jewitt et al. 2025, ApJL (arXiv:2508.02934), which gives its nucleus as about 0.1 km in radius.",
+  "radiusKm": 0.1,
+  "radiusEstimated": true
+ },
+ "2IBorisov": {
+  "_source": "Jewitt et al. 2020, ApJL 888:L23: nucleus radius between 0.2 and 0.5 km; about 0.4 km in Jewitt et al. 2025 (arXiv:2508.02934).",
+  "radiusKm": 0.4,
+  "radiusEstimated": true
+ },
+ "3IAtlas": {
+  "_source": "Jewitt et al. 2025, ApJL (arXiv:2508.02934): nucleus radius under 2.8 km; NASA's report of it gives a floor of about 0.16 km. Taken at the limits' geometric mean.",
+  "radiusKm": 0.67,
+  "radiusEstimated": true
  }
 }

@@ -4158,5 +4158,32 @@
 "designation": "184P",
 "map": "lovas2",
 "imagery": "illustrative"
+},
+{
+"id": "1IOumuamua",
+"type": "asteroid",
+"source": "sbdb",
+"designation": "1I",
+"name": "1I/ʻOumuamua",
+"map": "oumuamua",
+"imagery": "illustrative"
+},
+{
+"id": "2IBorisov",
+"type": "comet",
+"source": "sbdb",
+"designation": "2I",
+"name": "2I/Borisov",
+"map": "borisov",
+"imagery": "illustrative"
+},
+{
+"id": "3IAtlas",
+"type": "comet",
+"source": "sbdb",
+"designation": "3I",
+"name": "3I/ATLAS",
+"map": "atlas3i",
+"imagery": "illustrative"
 }
 ]
