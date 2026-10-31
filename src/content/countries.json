@@ -1,0 +1,4929 @@
+[
+ {
+  "id": "afg",
+  "name": "Afghanistan",
+  "capital": {
+   "name": "Kabul",
+   "lat": 34.52,
+   "lon": 69.18
+  },
+  "population": {
+   "value": 43844000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 17779000000.0,
+   "year": 2024
+  },
+  "gdpPerCapita": {
+   "value": 416.88,
+   "year": 2024
+  },
+  "area": {
+   "value": 652230.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ago",
+  "name": "Angola",
+  "capital": {
+   "name": "Luanda",
+   "lat": -8.84,
+   "lon": 13.23
+  },
+  "population": {
+   "value": 39040000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 122170000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3129.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 1246700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "alb",
+  "name": "Albania",
+  "capital": {
+   "name": "Tirana",
+   "lat": 41.33,
+   "lon": 19.82
+  },
+  "population": {
+   "value": 2349600.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 30540000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 12998.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 27400.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "and",
+  "name": "Andorra",
+  "capital": {
+   "name": "Andorra la Vella",
+   "lat": 42.5,
+   "lon": 1.52
+  },
+  "population": {
+   "value": 82904.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 4501000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 54292.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 468.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "are",
+  "name": "United Arab Emirates",
+  "capital": {
+   "name": "Abu Dhabi",
+   "lat": 24.47,
+   "lon": 54.37
+  },
+  "population": {
+   "value": 11513000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 552320000000.0,
+   "year": 2024
+  },
+  "gdpPerCapita": {
+   "value": 50273.0,
+   "year": 2024
+  },
+  "area": {
+   "value": 71020.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "arg",
+  "name": "Argentina",
+  "capital": {
+   "name": "Buenos Aires",
+   "lat": -34.6,
+   "lon": -58.4
+  },
+  "population": {
+   "value": 45851000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 683100000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 14898.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 2736700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "arm",
+  "name": "Armenia",
+  "capital": {
+   "name": "Yerevan",
+   "lat": 40.18,
+   "lon": 44.51
+  },
+  "population": {
+   "value": 3086700.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 29243000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 9473.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 28199.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "atg",
+  "name": "Antigua and Barbuda",
+  "capital": {
+   "name": "Saint John's",
+   "lat": 17.12,
+   "lon": -61.85
+  },
+  "population": {
+   "value": 94209.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2338200000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 24819.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 440.3,
+   "year": 2024
+  }
+ },
+ {
+  "id": "aus",
+  "name": "Australia",
+  "capital": {
+   "name": "Canberra",
+   "lat": -35.28,
+   "lon": 149.13
+  },
+  "population": {
+   "value": 27614000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1798500000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 65129.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 7688300.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "aut",
+  "name": "Austria",
+  "capital": {
+   "name": "Vienna",
+   "lat": 48.2,
+   "lon": 16.36
+  },
+  "population": {
+   "value": 9208200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 579470000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 62930.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 82520.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "aze",
+  "name": "Azerbaijan",
+  "capital": {
+   "name": "Baku",
+   "lat": 40.4,
+   "lon": 49.86
+  },
+  "population": {
+   "value": 10247000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 75938000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7410.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 82650.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bdi",
+  "name": "Burundi",
+  "capital": {
+   "name": "Gitega",
+   "lat": -3.43,
+   "lon": 29.84
+  },
+  "population": {
+   "value": 14390000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 3364700000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 233.82,
+   "year": 2025
+  },
+  "area": {
+   "value": 25680.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bel",
+  "name": "Belgium",
+  "capital": {
+   "name": "Brussels",
+   "lat": 50.84,
+   "lon": 4.33
+  },
+  "population": {
+   "value": 11942000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 725470000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 60751.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 30494.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ben",
+  "name": "Benin",
+  "capital": {
+   "name": "Porto-Novo",
+   "lat": 6.48,
+   "lon": 2.62
+  },
+  "population": {
+   "value": 14814000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 24566000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1658.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 112760.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bfa",
+  "name": "Burkina Faso",
+  "capital": {
+   "name": "Ouagadougou",
+   "lat": 12.37,
+   "lon": -1.53
+  },
+  "population": {
+   "value": 24075000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 27627000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1147.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 273600.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bgd",
+  "name": "Bangladesh",
+  "capital": {
+   "name": "Dhaka",
+   "lat": 23.73,
+   "lon": 90.41
+  },
+  "population": {
+   "value": 175690000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 456320000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2597.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 130170.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bgr",
+  "name": "Bulgaria",
+  "capital": {
+   "name": "Sofia",
+   "lat": 42.69,
+   "lon": 23.31
+  },
+  "population": {
+   "value": 6433300.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 130780000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 20329.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 108560.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bhr",
+  "name": "Bahrain",
+  "capital": {
+   "name": "Manama",
+   "lat": 26.24,
+   "lon": 50.58
+  },
+  "population": {
+   "value": 1600400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 48966000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 30597.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 800.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bhs",
+  "name": "Bahamas",
+  "capital": {
+   "name": "Nassau",
+   "lat": 25.08,
+   "lon": -77.35
+  },
+  "population": {
+   "value": 403030.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 15833000000.0,
+   "year": 2024
+  },
+  "gdpPerCapita": {
+   "value": 39456.0,
+   "year": 2024
+  },
+  "area": {
+   "value": 10010.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bih",
+  "name": "Bosnia and Herzegovina",
+  "capital": {
+   "name": "Sarajevo",
+   "lat": 43.85,
+   "lon": 18.38
+  },
+  "population": {
+   "value": 3140100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 32600000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 10382.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 51200.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "blr",
+  "name": "Belarus",
+  "capital": {
+   "name": "Minsk",
+   "lat": 53.9,
+   "lon": 27.56
+  },
+  "population": {
+   "value": 9086000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 93397000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 10279.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 202980.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "blz",
+  "name": "Belize",
+  "capital": {
+   "name": "Belmopan",
+   "lat": 17.25,
+   "lon": -88.77
+  },
+  "population": {
+   "value": 422920.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 3326500000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7865.5,
+   "year": 2025
+  },
+  "area": {
+   "value": 22810.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bol",
+  "name": "Bolivia",
+  "capital": {
+   "name": "La Paz",
+   "lat": -16.5,
+   "lon": -68.15
+  },
+  "population": {
+   "value": 12582000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 64769000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5147.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 1088000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bra",
+  "name": "Brazil",
+  "capital": {
+   "name": "Brasília",
+   "lat": -15.78,
+   "lon": -47.92
+  },
+  "population": {
+   "value": 212810000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2279900000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 10713.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 8358100.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "brb",
+  "name": "Barbados",
+  "capital": {
+   "name": "Bridgetown",
+   "lat": 13.1,
+   "lon": -59.62
+  },
+  "population": {
+   "value": 282620.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 8016600000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 28365.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 431.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "brn",
+  "name": "Brunei",
+  "capital": {
+   "name": "Bandar Seri Begawan",
+   "lat": 4.88,
+   "lon": 114.93
+  },
+  "population": {
+   "value": 466330.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 15032000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 32235.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 5270.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "btn",
+  "name": "Bhutan",
+  "capital": {
+   "name": "Thimphu",
+   "lat": 27.47,
+   "lon": 89.64
+  },
+  "population": {
+   "value": 796680.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 3579300000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4492.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 38140.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "bwa",
+  "name": "Botswana",
+  "capital": {
+   "name": "Gaborone",
+   "lat": -24.65,
+   "lon": 25.91
+  },
+  "population": {
+   "value": 2562100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 19928000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7777.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 566730.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "caf",
+  "name": "Central African Republic",
+  "capital": {
+   "name": "Bangui",
+   "lat": 4.37,
+   "lon": 18.56
+  },
+  "population": {
+   "value": 5513300.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 3066100000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 556.13,
+   "year": 2025
+  },
+  "area": {
+   "value": 622980.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "can",
+  "name": "Canada",
+  "capital": {
+   "name": "Ottawa",
+   "lat": 45.42,
+   "lon": -75.7
+  },
+  "population": {
+   "value": 41652000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2319900000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 55698.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 8788700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "che",
+  "name": "Switzerland",
+  "capital": {
+   "name": "Bern",
+   "lat": 46.92,
+   "lon": 7.47
+  },
+  "population": {
+   "value": 9092400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1043500000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 114770.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 39510.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "chl",
+  "name": "Chile",
+  "capital": {
+   "name": "Santiago",
+   "lat": -33.45,
+   "lon": -70.67
+  },
+  "population": {
+   "value": 19860000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 357370000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 17995.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 742030.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "chn",
+  "name": "China",
+  "capital": {
+   "name": "Beijing",
+   "lat": 39.93,
+   "lon": 116.39
+  },
+  "population": {
+   "value": 1406600000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 19498000000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 13862.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 9388200.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "civ",
+  "name": "Côte d'Ivoire",
+  "capital": {
+   "name": "Yamoussoukro",
+   "lat": 6.82,
+   "lon": -5.28
+  },
+  "population": {
+   "value": 32712000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 99774000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3050.1,
+   "year": 2025
+  },
+  "area": {
+   "value": 318000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cmr",
+  "name": "Cameroon",
+  "capital": {
+   "name": "Yaoundé",
+   "lat": 3.87,
+   "lon": 11.51
+  },
+  "population": {
+   "value": 29879000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 58933000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1972.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 472710.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cod",
+  "name": "DR Congo",
+  "capital": {
+   "name": "Kinshasa",
+   "lat": -4.33,
+   "lon": 15.31
+  },
+  "population": {
+   "value": 112830000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 91031000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 806.78,
+   "year": 2025
+  },
+  "area": {
+   "value": 2267000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cog",
+  "name": "Congo",
+  "capital": {
+   "name": "Brazzaville",
+   "lat": -4.26,
+   "lon": 15.28
+  },
+  "population": {
+   "value": 6484400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 16307000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2514.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 341500.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "col",
+  "name": "Colombia",
+  "capital": {
+   "name": "Bogotá",
+   "lat": 4.6,
+   "lon": -74.09
+  },
+  "population": {
+   "value": 53426000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 457410000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 8561.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 1109500.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "com",
+  "name": "Comoros",
+  "capital": {
+   "name": "Moroni",
+   "lat": -11.7,
+   "lon": 43.24
+  },
+  "population": {
+   "value": 882850.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1814900000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2055.7,
+   "year": 2025
+  },
+  "area": {
+   "value": 1869.7,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cpv",
+  "name": "Cabo Verde",
+  "capital": {
+   "name": "Praia",
+   "lat": 14.92,
+   "lon": -23.52
+  },
+  "population": {
+   "value": 527330.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 3056600000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5796.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 4030.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cri",
+  "name": "Costa Rica",
+  "capital": {
+   "name": "San José",
+   "lat": 9.94,
+   "lon": -84.09
+  },
+  "population": {
+   "value": 5153000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 102900000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 19969.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 50560.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cub",
+  "name": "Cuba",
+  "capital": {
+   "name": "Havana",
+   "lat": 23.13,
+   "lon": -82.37
+  },
+  "population": {
+   "value": 10937000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 107350000000.0,
+   "year": 2020
+  },
+  "gdpPerCapita": {
+   "value": 9605.1,
+   "year": 2020
+  },
+  "area": {
+   "value": 103800.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cyp",
+  "name": "Cyprus",
+  "capital": {
+   "name": "Nicosia",
+   "lat": 35.17,
+   "lon": 33.37
+  },
+  "population": {
+   "value": 1370800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 41226000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 30075.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 9240.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "cze",
+  "name": "Czechia",
+  "capital": {
+   "name": "Prague",
+   "lat": 50.09,
+   "lon": 14.46
+  },
+  "population": {
+   "value": 10887000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 391030000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 35918.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 77156.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "deu",
+  "name": "Germany",
+  "capital": {
+   "name": "Berlin",
+   "lat": 52.52,
+   "lon": 13.4
+  },
+  "population": {
+   "value": 83491000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 5050900000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 60496.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 349430.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "dji",
+  "name": "Djibouti",
+  "capital": {
+   "name": "Djibouti",
+   "lat": 11.6,
+   "lon": 43.15
+  },
+  "population": {
+   "value": 1184100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 4624500000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3905.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 23180.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "dma",
+  "name": "Dominica",
+  "capital": {
+   "name": "Roseau",
+   "lat": 15.3,
+   "lon": -61.39
+  },
+  "population": {
+   "value": 65871.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 723860000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 10989.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 751.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "dnk",
+  "name": "Denmark",
+  "capital": {
+   "name": "Copenhagen",
+   "lat": 55.68,
+   "lon": 12.56
+  },
+  "population": {
+   "value": 6009200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 462530000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 76971.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 40000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "dom",
+  "name": "Dominican Republic",
+  "capital": {
+   "name": "Santo Domingo",
+   "lat": 18.47,
+   "lon": -69.9
+  },
+  "population": {
+   "value": 11520000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 127410000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 11059.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 48198.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "dza",
+  "name": "Algeria",
+  "capital": {
+   "name": "Algiers",
+   "lat": 36.77,
+   "lon": 3.05
+  },
+  "population": {
+   "value": 47435000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 287030000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6051.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 2381700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ecu",
+  "name": "Ecuador",
+  "capital": {
+   "name": "Quito",
+   "lat": -0.21,
+   "lon": -78.5
+  },
+  "population": {
+   "value": 18290000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 130320000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7125.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 248360.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "egy",
+  "name": "Egypt",
+  "capital": {
+   "name": "Cairo",
+   "lat": 30.05,
+   "lon": 31.25
+  },
+  "population": {
+   "value": 118370000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 365250000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3085.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 995450.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "eri",
+  "name": "Eritrea",
+  "capital": {
+   "name": "Asmara",
+   "lat": 15.33,
+   "lon": 38.93
+  },
+  "population": {
+   "value": 3607000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2280000000.0,
+   "year": 2023,
+   "source": "UN, via Worldometer"
+  },
+  "gdpPerCapita": {
+   "value": 656.99,
+   "year": 2023
+  },
+  "area": {
+   "value": 120800.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "esp",
+  "name": "Spain",
+  "capital": {
+   "name": "Madrid",
+   "lat": 40.4,
+   "lon": -3.69
+  },
+  "population": {
+   "value": 49355000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1906500000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 38628.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 499690.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "est",
+  "name": "Estonia",
+  "capital": {
+   "name": "Tallinn",
+   "lat": 59.43,
+   "lon": 24.73
+  },
+  "population": {
+   "value": 1366500.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 47031000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 34418.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 42730.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "eth",
+  "name": "Ethiopia",
+  "capital": {
+   "name": "Addis Ababa",
+   "lat": 9.04,
+   "lon": 38.7
+  },
+  "population": {
+   "value": 135470000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 126360000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 932.74,
+   "year": 2025
+  },
+  "area": {
+   "value": 1122100.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "fin",
+  "name": "Finland",
+  "capital": {
+   "name": "Helsinki",
+   "lat": 60.18,
+   "lon": 24.93
+  },
+  "population": {
+   "value": 5646400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 317040000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 56149.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 304000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "fji",
+  "name": "Fiji",
+  "capital": {
+   "name": "Suva",
+   "lat": -18.13,
+   "lon": 178.44
+  },
+  "population": {
+   "value": 933150.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 6198000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6642.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 18333.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "fra",
+  "name": "France",
+  "capital": {
+   "name": "Paris",
+   "lat": 48.87,
+   "lon": 2.33
+  },
+  "population": {
+   "value": 68720000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 3366300000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 48985.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 538950.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "fsm",
+  "name": "Micronesia",
+  "capital": {
+   "name": "Palikir",
+   "lat": 6.92,
+   "lon": 158.15
+  },
+  "population": {
+   "value": 113680.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 501800000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4414.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 701.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gab",
+  "name": "Gabon",
+  "capital": {
+   "name": "Libreville",
+   "lat": 0.39,
+   "lon": 9.46
+  },
+  "population": {
+   "value": 2593100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 21427000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 8263.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 257670.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gbr",
+  "name": "United Kingdom",
+  "capital": {
+   "name": "London",
+   "lat": 51.5,
+   "lon": -0.12
+  },
+  "population": {
+   "value": 69487000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 4002600000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 57602.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 241930.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "geo",
+  "name": "Georgia",
+  "capital": {
+   "name": "Tbilisi",
+   "lat": 41.73,
+   "lon": 44.79
+  },
+  "population": {
+   "value": 3935800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 38144000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 9691.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 69490.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gha",
+  "name": "Ghana",
+  "capital": {
+   "name": "Accra",
+   "lat": 5.55,
+   "lon": -0.22
+  },
+  "population": {
+   "value": 35064000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 114210000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3257.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 227530.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gin",
+  "name": "Guinea",
+  "capital": {
+   "name": "Conakry",
+   "lat": 9.53,
+   "lon": -13.68
+  },
+  "population": {
+   "value": 15100000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 28346000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1877.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 245720.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gmb",
+  "name": "Gambia",
+  "capital": {
+   "name": "Banjul",
+   "lat": 13.45,
+   "lon": -16.59
+  },
+  "population": {
+   "value": 2822100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2593700000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 919.07,
+   "year": 2025
+  },
+  "area": {
+   "value": 10120.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gnb",
+  "name": "Guinea-Bissau",
+  "capital": {
+   "name": "Bissau",
+   "lat": 11.87,
+   "lon": -15.6
+  },
+  "population": {
+   "value": 2249500.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2527900000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1123.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 28120.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gnq",
+  "name": "Equatorial Guinea",
+  "capital": {
+   "name": "Malabo",
+   "lat": 3.75,
+   "lon": 8.78
+  },
+  "population": {
+   "value": 1938400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 12823000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6615.1,
+   "year": 2025
+  },
+  "area": {
+   "value": 28052.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "grc",
+  "name": "Greece",
+  "capital": {
+   "name": "Athens",
+   "lat": 37.99,
+   "lon": 23.73
+  },
+  "population": {
+   "value": 10414000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 280640000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 26948.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 128900.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "grd",
+  "name": "Grenada",
+  "capital": {
+   "name": "Saint George's",
+   "lat": 12.05,
+   "lon": -61.74
+  },
+  "population": {
+   "value": 117300.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1420200000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 12107.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 344.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "gtm",
+  "name": "Guatemala",
+  "capital": {
+   "name": "Guatemala City",
+   "lat": 14.62,
+   "lon": -90.53
+  },
+  "population": {
+   "value": 18688000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 123310000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6598.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 107160.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "guy",
+  "name": "Guyana",
+  "capital": {
+   "name": "Georgetown",
+   "lat": 6.8,
+   "lon": -58.17
+  },
+  "population": {
+   "value": 835990.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 27097000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 32413.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 211140.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "hnd",
+  "name": "Honduras",
+  "capital": {
+   "name": "Tegucigalpa",
+   "lat": 14.1,
+   "lon": -87.22
+  },
+  "population": {
+   "value": 11006000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 39601000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3598.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 111890.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "hrv",
+  "name": "Croatia",
+  "capital": {
+   "name": "Zagreb",
+   "lat": 45.8,
+   "lon": 16.0
+  },
+  "population": {
+   "value": 3876200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 105060000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 27104.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 55960.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "hti",
+  "name": "Haiti",
+  "capital": {
+   "name": "Port-au-Prince",
+   "lat": 18.54,
+   "lon": -72.34
+  },
+  "population": {
+   "value": 11906000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 32077000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2694.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 27560.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "hun",
+  "name": "Hungary",
+  "capital": {
+   "name": "Budapest",
+   "lat": 47.5,
+   "lon": 19.08
+  },
+  "population": {
+   "value": 9514300.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 246490000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 25907.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 91260.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "idn",
+  "name": "Indonesia",
+  "capital": {
+   "name": "Jakarta",
+   "lat": -6.17,
+   "lon": 106.83
+  },
+  "population": {
+   "value": 285720000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1445600000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5059.5,
+   "year": 2025
+  },
+  "area": {
+   "value": 1892400.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ind",
+  "name": "India",
+  "capital": {
+   "name": "New Delhi",
+   "lat": 28.6,
+   "lon": 77.2
+  },
+  "population": {
+   "value": 1463900000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 3956100000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2702.5,
+   "year": 2025
+  },
+  "area": {
+   "value": 2973200.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "irl",
+  "name": "Ireland",
+  "capital": {
+   "name": "Dublin",
+   "lat": 53.34,
+   "lon": -6.25
+  },
+  "population": {
+   "value": 5484400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 721700000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 131590.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 68890.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "irn",
+  "name": "Iran",
+  "capital": {
+   "name": "Tehran",
+   "lat": 35.67,
+   "lon": 51.42
+  },
+  "population": {
+   "value": 92418000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 362680000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3924.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 1622500.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "irq",
+  "name": "Iraq",
+  "capital": {
+   "name": "Baghdad",
+   "lat": 33.34,
+   "lon": 44.39
+  },
+  "population": {
+   "value": 47021000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 254370000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5409.7,
+   "year": 2025
+  },
+  "area": {
+   "value": 434130.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "isl",
+  "name": "Iceland",
+  "capital": {
+   "name": "Reykjavík",
+   "lat": 64.15,
+   "lon": -21.95
+  },
+  "population": {
+   "value": 392400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 38583000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 98325.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 100830.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "isr",
+  "name": "Israel",
+  "capital": {
+   "name": "Jerusalem",
+   "lat": 31.78,
+   "lon": 35.21
+  },
+  "population": {
+   "value": 10123000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 610780000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 60337.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 21640.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ita",
+  "name": "Italy",
+  "capital": {
+   "name": "Rome",
+   "lat": 41.9,
+   "lon": 12.48
+  },
+  "population": {
+   "value": 58916000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2551600000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 43309.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 295720.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "jam",
+  "name": "Jamaica",
+  "capital": {
+   "name": "Kingston",
+   "lat": 17.98,
+   "lon": -76.77
+  },
+  "population": {
+   "value": 2837100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 22705000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 8003.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 10830.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "jor",
+  "name": "Jordan",
+  "capital": {
+   "name": "Amman",
+   "lat": 31.95,
+   "lon": 35.93
+  },
+  "population": {
+   "value": 11521000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 61610000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5347.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 88794.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "jpn",
+  "name": "Japan",
+  "capital": {
+   "name": "Tokyo",
+   "lat": 35.69,
+   "lon": 139.75
+  },
+  "population": {
+   "value": 123370000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 4435200000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 35951.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 364500.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "kaz",
+  "name": "Kazakhstan",
+  "capital": {
+   "name": "Astana",
+   "lat": 51.18,
+   "lon": 71.43
+  },
+  "population": {
+   "value": 20844000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 306240000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 14692.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 2699700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ken",
+  "name": "Kenya",
+  "capital": {
+   "name": "Nairobi",
+   "lat": -1.28,
+   "lon": 36.81
+  },
+  "population": {
+   "value": 57532000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 135940000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2362.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 580880.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "kgz",
+  "name": "Kyrgyzstan",
+  "capital": {
+   "name": "Bishkek",
+   "lat": 42.88,
+   "lon": 74.58
+  },
+  "population": {
+   "value": 7343100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 22624000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3081.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 191800.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "khm",
+  "name": "Cambodia",
+  "capital": {
+   "name": "Phnom Penh",
+   "lat": 11.55,
+   "lon": 104.91
+  },
+  "population": {
+   "value": 17848000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 51267000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2872.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 176520.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "kir",
+  "name": "Kiribati",
+  "capital": {
+   "name": "Tarawa",
+   "lat": 1.34,
+   "lon": 173.02
+  },
+  "population": {
+   "value": 136490.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 349230000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2558.7,
+   "year": 2025
+  },
+  "area": {
+   "value": 811.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "kna",
+  "name": "Saint Kitts and Nevis",
+  "capital": {
+   "name": "Basseterre",
+   "lat": 17.3,
+   "lon": -62.72
+  },
+  "population": {
+   "value": 46922.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1183500000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 25223.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 261.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "kor",
+  "name": "South Korea",
+  "capital": {
+   "name": "Seoul",
+   "lat": 37.57,
+   "lon": 127.0
+  },
+  "population": {
+   "value": 51685000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1872400000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 36227.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 97600.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "kwt",
+  "name": "Kuwait",
+  "capital": {
+   "name": "Kuwait City",
+   "lat": 29.37,
+   "lon": 47.98
+  },
+  "population": {
+   "value": 4865300.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 157210000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 32313.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 17820.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lao",
+  "name": "Laos",
+  "capital": {
+   "name": "Vientiane",
+   "lat": 17.97,
+   "lon": 102.6
+  },
+  "population": {
+   "value": 7873000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 18303000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2324.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 230800.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lbn",
+  "name": "Lebanon",
+  "capital": {
+   "name": "Beirut",
+   "lat": 33.87,
+   "lon": 35.51
+  },
+  "population": {
+   "value": 5849400.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 25972000000.0,
+   "year": 2024
+  },
+  "gdpPerCapita": {
+   "value": 4473.3,
+   "year": 2024
+  },
+  "area": {
+   "value": 10230.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lbr",
+  "name": "Liberia",
+  "capital": {
+   "name": "Monrovia",
+   "lat": 6.31,
+   "lon": -10.8
+  },
+  "population": {
+   "value": 5731200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 5245900000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 915.32,
+   "year": 2025
+  },
+  "area": {
+   "value": 96320.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lby",
+  "name": "Libya",
+  "capital": {
+   "name": "Tripoli",
+   "lat": 32.89,
+   "lon": 13.18
+  },
+  "population": {
+   "value": 7458600.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 48099000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6448.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 1759500.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lca",
+  "name": "Saint Lucia",
+  "capital": {
+   "name": "Castries",
+   "lat": 14.0,
+   "lon": -61.0
+  },
+  "population": {
+   "value": 180150.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2656400000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 14746.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 610.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lie",
+  "name": "Liechtenstein",
+  "capital": {
+   "name": "Vaduz",
+   "lat": 47.13,
+   "lon": 9.52
+  },
+  "population": {
+   "value": 41024.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 8905800000.0,
+   "year": 2024
+  },
+  "gdpPerCapita": {
+   "value": 220170.0,
+   "year": 2024
+  },
+  "area": {
+   "value": 160.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lka",
+  "name": "Sri Lanka",
+  "capital": {
+   "name": "Sri Jayawardenepura Kotte",
+   "lat": 6.9,
+   "lon": 79.95
+  },
+  "population": {
+   "value": 21756000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 108830000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5002.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 61860.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lso",
+  "name": "Lesotho",
+  "capital": {
+   "name": "Maseru",
+   "lat": -29.32,
+   "lon": 27.48
+  },
+  "population": {
+   "value": 2363300.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2573600000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1089.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 30360.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ltu",
+  "name": "Lithuania",
+  "capital": {
+   "name": "Vilnius",
+   "lat": 54.68,
+   "lon": 25.32
+  },
+  "population": {
+   "value": 2888800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 95210000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 32959.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 62590.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lux",
+  "name": "Luxembourg",
+  "capital": {
+   "name": "Luxembourg",
+   "lat": 49.61,
+   "lon": 6.13
+  },
+  "population": {
+   "value": 686970.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 101160000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 147260.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 2574.5,
+   "year": 2024
+  }
+ },
+ {
+  "id": "lva",
+  "name": "Latvia",
+  "capital": {
+   "name": "Riga",
+   "lat": 56.95,
+   "lon": 24.1
+  },
+  "population": {
+   "value": 1847800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 48619000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 26312.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 62230.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mar",
+  "name": "Morocco",
+  "capital": {
+   "name": "Rabat",
+   "lat": 34.03,
+   "lon": -6.84
+  },
+  "population": {
+   "value": 38431000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 182370000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4745.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 446300.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mco",
+  "name": "Monaco",
+  "capital": {
+   "name": "Monaco",
+   "lat": 43.74,
+   "lon": 7.41
+  },
+  "population": {
+   "value": 38341.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 11126000000.0,
+   "year": 2024
+  },
+  "gdpPerCapita": {
+   "value": 288010.0,
+   "year": 2024
+  },
+  "area": {
+   "value": 2.084,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mda",
+  "name": "Moldova",
+  "capital": {
+   "name": "Chișinău",
+   "lat": 47.01,
+   "lon": 28.86
+  },
+  "population": {
+   "value": 2360500.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 20352000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 8621.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 32930.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mdg",
+  "name": "Madagascar",
+  "capital": {
+   "name": "Antananarivo",
+   "lat": -18.91,
+   "lon": 47.51
+  },
+  "population": {
+   "value": 32741000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 19620000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 599.25,
+   "year": 2025
+  },
+  "area": {
+   "value": 581800.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mdv",
+  "name": "Maldives",
+  "capital": {
+   "name": "Malé",
+   "lat": 4.17,
+   "lon": 73.5
+  },
+  "population": {
+   "value": 529680.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 7741100000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 14615.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 298.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mex",
+  "name": "Mexico",
+  "capital": {
+   "name": "Mexico City",
+   "lat": 19.44,
+   "lon": -99.13
+  },
+  "population": {
+   "value": 131950000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1832600000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 13889.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 1944000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mhl",
+  "name": "Marshall Islands",
+  "capital": {
+   "name": "Majuro",
+   "lat": 7.1,
+   "lon": 171.38
+  },
+  "population": {
+   "value": 36282.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 308000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 8489.1,
+   "year": 2025
+  },
+  "area": {
+   "value": 181.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mkd",
+  "name": "North Macedonia",
+  "capital": {
+   "name": "Skopje",
+   "lat": 42.0,
+   "lon": 21.43
+  },
+  "population": {
+   "value": 1820900.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 19101000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 10490.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 25220.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mli",
+  "name": "Mali",
+  "capital": {
+   "name": "Bamako",
+   "lat": 12.65,
+   "lon": -8.0
+  },
+  "population": {
+   "value": 25199000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 30069000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1193.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 1220200.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mlt",
+  "name": "Malta",
+  "capital": {
+   "name": "Valletta",
+   "lat": 35.9,
+   "lon": 14.51
+  },
+  "population": {
+   "value": 579700.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 27772000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 47907.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 315.15,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mmr",
+  "name": "Myanmar",
+  "capital": {
+   "name": "Naypyidaw",
+   "lat": 19.77,
+   "lon": 96.12
+  },
+  "population": {
+   "value": 54851000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 81666000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1488.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 652670.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mne",
+  "name": "Montenegro",
+  "capital": {
+   "name": "Podgorica",
+   "lat": 42.47,
+   "lon": 19.27
+  },
+  "population": {
+   "value": 623130.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 9232800000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 14817.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 13450.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mng",
+  "name": "Mongolia",
+  "capital": {
+   "name": "Ulaanbaatar",
+   "lat": 47.92,
+   "lon": 106.91
+  },
+  "population": {
+   "value": 3569000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 25369000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7108.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 1558500.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "moz",
+  "name": "Mozambique",
+  "capital": {
+   "name": "Maputo",
+   "lat": -25.95,
+   "lon": 32.59
+  },
+  "population": {
+   "value": 35632000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 22338000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 626.91,
+   "year": 2025
+  },
+  "area": {
+   "value": 786380.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mrt",
+  "name": "Mauritania",
+  "capital": {
+   "name": "Nouakchott",
+   "lat": 18.09,
+   "lon": -15.98
+  },
+  "population": {
+   "value": 5315100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 11680000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2197.5,
+   "year": 2025
+  },
+  "area": {
+   "value": 1030700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mus",
+  "name": "Mauritius",
+  "capital": {
+   "name": "Port Louis",
+   "lat": -20.17,
+   "lon": 57.5
+  },
+  "population": {
+   "value": 1243700.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 16158000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 12991.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 2000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mwi",
+  "name": "Malawi",
+  "capital": {
+   "name": "Lilongwe",
+   "lat": -13.98,
+   "lon": 33.78
+  },
+  "population": {
+   "value": 22216000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 14918000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 671.49,
+   "year": 2025
+  },
+  "area": {
+   "value": 94280.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "mys",
+  "name": "Malaysia",
+  "capital": {
+   "name": "Kuala Lumpur",
+   "lat": 3.17,
+   "lon": 101.7
+  },
+  "population": {
+   "value": 35978000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 472190000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 13124.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 328550.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "nam",
+  "name": "Namibia",
+  "capital": {
+   "name": "Windhoek",
+   "lat": -22.57,
+   "lon": 17.08
+  },
+  "population": {
+   "value": 3092800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 15080000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4875.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 823290.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ner",
+  "name": "Niger",
+  "capital": {
+   "name": "Niamey",
+   "lat": 13.52,
+   "lon": 2.11
+  },
+  "population": {
+   "value": 27918000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 21646000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 775.35,
+   "year": 2025
+  },
+  "area": {
+   "value": 1266700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "nga",
+  "name": "Nigeria",
+  "capital": {
+   "name": "Abuja",
+   "lat": 9.09,
+   "lon": 7.53
+  },
+  "population": {
+   "value": 237530000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 290790000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1224.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 910770.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "nic",
+  "name": "Nicaragua",
+  "capital": {
+   "name": "Managua",
+   "lat": 12.15,
+   "lon": -86.27
+  },
+  "population": {
+   "value": 7007500.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 22237000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3173.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 120340.0,
+   "year": 2023
+  }
+ },
+ {
+  "id": "nld",
+  "name": "Netherlands",
+  "capital": {
+   "name": "Amsterdam",
+   "lat": 52.35,
+   "lon": 4.91
+  },
+  "population": {
+   "value": 18088000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1332800000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 73686.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 33670.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "nor",
+  "name": "Norway",
+  "capital": {
+   "name": "Oslo",
+   "lat": 59.92,
+   "lon": 10.75
+  },
+  "population": {
+   "value": 5610900.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 530760000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 94595.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 364270.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "npl",
+  "name": "Nepal",
+  "capital": {
+   "name": "Kathmandu",
+   "lat": 27.72,
+   "lon": 85.31
+  },
+  "population": {
+   "value": 29618000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 45490000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1535.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 143350.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "nru",
+  "name": "Nauru",
+  "capital": {
+   "name": "Yaren",
+   "lat": -0.55,
+   "lon": 166.92
+  },
+  "population": {
+   "value": 12025.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 176040000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 14640.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 21.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "nzl",
+  "name": "New Zealand",
+  "capital": {
+   "name": "Wellington",
+   "lat": -41.3,
+   "lon": 174.78
+  },
+  "population": {
+   "value": 5324700.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 264060000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 49592.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 263310.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "omn",
+  "name": "Oman",
+  "capital": {
+   "name": "Muscat",
+   "lat": 23.61,
+   "lon": 58.59
+  },
+  "population": {
+   "value": 5494700.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 109600000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 19947.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 309500.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "pak",
+  "name": "Pakistan",
+  "capital": {
+   "name": "Islamabad",
+   "lat": 33.7,
+   "lon": 73.16
+  },
+  "population": {
+   "value": 255220000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 407310000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1595.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 770880.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "pan",
+  "name": "Panama",
+  "capital": {
+   "name": "Panama City",
+   "lat": 8.97,
+   "lon": -79.53
+  },
+  "population": {
+   "value": 4571200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 90463000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 19790.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 74180.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "per",
+  "name": "Peru",
+  "capital": {
+   "name": "Lima",
+   "lat": -12.05,
+   "lon": -77.05
+  },
+  "population": {
+   "value": 34577000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 334850000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 9684.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 1280000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "phl",
+  "name": "Philippines",
+  "capital": {
+   "name": "Manila",
+   "lat": 14.61,
+   "lon": 120.98
+  },
+  "population": {
+   "value": 116790000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 487090000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4170.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 298170.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "plw",
+  "name": "Palau",
+  "capital": {
+   "name": "Ngerulmud",
+   "lat": 7.49,
+   "lon": 134.63
+  },
+  "population": {
+   "value": 17663.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 345000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 19532.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 460.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "png",
+  "name": "Papua New Guinea",
+  "capital": {
+   "name": "Port Moresby",
+   "lat": -9.46,
+   "lon": 147.19
+  },
+  "population": {
+   "value": 10763000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 32499000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3019.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 452860.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "pol",
+  "name": "Poland",
+  "capital": {
+   "name": "Warsaw",
+   "lat": 52.25,
+   "lon": 21.0
+  },
+  "population": {
+   "value": 36436000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1035500000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 28420.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 306070.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "prk",
+  "name": "North Korea",
+  "capital": {
+   "name": "Pyongyang",
+   "lat": 39.02,
+   "lon": 125.75
+  },
+  "population": {
+   "value": 26571000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 32010000000.0,
+   "year": 2024,
+   "source": "Bank of Korea, nominal GNI"
+  },
+  "gdpPerCapita": {
+   "value": 1208.0,
+   "year": 2024
+  },
+  "area": {
+   "value": 120410.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "prt",
+  "name": "Portugal",
+  "capital": {
+   "name": "Lisbon",
+   "lat": 38.72,
+   "lon": -9.15
+  },
+  "population": {
+   "value": 10805000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 346640000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 32082.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 91606.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "pry",
+  "name": "Paraguay",
+  "capital": {
+   "name": "Asunción",
+   "lat": -25.29,
+   "lon": -57.64
+  },
+  "population": {
+   "value": 7013100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 49278000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7026.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 396010.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "pse",
+  "name": "Palestine",
+  "capital": {
+   "name": "Ramallah",
+   "lat": 31.9,
+   "lon": 35.21
+  },
+  "population": {
+   "value": 5413600.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 17167000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3171.1,
+   "year": 2025
+  },
+  "area": {
+   "value": 6025.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "qat",
+  "name": "Qatar",
+  "capital": {
+   "name": "Doha",
+   "lat": 25.29,
+   "lon": 51.53
+  },
+  "population": {
+   "value": 2972200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 215560000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 72525.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 11490.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "rou",
+  "name": "Romania",
+  "capital": {
+   "name": "Bucharest",
+   "lat": 44.44,
+   "lon": 26.1
+  },
+  "population": {
+   "value": 19020000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 428680000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 22538.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 230080.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "rus",
+  "name": "Russia",
+  "capital": {
+   "name": "Moscow",
+   "lat": 55.75,
+   "lon": 37.61
+  },
+  "population": {
+   "value": 143510000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2561300000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 17847.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 16377000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "rwa",
+  "name": "Rwanda",
+  "capital": {
+   "name": "Kigali",
+   "lat": -1.95,
+   "lon": 30.06
+  },
+  "population": {
+   "value": 14569000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 16372000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1123.7,
+   "year": 2025
+  },
+  "area": {
+   "value": 23763.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "sau",
+  "name": "Saudi Arabia",
+  "capital": {
+   "name": "Riyadh",
+   "lat": 24.64,
+   "lon": 46.77
+  },
+  "population": {
+   "value": 36974000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1276900000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 34535.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 2149700.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "sdn",
+  "name": "Sudan",
+  "capital": {
+   "name": "Khartoum",
+   "lat": 15.59,
+   "lon": 32.53
+  },
+  "population": {
+   "value": 51662000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 60163000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1164.5,
+   "year": 2025
+  },
+  "area": {
+   "value": 1868000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "sds",
+  "name": "South Sudan",
+  "capital": {
+   "name": "Juba",
+   "lat": 4.83,
+   "lon": 31.58
+  },
+  "population": {
+   "value": 12189000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 11998000000.0,
+   "year": 2015
+  },
+  "gdpPerCapita": {
+   "value": 1080.2,
+   "year": 2015
+  },
+  "area": {
+   "value": 631930.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "sen",
+  "name": "Senegal",
+  "capital": {
+   "name": "Dakar",
+   "lat": 14.72,
+   "lon": -17.48
+  },
+  "population": {
+   "value": 18932000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 37007000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1954.7,
+   "year": 2025
+  },
+  "area": {
+   "value": 192530.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "sgp",
+  "name": "Singapore",
+  "capital": {
+   "name": "Singapore",
+   "lat": 1.29,
+   "lon": 103.85
+  },
+  "population": {
+   "value": 6111200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 603870000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 98814.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 724.8,
+   "year": 2024
+  }
+ },
+ {
+  "id": "slb",
+  "name": "Solomon Islands",
+  "capital": {
+   "name": "Honiara",
+   "lat": -9.44,
+   "lon": 159.95
+  },
+  "population": {
+   "value": 838640.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1749600000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 2086.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 27990.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "sle",
+  "name": "Sierra Leone",
+  "capital": {
+   "name": "Freetown",
+   "lat": 8.47,
+   "lon": -13.24
+  },
+  "population": {
+   "value": 8819800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 7464200000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 846.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 72180.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "slv",
+  "name": "El Salvador",
+  "capital": {
+   "name": "San Salvador",
+   "lat": 13.71,
+   "lon": -89.2
+  },
+  "population": {
+   "value": 6365500.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 36708000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5766.7,
+   "year": 2025
+  },
+  "area": {
+   "value": 20720.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "smr",
+  "name": "San Marino",
+  "capital": {
+   "name": "San Marino",
+   "lat": 43.94,
+   "lon": 12.44
+  },
+  "population": {
+   "value": 34109.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2027200000.0,
+   "year": 2023
+  },
+  "gdpPerCapita": {
+   "value": 59870.0,
+   "year": 2023
+  },
+  "area": {
+   "value": 61.2,
+   "year": 2024
+  }
+ },
+ {
+  "id": "som",
+  "name": "Somalia",
+  "capital": {
+   "name": "Mogadishu",
+   "lat": 2.07,
+   "lon": 45.36
+  },
+  "population": {
+   "value": 19655000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 12995000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 661.16,
+   "year": 2025
+  },
+  "area": {
+   "value": 627340.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "srb",
+  "name": "Serbia",
+  "capital": {
+   "name": "Belgrade",
+   "lat": 44.82,
+   "lon": 20.47
+  },
+  "population": {
+   "value": 6549100.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 99953000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 15262.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 87589.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "stp",
+  "name": "São Tomé and Príncipe",
+  "capital": {
+   "name": "São Tomé",
+   "lat": 0.33,
+   "lon": 6.73
+  },
+  "population": {
+   "value": 240250.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 981290000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4084.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 960.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "sur",
+  "name": "Suriname",
+  "capital": {
+   "name": "Paramaribo",
+   "lat": 5.84,
+   "lon": -55.17
+  },
+  "population": {
+   "value": 639850.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 4523700000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7069.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 160510.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "svk",
+  "name": "Slovakia",
+  "capital": {
+   "name": "Bratislava",
+   "lat": 48.15,
+   "lon": 17.12
+  },
+  "population": {
+   "value": 5413800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 154530000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 28544.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 48080.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "svn",
+  "name": "Slovenia",
+  "capital": {
+   "name": "Ljubljana",
+   "lat": 46.06,
+   "lon": 14.51
+  },
+  "population": {
+   "value": 2131000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 79648000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 37376.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 20134.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "swe",
+  "name": "Sweden",
+  "capital": {
+   "name": "Stockholm",
+   "lat": 59.35,
+   "lon": 18.1
+  },
+  "population": {
+   "value": 10597000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 669000000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 63133.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 407270.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "swz",
+  "name": "Eswatini",
+  "capital": {
+   "name": "Mbabane",
+   "lat": -26.32,
+   "lon": 31.13
+  },
+  "population": {
+   "value": 1256200.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 5160700000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4108.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 17200.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "syc",
+  "name": "Seychelles",
+  "capital": {
+   "name": "Victoria",
+   "lat": -4.62,
+   "lon": 55.45
+  },
+  "population": {
+   "value": 122730.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 2387000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 19449.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 457.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "syr",
+  "name": "Syria",
+  "capital": {
+   "name": "Damascus",
+   "lat": 33.5,
+   "lon": 36.3
+  },
+  "population": {
+   "value": 25620000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 23738000000.0,
+   "year": 2022
+  },
+  "gdpPerCapita": {
+   "value": 1056.8,
+   "year": 2022
+  },
+  "area": {
+   "value": 183630.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tcd",
+  "name": "Chad",
+  "capital": {
+   "name": "N'Djamena",
+   "lat": 12.12,
+   "lon": 15.05
+  },
+  "population": {
+   "value": 21004000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 21473000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1022.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 1259200.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tgo",
+  "name": "Togo",
+  "capital": {
+   "name": "Lomé",
+   "lat": 6.13,
+   "lon": 1.22
+  },
+  "population": {
+   "value": 8591600.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 11890000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1383.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 54390.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tha",
+  "name": "Thailand",
+  "capital": {
+   "name": "Bangkok",
+   "lat": 13.75,
+   "lon": 100.51
+  },
+  "population": {
+   "value": 71620000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 577010000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 8056.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 510890.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tjk",
+  "name": "Tajikistan",
+  "capital": {
+   "name": "Dushanbe",
+   "lat": 38.56,
+   "lon": 68.77
+  },
+  "population": {
+   "value": 10787000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 17661000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1637.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 138790.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tkm",
+  "name": "Turkmenistan",
+  "capital": {
+   "name": "Ashgabat",
+   "lat": 37.95,
+   "lon": 58.38
+  },
+  "population": {
+   "value": 7618800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 49829000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6540.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 469930.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tls",
+  "name": "Timor-Leste",
+  "capital": {
+   "name": "Dili",
+   "lat": -8.56,
+   "lon": 125.58
+  },
+  "population": {
+   "value": 1418500.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1902200000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1341.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 14870.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ton",
+  "name": "Tonga",
+  "capital": {
+   "name": "Nuku'alofa",
+   "lat": -21.14,
+   "lon": -175.22
+  },
+  "population": {
+   "value": 103740.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 679220000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6547.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 720.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tto",
+  "name": "Trinidad and Tobago",
+  "capital": {
+   "name": "Port-of-Spain",
+   "lat": 10.65,
+   "lon": -61.52
+  },
+  "population": {
+   "value": 1367800.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 25943000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 18967.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 5128.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tun",
+  "name": "Tunisia",
+  "capital": {
+   "name": "Tunis",
+   "lat": 36.8,
+   "lon": 10.18
+  },
+  "population": {
+   "value": 12349000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 57503000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4656.7,
+   "year": 2025
+  },
+  "area": {
+   "value": 155360.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tur",
+  "name": "Turkey",
+  "capital": {
+   "name": "Ankara",
+   "lat": 39.93,
+   "lon": 32.86
+  },
+  "population": {
+   "value": 85879000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1597300000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 18600.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 769630.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "tuv",
+  "name": "Tuvalu",
+  "capital": {
+   "name": "Funafuti",
+   "lat": -8.52,
+   "lon": 179.22
+  },
+  "population": {
+   "value": 9492.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 57345000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6041.4,
+   "year": 2025
+  },
+  "area": {
+   "value": 26.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "twn",
+  "name": "Taiwan",
+  "capital": {
+   "name": "Taipei",
+   "lat": 25.04,
+   "lon": 121.57
+  },
+  "population": {
+   "value": 23330000.0,
+   "year": 2025,
+   "source": "Estimate, GeoRank"
+  },
+  "gdp": {
+   "value": 920000000000.0,
+   "year": 2025,
+   "source": "IMF WEO, via GlobalNote"
+  },
+  "gdpPerCapita": {
+   "value": 39434.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 35992.0,
+   "year": null,
+   "source": "Natural Earth"
+  }
+ },
+ {
+  "id": "tza",
+  "name": "Tanzania",
+  "capital": {
+   "name": "Dodoma",
+   "lat": -6.18,
+   "lon": 35.75
+  },
+  "population": {
+   "value": 70546000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 90143000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1277.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 884000.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "uga",
+  "name": "Uganda",
+  "capital": {
+   "name": "Kampala",
+   "lat": 0.32,
+   "lon": 32.58
+  },
+  "population": {
+   "value": 51385000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 61986000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1206.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 200520.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ukr",
+  "name": "Ukraine",
+  "capital": {
+   "name": "Kyiv",
+   "lat": 50.44,
+   "lon": 30.51
+  },
+  "population": {
+   "value": 38980000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 214230000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5495.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 579400.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ury",
+  "name": "Uruguay",
+  "capital": {
+   "name": "Montevideo",
+   "lat": -34.86,
+   "lon": -56.17
+  },
+  "population": {
+   "value": 3384700.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 85348000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 25216.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 175020.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "usa",
+  "name": "United States",
+  "capital": {
+   "name": "Washington, D.C.",
+   "lat": 38.9,
+   "lon": -77.01
+  },
+  "population": {
+   "value": 341780000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 30770000000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 90027.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 9147400.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "uzb",
+  "name": "Uzbekistan",
+  "capital": {
+   "name": "Tashkent",
+   "lat": 41.31,
+   "lon": 69.29
+  },
+  "population": {
+   "value": 37053000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 147040000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3968.3,
+   "year": 2025
+  },
+  "area": {
+   "value": 438510.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "vat",
+  "name": "Vatican City",
+  "capital": {
+   "name": "Vatican City",
+   "lat": 41.9,
+   "lon": 12.45
+  },
+  "population": {
+   "value": 825.0,
+   "year": 2019,
+   "source": "Natural Earth"
+  },
+  "gdp": null,
+  "gdpPerCapita": null,
+  "area": {
+   "value": 0.44,
+   "year": null,
+   "source": "Vatican City State"
+  }
+ },
+ {
+  "id": "vct",
+  "name": "Saint Vincent and the Grenadines",
+  "capital": {
+   "name": "Kingstown",
+   "lat": 13.15,
+   "lon": -61.21
+  },
+  "population": {
+   "value": 99924.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1255200000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 12562.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 389.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "ven",
+  "name": "Venezuela",
+  "capital": {
+   "name": "Caracas",
+   "lat": 10.5,
+   "lon": -66.92
+  },
+  "population": {
+   "value": 28517000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 99661000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3494.8,
+   "year": 2025
+  },
+  "area": {
+   "value": 882050.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "vnm",
+  "name": "Vietnam",
+  "capital": {
+   "name": "Hanoi",
+   "lat": 21.04,
+   "lon": 105.85
+  },
+  "population": {
+   "value": 101600000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 514700000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5066.0,
+   "year": 2025
+  },
+  "area": {
+   "value": 313430.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "vut",
+  "name": "Vanuatu",
+  "capital": {
+   "name": "Port Vila",
+   "lat": -17.73,
+   "lon": 168.32
+  },
+  "population": {
+   "value": 335170.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1353700000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 4038.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 12189.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "wsm",
+  "name": "Samoa",
+  "capital": {
+   "name": "Apia",
+   "lat": -13.84,
+   "lon": -171.74
+  },
+  "population": {
+   "value": 219310.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 1287900000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 5872.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 2780.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "xkx",
+  "name": "Kosovo",
+  "capital": {
+   "name": "Pristina",
+   "lat": 42.67,
+   "lon": 21.17
+  },
+  "population": {
+   "value": 1576900.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 12456000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 7899.2,
+   "year": 2025
+  },
+  "area": {
+   "value": 10912.0,
+   "year": null,
+   "source": "Natural Earth"
+  }
+ },
+ {
+  "id": "yem",
+  "name": "Yemen",
+  "capital": {
+   "name": "Sanaa",
+   "lat": 15.36,
+   "lon": 44.2
+  },
+  "population": {
+   "value": 41774000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 21606000000.0,
+   "year": 2018
+  },
+  "gdpPerCapita": {
+   "value": 633.88,
+   "year": 2018
+  },
+  "area": {
+   "value": 527970.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "zaf",
+  "name": "South Africa",
+  "capital": {
+   "name": "Pretoria",
+   "lat": -25.7,
+   "lon": 28.23
+  },
+  "population": {
+   "value": 64747000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 427180000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 6597.6,
+   "year": 2025
+  },
+  "area": {
+   "value": 1213100.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "zmb",
+  "name": "Zambia",
+  "capital": {
+   "name": "Lusaka",
+   "lat": -15.41,
+   "lon": 28.28
+  },
+  "population": {
+   "value": 21914000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 28880000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 1317.9,
+   "year": 2025
+  },
+  "area": {
+   "value": 743390.0,
+   "year": 2024
+  }
+ },
+ {
+  "id": "zwe",
+  "name": "Zimbabwe",
+  "capital": {
+   "name": "Harare",
+   "lat": -17.82,
+   "lon": 31.04
+  },
+  "population": {
+   "value": 16951000.0,
+   "year": 2025
+  },
+  "gdp": {
+   "value": 51216000000.0,
+   "year": 2025
+  },
+  "gdpPerCapita": {
+   "value": 3021.5,
+   "year": 2025
+  },
+  "area": {
+   "value": 386850.0,
+   "year": 2024
+  }
+ }
+]

@@ -1,0 +1,1854 @@
+// Solar System view: the Sun in the middle and every body on its orbit,
+// to scale in AU (src/astro/orbits.ts places them at the clock's date). Orbits are drawn for the
+// planets, their moons and the larger dwarf planets; the other dwarf planets, asteroids and
+// comets are small pixel-art sprites (smallBodies.ts). Bodies are pixel-art discs (bodyArt.ts) lit from the Sun's real
+// direction, at least a fixed size on screen, and at their true size once the camera is close
+// enough for that to be bigger. A moon shows once its orbit is wide enough on screen to tell
+// it from its planet.
+//
+// The camera orbits a focused body and follows it along its orbit; clicking a body focuses it.
+// The view and the globe are one: the globe is drawn see-through on top of this view, and while
+// it has the camera this view follows it frame by frame (followGlobe, through earthFrame.ts), so
+// the stars, the Sun and the Moon behind the globe are this view's. Pulling out, the globe fades
+// into the Earth's pixel-art disc (drawn from the globe's map at the same size and turned the
+// same way), and past GLOBE_FARTHEST Earth radii this view takes the camera; scrolling back in
+// (or double-clicking the Earth, which flies home first) hands back. Near the Earth the camera's
+// up is the Earth's axis, as on the globe, turning to the ecliptic's further out.
+
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { orbitPath, solarPositions, type Vec3 } from "../../astro/orbits";
+import type { SolarContent as Content, SpaceBodyDef } from "../../astro/types";
+import { GLOBE_FADE_FROM, GLOBE_FARTHEST } from "../globe/Globe";
+import { Pinch, PINCH_IN } from "../pinch";
+import { renderScale } from "../renderScale";
+import { Recency } from "./recency";
+import { runRedraws, type Redraw } from "./redraws";
+import { bodyMap, bodyRelief, canvasSize, cometCanvasSize, drawBody, drawCometActivity, drawSun, hasMap, hasStyle, releaseBodyMaps, sunCanvasSize, surfaceReach, type Light, type MapImage, type Orient, type Relief } from "./bodyArt";
+import { bodyToScene, hasFrame } from "./bodyFrames";
+import { EARTH_POLE, globeToScene } from "./earthFrame";
+import { cometActivity, disposeSmallBodies, makeSmallBodies, setSmallBodiesSun, setSmallBodyShown } from "./smallBodies";
+
+/** Ecliptic coordinates (z north) to the scene's (y up). */
+const toScene = (p: Vec3, out = new THREE.Vector3()) => out.set(p.x, p.z, -p.y);
+
+/** CSS pixels per art pixel. */
+const PIXEL = 2;
+/** Art radius in pixels of the bodies drawn as discs; other dwarf planets, asteroidal moons, asteroids and comets are small sprites (smallBodies.ts). */
+const ART_RADIUS: Record<string, number> = {
+  Sol: 12,
+  Jupiter: 8,
+  Saturn: 7,
+  Uranus: 5,
+  Neptune: 5,
+  Earth: 5,
+  Venus: 5,
+  Mars: 4,
+  Mercury: 3,
+  Ganymede: 3,
+  Titan: 3,
+  Callisto: 3,
+  Io: 3,
+  Luna: 3,
+  Europa: 3,
+  Triton: 3,
+  Pluto: 3,
+  Eris: 3,
+  Ceres: 2,
+  Haumea: 2,
+  Makemake: 2,
+  // The asteroids drawn from maps of their own; the rest are small sprites.
+  "1951Lick": 2,
+  "3753Cruithne": 2,
+  "52762Asteroid": 2,
+  "4Vesta": 2,
+  "433Eros": 2,
+  "21Lutetia": 2,
+  "253Mathilde": 2,
+  "2Pallas": 2,
+  "391Ingeborg": 2,
+  "1866Sisyphus": 2,
+  "2099Öpik": 2,
+  "4954Eric": 2,
+  "5731Zeus": 2,
+  "7096Napier": 2,
+  "514041Asteroid": 2,
+  // The dwarf planets drawn from maps of their own, too small to show as discs at a distance.
+  Gonggong: 2,
+  Quaoar: 2,
+  "208996KBO": 2,
+  "90482Orcus": 2,
+  Sedna: 2,
+  Salacia: 2,
+  "307261KBO": 2,
+  "55565KBO": 2,
+  "532037TNO": 2,
+  "174567Varda": 2,
+  "90568KBO": 2,
+  "145452KBO": 2,
+  "20000Varuna": 2,
+  "2010KZ39KBO": 2,
+  "55637KBO": 2,
+  "2018VG18TNO": 2,
+  Glkunllhomdima: 2,
+  "2014UZ224TNO": 2,
+  "523794TNO": 2,
+  "28978Ixion": 2,
+  "84922KBO": 2,
+  "278361KBO": 2,
+  "2014WP50KBO": 2,
+  "19521Chaos": 2,
+  "512381TNO": 2,
+  "2014YA50KBO": 2,
+  "2010FX86KBO": 2,
+  "78799KBO": 2,
+  "455502KBO": 2,
+  "612533KBO": 2,
+  "2017OF69KBO": 2,
+  "470308KBO": 2,
+  "470443KBO": 2,
+  "559182KBO": 2,
+  "523645KBO": 2,
+  "523750KBO": 2,
+  "120348KBO": 2,
+  "523681KBO": 2,
+  "202421KBO": 2,
+  "482824KBO": 2,
+  "440030KBO": 2,
+  "472271KBO": 2,
+  "499514KBO": 2,
+  "35671KBO": 2,
+  "119951KBO": 2,
+  "556068KBO": 2,
+  "2012VP113TNO": 2,
+  "84719KBO": 2,
+  "578993KBO": 2,
+  "471288KBO": 2,
+  "469306KBO": 2,
+  "38628Huya": 2,
+  "469372KBO": 2,
+  "175113KBO": 2,
+  "144897KBO": 2,
+  "10Hygiea": 2,
+  "624Hektor": 2,
+  "87Sylvia": 2,
+  "52Europa": 2,
+  "2015QW23KBO": 2,
+  "556416KBO": 2,
+  "15Eunomia": 2,
+  "511Davida": 2,
+  "704Interamnia": 2,
+  "107Camilla": 2,
+  Nereid: 2,
+  "15874TNO": 2,
+  "10199Chariklo": 2,
+  "2015AH281Centaur": 2,
+  "15789KBO": 2,
+  "523643Centaur": 2,
+  "3Juno": 2,
+  "Hiʻiaka": 2,
+  "65Cybele": 2,
+  "1437Diomedes": 2,
+  "16Psyche": 2,
+  "523695Centaur": 2,
+  "48Doris": 2,
+  "216Kleopatra": 2,
+  "523727Centaur": 2,
+  "121Hermione": 2,
+  "31Euphrosyne": 2,
+  "88Thisbe": 2,
+  "324Bamberga": 2,
+  "145453KBO": 2,
+  "309239Centaur": 2,
+  "7Iris": 2,
+  "41Daphne": 2,
+  "22Kalliope": 2,
+  "451Patientia": 2,
+  "45Eugenia": 2,
+  "95626Centaur": 2,
+  "562274Centaur": 2,
+  "19Fortuna": 2,
+  "94Aurora": 2,
+  "532Herculina": 2,
+  "9Metis": 2,
+  Leleakuhonua: 2,
+  "39Laetitia": 2,
+  "2060Chiron": 2,
+  "13Egeria": 2,
+  "375Ursula": 2,
+  "130Elektra": 2,
+  "53311Deucalion": 2,
+  "423Diotima": 2,
+  "54598Bienor": 2,
+  Himalia: 2,
+  "6Hebe": 2,
+  Galatea: 2,
+  "702Alauda": 2,
+  "316179Centaur": 2,
+  "2013KY18Centaur": 2,
+  "334Chicago": 2,
+  "24Themis": 2,
+  "447178Centaur": 2,
+  "259Aletheia": 2,
+  "5145Pholus": 2,
+  "372Palma": 2,
+  "128Nemesis": 2,
+  "154Bertha": 2,
+  "120Lachesis": 2,
+  "76Freia": 2,
+  Despina: 2,
+  "85Io": 2,
+  "190Ismene": 2,
+  "444Gyptis": 2,
+  "409Aspasia": 2,
+  "139Juewa": 2,
+  "747Winchester": 2,
+  "153Hilda": 2,
+  "790Praetoria": 2,
+  Namaka: 2,
+  "18Melpomene": 2,
+  "51Nemausa": 2,
+  "241Germania": 2,
+  "106Dione": 2,
+  "194Prokne": 2,
+  "566Stereoskopia": 2,
+  "96Aegle": 2,
+  "5Astraea": 2,
+  "14Irene": 2,
+  "15760Albion": 2,
+  "911Agamemnon": 2,
+  "386Siegena": 2,
+  Sycorax: 2,
+  "165Loreley": 2,
+  "59Elpis": 2,
+  "613490Centaur": 2,
+  "104Klymene": 2,
+  "488Kreusa": 2,
+  "2011GN27Centaur": 2,
+  "654Zelinda": 2,
+  "20Massalia": 2,
+  "54Alexandra": 2,
+  "209Dido": 2,
+  "596Scheila": 2,
+  "185Eunike": 2,
+  Portia: 2,
+  "93Minerva": 2,
+  "354Eleonora": 2,
+  "536Merapi": 2,
+  "11Parthenope": 2,
+  "776Berbericia": 2,
+  "89Julia": 2,
+  Juliet: 2,
+  "49Pales": 2,
+  "117Lomia": 2,
+  "238Hypatia": 2,
+  "168Sibylla": 2,
+  "137Meliboea": 2,
+  "2011HM102Centaur": 2,
+  "1172Aneas": 2,
+  "47Aglaja": 2,
+  "361Bononia": 2,
+  "308Polyxo": 2,
+  "349Dembowska": 2,
+  "762Pulcova": 2,
+  "196Philomela": 2,
+  "95Arethusa": 2,
+  "8Flora": 2,
+  "588Achilles": 2,
+  "69Hesperia": 2,
+  "15810Arawn": 2,
+  "146Lucina": 2,
+  "356Liguria": 2,
+  "187Lamberta": 2,
+  "419Aurelia": 2,
+  Belinda: 2,
+  "279Thule": 2,
+  "92Undina": 2,
+  "3451Mentor": 2,
+  "1173Anchises": 2,
+  "1143Odysseus": 2,
+  "612243Centaur": 2,
+  "46Hestia": 2,
+  "27Euterpe": 2,
+  "328Gudrun": 2,
+  "68Leto": 2,
+  "127Johanna": 2,
+  "250Bettina": 2,
+  "28Bellona": 2,
+  "129Antigone": 2,
+  "3317Paris": 2,
+  "1867Deiphobus": 2,
+  "136204Centaur": 2,
+  "29Amphitrite": 2,
+  "63Ausonia": 2,
+  "490Veritas": 2,
+  "38Leda": 2,
+  "56Melete": 2,
+  "34Circe": 2,
+  "57Mnemosyne": 2,
+  "44Nysa": 2,
+  "617Patroclus": 2,
+  "12Victoria": 2,
+  "30Urania": 2,
+  "310071Centaur": 2,
+  "49036Pelion": 2,
+  "233Asterope": 2,
+  "230Athamantis": 2,
+  "37Fides": 2,
+  Thalassa: 2,
+  "40Harmonia": 2,
+  "23Thalia": 2,
+  "36Atalante": 2,
+  "221Eos": 2,
+  "192Nausikaa": 2,
+  "35Leukothea": 2,
+  "385571Otrera": 2,
+  "42Isis": 2,
+  "472651Centaur": 2,
+  "55576Amycus": 2,
+  "97Klotho": 2,
+  "2008LC18Centaur": 2,
+  "114Kassandra": 2,
+  Naiad: 2,
+  "62Erato": 2,
+  "43Ariadne": 2,
+  "26Proserpina": 2,
+  Cressida: 2,
+  Desdemona: 2,
+  "17Thetis": 2,
+  "32532Thereus": 2,
+  "110Lydia": 2,
+  Elara: 2,
+  "25Phocaea": 2,
+  "120061Centaur": 2,
+  Weywot: 2,
+  "135Hertha": 2,
+  "8405Asbolus": 2,
+  "636872Centaur": 2,
+  "325Heidelberga": 2,
+  "248835Centaur": 2,
+  "10370Hylonome": 2,
+  Rosalind: 2,
+  Caliban: 2,
+  "52975Cyllarus": 2,
+  "2010THCentaur": 2,
+  "336Lacadiera": 2,
+  "1911Schubart": 2,
+  "342842Centaur": 2,
+  "55Pandora": 2,
+  Bianca: 2,
+  "2011MM4Centaur": 2,
+  Halimede: 2,
+  "246Asperina": 2,
+  Metis: 2,
+  Neso: 2,
+  "7066Nessus": 2,
+  "83982Crantor": 2,
+  "2011QF99Centaur": 2,
+  "60558Echeclus": 2,
+  "281371Centaur": 2,
+  Pasiphae: 2,
+  "31824Elatus": 2,
+  Ophelia: 2,
+  Cordelia: 2,
+  Prospero: 2,
+  "52872Okyrhoe": 2,
+  Setebos: 2,
+  "1870Glaukos": 2,
+  Carme: 2,
+  Sao: 2,
+  "132Aethra": 2,
+  Laomedeia: 2,
+  Psamathe: 2,
+  Siarnaq: 2,
+  Kiviuq: 2,
+  Sinope: 2,
+  "944Hidalgo": 2,
+  "323Brucia": 2,
+  Lysithea: 2,
+  "1036Ganymed": 2,
+  Albiorix: 2,
+  Stephano: 2,
+  "S2002N5": 2,
+  "315898Centaur": 2,
+  Perdita: 2,
+  Ananke: 2,
+  "2204Lyyli": 2,
+  "699Hela": 2,
+  Mab: 2,
+  "475Ocllo": 2,
+  "512Taurinensis": 2,
+  Paaliaq: 2,
+  Francisco: 2,
+  "S2023N1": 2,
+  Adrastea: 2,
+  Margaret: 2,
+  Ferdinand: 2,
+  Ymir: 2,
+  Kerberos: 2,
+  "3552DonQuixote": 2,
+  Cupid: 2,
+  Trinculo: 2,
+  Hippocamp: 2,
+  Erriapus: 2,
+  Leda: 2,
+  Styx: 2,
+  Tarvos: 2,
+  "2064Thomsen": 2,
+  Ijiraq: 2,
+  "102528Asteroid": 2,
+  "1170Siva": 2,
+  "434Hungaria": 2,
+  "301964Asteroid": 2,
+  "3353Jarvis": 2,
+  "1627Ivar": 2,
+  "S2025U1": 2,
+  "S2023U1": 2,
+  "4222Nancita": 2,
+  Callirrhoe: 2,
+  "6500Kodaira": 2,
+  "7505Furusho": 2,
+  "3674Erbisbuhl": 2,
+  Themisto: 2,
+  "97514Asteroid": 2,
+  "301842Asteroid": 2,
+  "3443Leetsungdao": 2,
+  "1580Betulia": 2,
+  "101742Asteroid": 2,
+  Skathi: 2,
+  Hyrrokkin: 2,
+  Thrymr: 2,
+  "4558Janesick": 2,
+  Praxidike: 2,
+  Tarqeq: 2,
+  Mundilfari: 2,
+  Narvi: 2,
+  Suttungr: 2,
+  Bestla: 2,
+  "53319Asteroid": 2,
+  "3737Beckman": 2,
+  Kalyke: 2,
+  "14222Asteroid": 2,
+  Kari: 2,
+  "2335James": 2,
+  "7092Cadmus": 2,
+  "3200Phaethon": 2,
+  Megaclite: 2,
+  Bebhionn: 2,
+  Skoll: 2,
+  Greip: 2,
+  Jarnsaxa: 2,
+  Hati: 2,
+  Eggther: 2,
+  Aegir: 2,
+  "S2004S7": 2,
+  Surtur: 2,
+  Loge: 2,
+  Fornjot: 2,
+  "2212Hephaistos": 2,
+  "8373Stephengould": 2,
+  "88263Asteroid": 2,
+  "1917Cuyo": 2,
+  "5230Asahina": 2,
+  "25916Asteroid": 2,
+  "405058Asteroid": 2,
+  Bergelmir: 2,
+  "26760Asteroid": 2,
+  Iocaste: 2,
+  "89830Asteroid": 2,
+  Taygete: 2,
+  Pallene: 2,
+  "S2019S1": 2,
+  "S2005S4": 2,
+  "S2006S20": 2,
+  "S2007S2": 2,
+  "S2006S1": 2,
+  "S2007S3": 2,
+  Farbauti: 2,
+  "S2006S3": 2,
+  Alvaldi: 2,
+  "S2004S31": 2,
+  Gridr: 2,
+  Skrymir: 2,
+  "S2004S28": 2,
+  Gunnlod: 2,
+  Beli: 2,
+  "S2004S44": 2,
+};
+const MOON_RADIUS = 2;
+/** The largest art radius a close-up disc is drawn at; past that its pixels grow instead. */
+const MAX_ART_RADIUS = 80;
+/**
+ * Close art radii smaller than the rule: ringed bodies', as their rings make their canvases two to
+ * two and a half times as wide; the Sun's, as it is redrawn several times a second with its flames
+ * reaching nearly another radius out, and its pixels are best kept chunky.
+ */
+const SMALLER_CLOSE_ART_RADIUS: Record<string, number> = {
+  Saturn: 160,
+  Uranus: 180,
+  Neptune: 144,
+  Haumea: 152,
+  Sol: 112,
+  // The lumpy asteroids: their lumps reach out to nearly twice their radius, and every pixel is ray-marched.
+  "1951Lick": 84,
+  "3753Cruithne": 84,
+  "52762Asteroid": 84,
+  ArendRigaux: 84,
+  "4Vesta": 84,
+  "433Eros": 84,
+  "21Lutetia": 84,
+  "253Mathilde": 84,
+  Tempel: 84,
+  Halley: 84,
+  Phoebe: 84,
+  Hyperion: 84,
+  Janus: 84,
+  Epimetheus: 84,
+  Prometheus: 84,
+  Pandora: 84,
+  Atlas: 84,
+  Pan: 84,
+  Daphnis: 84,
+  Calypso: 84,
+  Telesto: 84,
+  Helene: 84,
+  Amalthea: 84,
+  Thebe: 84,
+  Proteus: 84,
+  Larissa: 84,
+  Puck: 84,
+  Nix: 84,
+  Hydra: 84,
+  "2Pallas": 84,
+  "391Ingeborg": 84,
+  "1866Sisyphus": 84,
+  "2099Öpik": 84,
+  "4954Eric": 84,
+  "5731Zeus": 84,
+  "7096Napier": 84,
+  "514041Asteroid": 84,
+  "10Hygiea": 84,
+  "624Hektor": 84,
+  "87Sylvia": 84,
+  "52Europa": 84,
+  "2015QW23KBO": 84,
+  "556416KBO": 84,
+  "15Eunomia": 84,
+  "511Davida": 84,
+  "704Interamnia": 84,
+  "107Camilla": 84,
+  Nereid: 84,
+  "15874TNO": 84,
+  "10199Chariklo": 84,
+  "2015AH281Centaur": 84,
+  "15789KBO": 84,
+  "523643Centaur": 84,
+  "3Juno": 84,
+  "Hiʻiaka": 84,
+  "65Cybele": 84,
+  "1437Diomedes": 84,
+  "16Psyche": 84,
+  "523695Centaur": 84,
+  "48Doris": 84,
+  "216Kleopatra": 84,
+  "523727Centaur": 84,
+  "121Hermione": 84,
+  "31Euphrosyne": 84,
+  "88Thisbe": 84,
+  "324Bamberga": 84,
+  "145453KBO": 84,
+  "309239Centaur": 84,
+  "7Iris": 84,
+  "41Daphne": 84,
+  "22Kalliope": 84,
+  "451Patientia": 84,
+  "45Eugenia": 84,
+  "95626Centaur": 84,
+  "562274Centaur": 84,
+  "19Fortuna": 84,
+  "94Aurora": 84,
+  "532Herculina": 84,
+  "9Metis": 84,
+  Leleakuhonua: 84,
+  "39Laetitia": 84,
+  "2060Chiron": 84,
+  "13Egeria": 84,
+  "375Ursula": 84,
+  "130Elektra": 84,
+  "53311Deucalion": 84,
+  "423Diotima": 84,
+  "54598Bienor": 84,
+  Himalia: 84,
+  "6Hebe": 84,
+  Galatea: 84,
+  "702Alauda": 84,
+  "316179Centaur": 84,
+  "2013KY18Centaur": 84,
+  "334Chicago": 84,
+  "24Themis": 84,
+  "447178Centaur": 84,
+  "259Aletheia": 84,
+  "5145Pholus": 84,
+  "372Palma": 84,
+  "128Nemesis": 84,
+  "154Bertha": 84,
+  "120Lachesis": 84,
+  "76Freia": 84,
+  Despina: 84,
+  "85Io": 84,
+  "190Ismene": 84,
+  "444Gyptis": 84,
+  "409Aspasia": 84,
+  "139Juewa": 84,
+  "747Winchester": 84,
+  "153Hilda": 84,
+  "790Praetoria": 84,
+  Namaka: 84,
+  "18Melpomene": 84,
+  "51Nemausa": 84,
+  "241Germania": 84,
+  "106Dione": 84,
+  "194Prokne": 84,
+  "566Stereoskopia": 84,
+  "96Aegle": 84,
+  "5Astraea": 84,
+  "14Irene": 84,
+  "15760Albion": 84,
+  "911Agamemnon": 84,
+  "386Siegena": 84,
+  Sycorax: 84,
+  "165Loreley": 84,
+  "59Elpis": 84,
+  "613490Centaur": 84,
+  "104Klymene": 84,
+  "488Kreusa": 84,
+  "2011GN27Centaur": 84,
+  "654Zelinda": 84,
+  "20Massalia": 84,
+  "54Alexandra": 84,
+  "209Dido": 84,
+  "596Scheila": 84,
+  "185Eunike": 84,
+  Portia: 84,
+  "93Minerva": 84,
+  "354Eleonora": 84,
+  "536Merapi": 84,
+  "11Parthenope": 84,
+  "776Berbericia": 84,
+  "89Julia": 84,
+  Juliet: 84,
+  "49Pales": 84,
+  "117Lomia": 84,
+  "238Hypatia": 84,
+  "168Sibylla": 84,
+  "137Meliboea": 84,
+  "2011HM102Centaur": 84,
+  "1172Aneas": 84,
+  "47Aglaja": 84,
+  "361Bononia": 84,
+  "308Polyxo": 84,
+  "349Dembowska": 84,
+  "762Pulcova": 84,
+  "196Philomela": 84,
+  "95Arethusa": 84,
+  "8Flora": 84,
+  "588Achilles": 84,
+  "69Hesperia": 84,
+  "15810Arawn": 84,
+  "146Lucina": 84,
+  "356Liguria": 84,
+  "187Lamberta": 84,
+  "419Aurelia": 84,
+  Belinda: 84,
+  "279Thule": 84,
+  "92Undina": 84,
+  "3451Mentor": 84,
+  "1173Anchises": 84,
+  "1143Odysseus": 84,
+  "612243Centaur": 84,
+  "46Hestia": 84,
+  "27Euterpe": 84,
+  "328Gudrun": 84,
+  "68Leto": 84,
+  "127Johanna": 84,
+  "250Bettina": 84,
+  "28Bellona": 84,
+  "129Antigone": 84,
+  "3317Paris": 84,
+  "1867Deiphobus": 84,
+  "136204Centaur": 84,
+  "29Amphitrite": 84,
+  "63Ausonia": 84,
+  "490Veritas": 84,
+  "38Leda": 84,
+  "56Melete": 84,
+  "34Circe": 84,
+  "57Mnemosyne": 84,
+  "44Nysa": 84,
+  "617Patroclus": 84,
+  "12Victoria": 84,
+  "30Urania": 84,
+  "310071Centaur": 84,
+  "49036Pelion": 84,
+  "233Asterope": 84,
+  "230Athamantis": 84,
+  "37Fides": 84,
+  Thalassa: 84,
+  "40Harmonia": 84,
+  "23Thalia": 84,
+  "36Atalante": 84,
+  "221Eos": 84,
+  "192Nausikaa": 84,
+  "35Leukothea": 84,
+  "385571Otrera": 84,
+  "42Isis": 84,
+  "472651Centaur": 84,
+  "55576Amycus": 84,
+  "97Klotho": 84,
+  "2008LC18Centaur": 84,
+  "114Kassandra": 84,
+  Naiad: 84,
+  "62Erato": 84,
+  "43Ariadne": 84,
+  "26Proserpina": 84,
+  Cressida: 84,
+  Desdemona: 84,
+  "17Thetis": 84,
+  "32532Thereus": 84,
+  "110Lydia": 84,
+  Elara: 84,
+  "25Phocaea": 84,
+  "120061Centaur": 84,
+  Weywot: 84,
+  "135Hertha": 84,
+  "8405Asbolus": 84,
+  "636872Centaur": 84,
+  "325Heidelberga": 84,
+  "248835Centaur": 84,
+  "10370Hylonome": 84,
+  Rosalind: 84,
+  Caliban: 84,
+  "52975Cyllarus": 84,
+  "2010THCentaur": 84,
+  "336Lacadiera": 84,
+  "1911Schubart": 84,
+  "342842Centaur": 84,
+  "55Pandora": 84,
+  Cineos: 84,
+  Bianca: 84,
+  "2011MM4Centaur": 84,
+  Halimede: 84,
+  SchwassmannWachmann: 84,
+  "246Asperina": 84,
+  Metis: 84,
+  Neso: 84,
+  "7066Nessus": 84,
+  "83982Crantor": 84,
+  "2011QF99Centaur": 84,
+  "60558Echeclus": 84,
+  "281371Centaur": 84,
+  Pasiphae: 84,
+  "31824Elatus": 84,
+  Ophelia: 84,
+  Cordelia: 84,
+  Prospero: 84,
+  "52872Okyrhoe": 84,
+  Setebos: 84,
+  "1870Glaukos": 84,
+  Carme: 84,
+  Sao: 84,
+  "132Aethra": 84,
+  Laomedeia: 84,
+  Psamathe: 84,
+  Siarnaq: 84,
+  Kiviuq: 84,
+  Sinope: 84,
+  "944Hidalgo": 84,
+  "323Brucia": 84,
+  Lysithea: 84,
+  "1036Ganymed": 84,
+  PonsBrooks: 84,
+  Albiorix: 84,
+  Stephano: 84,
+  "S2002N5": 84,
+  "315898Centaur": 84,
+  Perdita: 84,
+  Ananke: 84,
+  "2204Lyyli": 84,
+  "699Hela": 84,
+  SwiftTuttle: 84,
+  Mab: 84,
+  "475Ocllo": 84,
+  "512Taurinensis": 84,
+  Paaliaq: 84,
+  Francisco: 84,
+  Neujmin: 84,
+  "S2023N1": 84,
+  Adrastea: 84,
+  Margaret: 84,
+  Ferdinand: 84,
+  Ymir: 84,
+  Kerberos: 84,
+  "3552DonQuixote": 84,
+  Cupid: 84,
+  Trinculo: 84,
+  Hippocamp: 84,
+  Erriapus: 84,
+  Leda: 84,
+  Styx: 84,
+  Tarvos: 84,
+  "2064Thomsen": 84,
+  Loneos: 84,
+  Ijiraq: 84,
+  "102528Asteroid": 84,
+  "1170Siva": 84,
+  Levy: 84,
+  "434Hungaria": 84,
+  "301964Asteroid": 84,
+  Gunn: 84,
+  "3353Jarvis": 84,
+  "1627Ivar": 84,
+  Kowal: 84,
+  "S2025U1": 84,
+  "S2023U1": 84,
+  "4222Nancita": 84,
+  Callirrhoe: 84,
+  "6500Kodaira": 84,
+  "7505Furusho": 84,
+  "3674Erbisbuhl": 84,
+  Themisto: 84,
+  "97514Asteroid": 84,
+  "301842Asteroid": 84,
+  "3443Leetsungdao": 84,
+  "1580Betulia": 84,
+  "101742Asteroid": 84,
+  Skathi: 84,
+  Hyrrokkin: 84,
+  Thrymr: 84,
+  "4558Janesick": 84,
+  Praxidike: 84,
+  Tarqeq: 84,
+  Mundilfari: 84,
+  Narvi: 84,
+  Suttungr: 84,
+  Bestla: 84,
+  "53319Asteroid": 84,
+  "3737Beckman": 84,
+  Kalyke: 84,
+  "14222Asteroid": 84,
+  Kari: 84,
+  Machholz: 84,
+  "2335James": 84,
+  "7092Cadmus": 84,
+  "Lovas2": 84,
+  "3200Phaethon": 84,
+  Megaclite: 84,
+  Bebhionn: 84,
+  Skoll: 84,
+  Greip: 84,
+  Jarnsaxa: 84,
+  Hati: 84,
+  Eggther: 84,
+  Aegir: 84,
+  "S2004S7": 84,
+  Surtur: 84,
+  Loge: 84,
+  Fornjot: 84,
+  "2212Hephaistos": 84,
+  "8373Stephengould": 84,
+  "88263Asteroid": 84,
+  "1917Cuyo": 84,
+  "5230Asahina": 84,
+  "25916Asteroid": 84,
+  "405058Asteroid": 84,
+  Bergelmir: 84,
+  "26760Asteroid": 84,
+  Iocaste: 84,
+  PonsWinnecke: 84,
+  "89830Asteroid": 84,
+  Taygete: 84,
+  Pallene: 84,
+  "S2019S1": 84,
+  "S2005S4": 84,
+  "S2006S20": 84,
+  "S2007S2": 84,
+  "S2006S1": 84,
+  "S2007S3": 84,
+  Farbauti: 84,
+  "S2006S3": 84,
+  Alvaldi: 84,
+  Encke: 84,
+  "S2004S31": 84,
+  Gridr: 84,
+  Skrymir: 84,
+  "S2004S28": 84,
+  Gunnlod: 84,
+  Beli: 84,
+  "S2004S44": 84,
+};
+/**
+ * Larger for a body drawn from its own map, that the camera can come right down to: a quarter
+ * of the map's width, so the middle of the disc shows each map pixel as one art pixel (less for
+ * a ringed one).
+ */
+const CLOSE_ART_RADIUS: Record<string, number> = Object.fromEntries(
+  ["Sol", "1951Lick", "3753Cruithne", "52762Asteroid", "ArendRigaux", "4Vesta", "Charon", "433Eros", "21Lutetia", "253Mathilde", "Tempel", "Halley", "Phoebe", "Hyperion", "Janus", "Epimetheus", "Prometheus", "Pandora", "Atlas", "Pan", "Daphnis", "Calypso", "Telesto", "Helene", "Amalthea", "Thebe", "Proteus", "Larissa", "Puck", "Nix", "Hydra", "2Pallas", "391Ingeborg", "1866Sisyphus", "2099Öpik", "4954Eric", "5731Zeus", "7096Napier", "514041Asteroid", "Mercury", "Venus", "Luna", "Mars", "Ceres", "Jupiter", "Io", "Europa", "Ganymede", "Callisto", "Saturn", "Mimas", "Enceladus", "Tethys", "Dione", "Rhea", "Titan", "Iapetus", "Uranus", "Miranda", "Ariel", "Umbriel", "Titania", "Oberon", "Neptune", "Triton", "Pluto", "Eris", "Haumea", "Makemake", "Gonggong", "Quaoar", "208996KBO", "90482Orcus", "Sedna", "Salacia", "307261KBO", "55565KBO", "532037TNO", "174567Varda", "90568KBO", "145452KBO", "20000Varuna", "2010KZ39KBO", "55637KBO", "2018VG18TNO", "Glkunllhomdima", "2014UZ224TNO", "523794TNO", "28978Ixion", "84922KBO", "278361KBO", "2014WP50KBO", "19521Chaos", "512381TNO", "2014YA50KBO", "2010FX86KBO", "78799KBO", "455502KBO", "612533KBO", "2017OF69KBO", "470308KBO", "470443KBO", "559182KBO", "523645KBO", "523750KBO", "120348KBO", "523681KBO", "202421KBO", "482824KBO", "440030KBO", "472271KBO", "499514KBO", "35671KBO", "119951KBO", "556068KBO", "2012VP113TNO", "84719KBO", "578993KBO", "471288KBO", "469306KBO", "38628Huya", "469372KBO", "175113KBO", "144897KBO", "10Hygiea", "624Hektor", "87Sylvia", "52Europa", "2015QW23KBO", "556416KBO", "15Eunomia", "511Davida", "704Interamnia", "107Camilla", "Nereid", "15874TNO", "10199Chariklo", "2015AH281Centaur", "15789KBO", "523643Centaur", "3Juno", "Hiʻiaka", "65Cybele", "1437Diomedes", "16Psyche", "523695Centaur", "48Doris", "216Kleopatra", "523727Centaur", "121Hermione", "31Euphrosyne", "88Thisbe", "324Bamberga", "145453KBO", "309239Centaur", "7Iris", "41Daphne", "22Kalliope", "451Patientia", "45Eugenia", "95626Centaur", "562274Centaur", "19Fortuna", "94Aurora", "532Herculina", "9Metis", "Leleakuhonua", "39Laetitia", "2060Chiron", "13Egeria", "375Ursula", "130Elektra", "53311Deucalion", "423Diotima", "54598Bienor", "Himalia", "6Hebe", "Galatea", "702Alauda", "316179Centaur", "2013KY18Centaur", "334Chicago", "24Themis", "447178Centaur", "259Aletheia", "5145Pholus", "372Palma", "128Nemesis", "154Bertha", "120Lachesis", "76Freia", "Despina", "85Io", "190Ismene", "444Gyptis", "409Aspasia", "139Juewa", "747Winchester", "153Hilda", "790Praetoria", "Namaka", "18Melpomene", "51Nemausa", "241Germania", "106Dione", "194Prokne", "566Stereoskopia", "96Aegle", "5Astraea", "14Irene", "15760Albion", "911Agamemnon", "386Siegena", "Sycorax", "165Loreley", "59Elpis", "613490Centaur", "104Klymene", "488Kreusa", "2011GN27Centaur", "654Zelinda", "20Massalia", "54Alexandra", "209Dido", "596Scheila", "185Eunike", "Portia", "93Minerva", "354Eleonora", "536Merapi", "11Parthenope", "776Berbericia", "89Julia", "Juliet", "49Pales", "117Lomia", "238Hypatia", "168Sibylla", "137Meliboea", "2011HM102Centaur", "1172Aneas", "47Aglaja", "361Bononia", "308Polyxo", "349Dembowska", "762Pulcova", "196Philomela", "95Arethusa", "8Flora", "588Achilles", "69Hesperia", "15810Arawn", "146Lucina", "356Liguria", "187Lamberta", "419Aurelia", "Belinda", "279Thule", "92Undina", "3451Mentor", "1173Anchises", "1143Odysseus", "612243Centaur", "46Hestia", "27Euterpe", "328Gudrun", "68Leto", "127Johanna", "250Bettina", "28Bellona", "129Antigone", "3317Paris", "1867Deiphobus", "136204Centaur", "29Amphitrite", "63Ausonia", "490Veritas", "38Leda", "56Melete", "34Circe", "57Mnemosyne", "44Nysa", "617Patroclus", "12Victoria", "30Urania", "310071Centaur", "49036Pelion", "233Asterope", "230Athamantis", "37Fides", "Thalassa", "40Harmonia", "23Thalia", "36Atalante", "221Eos", "192Nausikaa", "35Leukothea", "385571Otrera", "42Isis", "472651Centaur", "55576Amycus", "97Klotho", "2008LC18Centaur", "114Kassandra", "Naiad", "62Erato", "43Ariadne", "26Proserpina", "Cressida", "Desdemona", "17Thetis", "32532Thereus", "110Lydia", "Elara", "25Phocaea", "120061Centaur", "Weywot", "135Hertha", "8405Asbolus", "636872Centaur", "325Heidelberga", "248835Centaur", "10370Hylonome", "Rosalind", "Caliban", "52975Cyllarus", "2010THCentaur", "336Lacadiera", "1911Schubart", "342842Centaur", "55Pandora", "Cineos", "Bianca", "2011MM4Centaur", "Halimede", "SchwassmannWachmann", "246Asperina", "Metis", "Neso", "7066Nessus", "83982Crantor", "2011QF99Centaur", "60558Echeclus", "281371Centaur", "Pasiphae", "31824Elatus", "Ophelia", "Cordelia", "Prospero", "52872Okyrhoe", "Setebos", "1870Glaukos", "Carme", "Sao", "132Aethra", "Laomedeia", "Psamathe", "Siarnaq", "Kiviuq", "Sinope", "944Hidalgo", "323Brucia", "Lysithea", "1036Ganymed", "PonsBrooks", "Albiorix", "Stephano", "S2002N5", "315898Centaur", "Perdita", "Ananke", "2204Lyyli", "699Hela", "SwiftTuttle", "Mab", "475Ocllo", "512Taurinensis", "Paaliaq", "Francisco", "Neujmin", "S2023N1", "Adrastea", "Margaret", "Ferdinand", "Ymir", "Kerberos", "3552DonQuixote", "Cupid", "Trinculo", "Hippocamp", "Erriapus", "Leda", "Styx", "Tarvos", "2064Thomsen", "Loneos", "Ijiraq", "102528Asteroid", "1170Siva", "Levy", "434Hungaria", "301964Asteroid", "Gunn", "3353Jarvis", "1627Ivar", "Kowal", "S2025U1", "S2023U1", "4222Nancita", "Callirrhoe", "6500Kodaira", "7505Furusho", "3674Erbisbuhl", "Themisto", "97514Asteroid", "301842Asteroid", "3443Leetsungdao", "1580Betulia", "101742Asteroid", "Skathi", "Hyrrokkin", "Thrymr", "4558Janesick", "Praxidike", "Tarqeq", "Mundilfari", "Narvi", "Suttungr", "Bestla", "53319Asteroid", "3737Beckman", "Kalyke", "14222Asteroid", "Kari", "Machholz", "2335James", "7092Cadmus", "Lovas2", "3200Phaethon", "Megaclite", "Bebhionn", "Skoll", "Greip", "Jarnsaxa", "Hati", "Eggther", "Aegir", "S2004S7", "Surtur", "Loge", "Fornjot", "2212Hephaistos", "8373Stephengould", "88263Asteroid", "1917Cuyo", "5230Asahina", "25916Asteroid", "405058Asteroid", "Bergelmir", "26760Asteroid", "Iocaste", "PonsWinnecke", "89830Asteroid", "Taygete", "Pallene", "S2019S1", "S2005S4", "S2006S20", "S2007S2", "S2006S1", "S2007S3", "Farbauti", "S2006S3", "Alvaldi", "Encke", "S2004S31", "Gridr", "Skrymir", "S2004S28", "Gunnlod", "Beli", "S2004S44", "Phobos", "Deimos"].map((id) => [
+    id,
+    SMALLER_CLOSE_ART_RADIUS[id] ?? 256,
+  ]),
+);
+/** How close the camera can come to such a body, in its radii (as the globe does the Earth). */
+const CLOSE_RADII = 1.35;
+
+const AU_KM = 149597870.7;
+const EARTH_RADIUS_AU = 6378.137 / AU_KM;
+/** Where the globe and this view meet, in AU from the Earth's centre. */
+const HANDOFF = GLOBE_FARTHEST * EARTH_RADIUS_AU;
+const MAX_DISTANCE = 160;
+/** How far from the Sun the opening view starts, in AU: Mars's orbit fills the height. */
+const OVERVIEW_AU = 5;
+/** A moon (asteroidal moons too) shows once its orbit's radius spans this many CSS pixels; a planet or dwarf planet once
+ * it is this far from the Sun on screen, and its name once it is LABEL_MIN_PIXELS away (the
+ * focused body always shows), so the inner planets don't pile up on the Sun when zoomed out. */
+const MOON_MIN_PIXELS = 16;
+const PLANET_MIN_PIXELS = 10;
+const LABEL_MIN_PIXELS = 30;
+/** Planet and dwarf-planet orbits fade in between these camera distances (AU), so close to a body they don't streak across the view. */
+const ORBIT_FADE: [number, number] = [0.003, 0.05];
+/** Seconds between redraws of the Sun's flames: a few a second, like hand-drawn animation frames; fewer close up, where each costs more. */
+const SUN_FRAME = 1 / 10;
+/** Seconds between frames of a comet's close-up jets and tails. */
+const COMET_FRAME = 1 / 8;
+/**
+ * Milliseconds a frame may spend relighting bodies that already have art. A moving camera dirties
+ * nearly all of them at once, which a phone can't redraw in a frame; the rest wait their turn.
+ */
+const RELIGHT_BUDGET_MS = 4;
+/**
+ * A comet drawn from its maps is the small sprite, tails and all, till its nucleus would be this
+ * many art pixels in radius at its true size; then its lumpy nucleus, with its jets and tails
+ * drawn over it.
+ */
+const COMET_CLOSE_RADIUS = 3;
+const SUN_FRAME_CLOSE = 1 / 6;
+/**
+ * A map takes about 2 MB decoded, so only bodies whose discs are big even far away (the planets and
+ * great moons) keep theirs. The others load theirs when focused, or when their true size nears their
+ * disc's (at this fraction of it, so the map is there as they grow past it), and show their plain
+ * style till then; the MAPS_KEPT most recently wanted of those stay loaded.
+ */
+const ALWAYS_MAPPED_RADIUS = 3;
+const MAP_LOAD_AHEAD = 0.5;
+const MAPS_KEPT = 32;
+/**
+ * With the globe's camera the sky turns with the Earth, in the clock's steps. The stars glide
+ * behind it (STAR_GLIDE seconds) and, the faster it turns, trail soft streaks of up to
+ * STAR_TRAIL_MAX degrees (STAR_TRAIL seconds long), taking over from their dots between
+ * STAR_TRAIL_SHOWS degrees. Only the clock's turning counts, not the player's dragging.
+ */
+const STAR_GLIDE = 0.1;
+const STAR_TRAIL = 0.02;
+const STAR_TRAIL_MAX = 0.5;
+const STAR_TRAIL_SHOWS: [number, number] = [0.1, 0.5];
+const STAR_COLOR = 0xc8d0ff;
+/** A streak's opacity at its head; it fades to nothing at its tail. */
+const STAR_TRAIL_OPACITY = 0.55;
+const STAR_VERTEX = /* glsl */ `
+  uniform mat3 head;
+  uniform mat3 tail;
+  uniform float size;
+  attribute float end;
+  varying float vFade;
+  void main() {
+    vFade = 1.0 - end;
+    gl_PointSize = size;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4((end > 0.5 ? tail : head) * position, 1.0);
+  }
+`;
+const STAR_FRAGMENT = /* glsl */ `
+  uniform vec3 color;
+  uniform float opacity;
+  varying float vFade;
+  void main() {
+    gl_FragColor = vec4(color, opacity * vFade);
+    #include <colorspace_fragment>
+  }
+`;
+/** A body counts as zoomed into, for the Hide Objects setting, once its radius spans this share of the view's height. */
+const ZOOMED_IN_SHARE = 0.05;
+/** Seconds the camera takes to swing to a newly focused body, and to fly home to the Earth. */
+const FOCUS_SECONDS = 0.6;
+const HOME_SECONDS = 1.4;
+/** Between these distances from the Earth (AU) the camera's up turns from the Earth's axis to the ecliptic's. */
+const UP_TURN: [number, number] = [HANDOFF, 0.05];
+const ECLIPTIC_UP = new THREE.Vector3(0, 1, 0);
+
+/** How a body is shown: an asteroidal moon with a map of its own (Phobos, Deimos) as a moon, a lit globe on its orbit, not a small sprite. */
+function kind(def: SpaceBodyDef): string {
+  return def.type === "asteroidalMoon" && hasMap(def.id) ? "moon" : def.type;
+}
+
+/** Saturn's small (asteroidal) moons, and these others, named only when focused, as the small bodies are. */
+const QUIET_MOONS = new Set(["Nereid", "Hiʻiaka", "Himalia", "Galatea", "Despina", "Namaka", "Sycorax", "Portia", "Juliet", "Belinda", "Thalassa", "Naiad", "Cressida", "Desdemona", "Elara", "Weywot", "Rosalind", "Caliban", "Bianca", "Halimede", "Metis", "Neso", "Pasiphae", "Ophelia", "Cordelia", "Prospero", "Setebos", "Carme", "Sao", "Laomedeia", "Psamathe", "Sinope", "Lysithea", "Stephano", "S2002N5", "Perdita", "Ananke", "Mab", "Francisco", "S2023N1", "Adrastea", "Margaret", "Ferdinand", "Kerberos", "Cupid", "Trinculo", "Hippocamp", "Leda", "Styx", "S2025U1", "S2023U1", "Callirrhoe", "Themisto", "Praxidike", "Kalyke", "Megaclite", "Iocaste", "Taygete"]);
+const isQuietMoon = (def: SpaceBodyDef) => def.type === "asteroidalMoon" && (def.parent === "Saturn" || QUIET_MOONS.has(def.id));
+
+/**
+ * Bodies whose orbit line isn't drawn all the time, only while they are selected (as a small
+ * body's): Saturn's many small moons, which crowd its system, the other quiet moons, and the far dwarf planets' long
+ * orbits, which cross the whole view.
+ */
+const QUIET_ORBITS = new Set(["Pluto", "Eris", "Makemake", "Haumea"]);
+/** The dwarf planets other than the five best known, named only when focused, as the small bodies are. */
+const isLesserDwarf = (def: SpaceBodyDef) => def.type === "dwarf" && def.id !== "Ceres" && !QUIET_ORBITS.has(def.id);
+const quietOrbit = (def: SpaceBodyDef) => QUIET_ORBITS.has(def.id) || isQuietMoon(def) || isLesserDwarf(def);
+
+const ORBIT_COLORS: Record<string, { color: string; opacity: number }> = {
+  planet: { color: "#3d74d6", opacity: 0.6 },
+  moon: { color: "#3d74d6", opacity: 0.4 },
+  dwarf: { color: "#7d8a99", opacity: 0.3 },
+};
+/** The orbit of a small body (drawn without one), shown while it is selected. */
+const SELECTED_ORBIT = { color: "#8fa3b8", opacity: 0.65 };
+
+interface BodyView {
+  def: SpaceBodyDef;
+  /** Art radius at its smallest, and now (bigger when close enough to show its true size). */
+  baseR: number;
+  r: number;
+  sprite: THREE.Sprite;
+  canvas: HTMLCanvasElement;
+  texture: THREE.CanvasTexture;
+  orbit: THREE.LineLoop | null;
+  label: HTMLDivElement;
+  /** The size, light direction (and, for the Earth, the turn) the disc was last drawn with, rounded. */
+  lightKey: string;
+  /** The tick the disc was last drawn at. */
+  litAt: number;
+  shown: boolean;
+  /** A comet drawn close up: its jets, coma and tails, on a sprite over the nucleus, the frame they were last drawn at, and its index among the small sprites, one of which stands in for it far away. */
+  comet: { sprite: THREE.Sprite; canvas: HTMLCanvasElement; texture: THREE.CanvasTexture; frame: string; dot: number } | null;
+}
+
+/**
+ * A screen position rounded to a whole pixel, steadily: the focused body sits at the screen's
+ * centre, which in a window an odd number of pixels across is a half pixel, and the camera
+ * following it each frame jitters its projection by a hair either side, so plain rounding would
+ * flip its label between two pixels every frame. Snapping to a thousandth first settles it.
+ */
+function steadyPixel(v: number): number {
+  return Math.round(Math.round(v * 1000) / 1000);
+}
+
+function pixelTexture(canvas: HTMLCanvasElement): THREE.CanvasTexture {
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.magFilter = THREE.NearestFilter;
+  texture.minFilter = THREE.NearestFilter;
+  texture.generateMipmaps = false;
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
+export class SolarSystem {
+  private readonly renderer: THREE.WebGLRenderer;
+  private readonly scene = new THREE.Scene();
+  private readonly camera: THREE.PerspectiveCamera;
+  private readonly controls: OrbitControls;
+  private readonly resizeObserver: ResizeObserver;
+  /** The container's size in CSS pixels, kept from its last resize: reading it each frame can force a layout. */
+  private viewWidth = 0;
+  private viewHeight = 0;
+  private readonly labels: HTMLDivElement;
+  private readonly tooltip: HTMLDivElement;
+  private readonly stars: THREE.Points;
+  /** The stars' streaks, and how far behind the sky the stars' heads and tails are (see moveStars). */
+  private readonly starTrails: THREE.LineSegments;
+  private readonly starHead = new THREE.Quaternion();
+  private readonly starTail = new THREE.Quaternion();
+  private starsTrailing = false;
+  private starsAt = 0;
+  /** Whether the stars may trail streaks at all (the Blur Stars setting). */
+  private blurStars = true;
+  private readonly bodies: BodyView[] = [];
+  private readonly byId = new Map<string, BodyView>();
+  /** Bodies drawn as small sprites, and their points. */
+  private readonly dots: SpaceBodyDef[] = [];
+  private readonly dotPoints: THREE.Points;
+  /** Whether each dot is drawn: asteroidal moons only once their orbits are wide enough on screen. */
+  private readonly dotShown: boolean[] = [];
+  /** The selected small body's orbit, and that body. */
+  private selectedOrbit: { def: SpaceBodyDef; line: THREE.LineLoop } | null = null;
+  /** Scene positions of every body, by id. */
+  private readonly positions = new Map<string, THREE.Vector3>();
+  private years = Number.NaN;
+  private placedYears = Number.NaN;
+  private focusId = "Earth";
+  private focusFrom: { from: THREE.Vector3; start: number } | null = null;
+  private readonly clock = new THREE.Clock();
+  /** Surface maps of the bodies that have one (bodyArt.ts), once loaded. */
+  private readonly maps = new Map<string, MapImage>();
+  /** The lumpy bodies' relief, once loaded. */
+  private readonly reliefs = new Map<string, Relief>();
+  /** The bodies that keep their maps loaded, and those that load them when wanted. */
+  private readonly alwaysMapped = new Set<string>();
+  private readonly recentMaps = new Recency();
+  private mapTick = 0;
+  /** This frame's relights that can wait for a later one. */
+  private readonly relights: Redraw[] = [];
+  /** Whether to show only the stars behind a body zoomed into (the Hide Objects setting, while the clock runs). */
+  private hideBackground = false;
+  /** While the globe has the camera, this view follows it (followGlobe) instead of drawing on its own. */
+  private following = false;
+  /** A flight home to the Earth, from a distance in AU. */
+  private homing: { from: number; start: number } | null = null;
+  private readonly pinch = new Pinch();
+  private frame = 0;
+  private downAt: { x: number; y: number } | null = null;
+  /** The Sun's direction in the globe's frame, from the game clock, and the globe-to-scene rotation it gives. */
+  private readonly sunInGlobe = new THREE.Vector3(1, 0, 0);
+  private readonly earthToScene = new THREE.Matrix4();
+  /** Called with a body's id when it is clicked. */
+  onSelectBody: ((id: string) => void) | null = null;
+
+  constructor(
+    private readonly container: HTMLElement,
+    private readonly content: Content,
+    /**
+     * Called to hand over to the globe, with the camera's direction in the globe's frame, its
+     * distance in Earth radii, and whether the globe should glide on in (after a flight home).
+     */
+    private readonly onEnterEarth: (direction: THREE.Vector3, distance: number, glide: boolean) => void,
+  ) {
+    this.renderer = new THREE.WebGLRenderer({ antialias: false });
+    this.renderer.setPixelRatio(renderScale());
+    container.appendChild(this.renderer.domElement);
+    this.labels = document.createElement("div");
+    this.labels.className = "solar-labels";
+    container.appendChild(this.labels);
+    this.tooltip = document.createElement("div");
+    this.tooltip.className = "solar-tooltip";
+    container.appendChild(this.tooltip);
+
+    this.camera = new THREE.PerspectiveCamera(40, 1, 1e-5, 1e4);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.enableDamping = true;
+    this.controls.enablePan = false;
+    this.controls.minDistance = this.closest("Earth");
+    this.controls.maxDistance = MAX_DISTANCE;
+    this.controls.rotateSpeed = 0.5;
+    this.scene.background = new THREE.Color("#05060d");
+
+    [this.stars, this.starTrails] = this.makeStars();
+    this.scene.add(this.stars, this.starTrails);
+
+    for (const def of content.solarSystem) {
+      this.positions.set(def.id, new THREE.Vector3());
+      // A comet drawn from its maps is both: the small sprite far away, its nucleus and tails close up.
+      if (def.type === "comet" && hasMap(def.id)) {
+        this.dots.push(def);
+        this.addBody(def, COMET_CLOSE_RADIUS, this.dots.length - 1);
+        continue;
+      }
+      const r = def.type === "star" || def.type === "planet" ? (ART_RADIUS[def.id] ?? 4) : kind(def) === "moon" ? (ART_RADIUS[def.id] ?? MOON_RADIUS) : ART_RADIUS[def.id];
+      if (r === undefined || (def.type === "dwarf" && !hasStyle(def.id))) {
+        this.dots.push(def);
+        continue;
+      }
+      this.addBody(def, r);
+    }
+    this.dotPoints = makeSmallBodies(this.dots, PIXEL * renderScale());
+    this.dotShown.push(...this.dots.map(() => true));
+    this.scene.add(this.dotPoints);
+
+    for (const b of this.bodies) {
+      if (b.baseR < ALWAYS_MAPPED_RADIUS || b.comet || !hasMap(b.def.id)) continue;
+      this.alwaysMapped.add(b.def.id);
+      this.loadMaps(b.def.id);
+    }
+
+    const canvas = this.renderer.domElement;
+    canvas.addEventListener("pointerdown", this.handleDown);
+    canvas.addEventListener("pointerup", this.handleUp);
+    canvas.addEventListener("pointercancel", this.handleCancel);
+    canvas.addEventListener("pointermove", this.handleMove);
+    canvas.addEventListener("pointerleave", this.handleLeave);
+    canvas.addEventListener("dblclick", this.handleDoubleClick);
+    canvas.addEventListener("wheel", this.handleWheel, { passive: true });
+    this.resizeObserver = new ResizeObserver(() => this.resize());
+    this.resizeObserver.observe(container);
+    this.resize();
+    this.animate();
+  }
+
+  /** Loads a body's map and relief, and has it redrawn from them, unless it has been let go by then. */
+  private loadMaps(id: string): void {
+    const kept = () => this.alwaysMapped.has(id) || this.recentMaps.has(id);
+    const redraw = () => {
+      const view = this.byId.get(id);
+      if (view) view.lightKey = "";
+    };
+    void bodyMap(id)?.then((map) => {
+      if (!kept()) return;
+      this.maps.set(id, map);
+      redraw();
+    });
+    void bodyRelief(id)?.then((relief) => {
+      if (!kept()) return;
+      this.reliefs.set(id, relief);
+      redraw();
+    });
+  }
+
+  /** Lets go of a body's map and relief; it goes back to its plain style. */
+  private forgetMaps(id: string): void {
+    this.maps.delete(id);
+    this.reliefs.delete(id);
+    releaseBodyMaps(id);
+    const view = this.byId.get(id);
+    if (view) view.lightKey = "";
+  }
+
+  private addBody(def: SpaceBodyDef, r: number, dot = -1): void {
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = def.type === "star" ? sunCanvasSize(r) : canvasSize(def.id, r);
+    const texture = pixelTexture(canvas);
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, sizeAttenuation: false, depthTest: false, depthWrite: false, transparent: true }));
+    // The Sun beneath the other bodies; they are put in order of distance as they are drawn.
+    sprite.renderOrder = def.type === "star" ? 3 : 4;
+    this.scene.add(sprite);
+    let orbit: THREE.LineLoop | null = null;
+    const look = quietOrbit(def) ? undefined : ORBIT_COLORS[kind(def)];
+    if (def.orbit && look) {
+      const points = orbitPath(def.orbit, kind(def) === "moon" ? 128 : 360).map((p) => toScene(p));
+      orbit = new THREE.LineLoop(
+        new THREE.BufferGeometry().setFromPoints(points),
+        new THREE.LineBasicMaterial({ color: look.color, transparent: true, opacity: look.opacity, depthTest: false, depthWrite: false }),
+      );
+      orbit.renderOrder = 1;
+      this.scene.add(orbit);
+    }
+    const label = document.createElement("div");
+    label.className = `solar-label ${def.type}`;
+    label.textContent = def.name;
+    this.labels.appendChild(label);
+    let comet: BodyView["comet"] = null;
+    if (dot >= 0) {
+      const tails = document.createElement("canvas");
+      tails.width = tails.height = cometCanvasSize(r);
+      const tailTexture = pixelTexture(tails);
+      const tailSprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tailTexture, sizeAttenuation: false, depthTest: false, depthWrite: false, transparent: true }));
+      this.scene.add(tailSprite);
+      comet = { sprite: tailSprite, canvas: tails, texture: tailTexture, frame: "", dot };
+    }
+    const view: BodyView = { def, baseR: r, r, sprite, canvas, texture, orbit, label, lightKey: "", litAt: 0, shown: true, comet };
+    this.bodies.push(view);
+    this.byId.set(def.id, view);
+  }
+
+  private makeStars(): [THREE.Points, THREE.LineSegments] {
+    // Fixed pseudo-random layout on a unit sphere, kept around the camera at any zoom.
+    const positions: number[] = [];
+    let s = 7654321;
+    const rand = () => ((s = (s * 16807) % 2147483647) / 2147483647) * 2 - 1;
+    for (let i = 0; i < 2500; i++) {
+      const v = new THREE.Vector3(rand(), rand(), rand()).normalize();
+      positions.push(v.x, v.y, v.z);
+    }
+    const shared = {
+      head: { value: new THREE.Matrix3() },
+      tail: { value: new THREE.Matrix3() },
+      color: { value: new THREE.Color(STAR_COLOR) },
+      size: { value: 2 * renderScale() },
+    };
+    const material = (opacity: number) =>
+      new THREE.ShaderMaterial({
+        uniforms: { ...shared, opacity: { value: opacity } },
+        vertexShader: STAR_VERTEX,
+        fragmentShader: STAR_FRAGMENT,
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+      });
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute("end", new THREE.Float32BufferAttribute(new Float32Array(positions.length / 3), 1));
+    const points = new THREE.Points(geometry, material(1));
+    points.renderOrder = 0;
+    // Each star's streak: the same point twice, one end at its head and the other at its tail.
+    const trail = new THREE.BufferGeometry();
+    trail.setAttribute("position", new THREE.Float32BufferAttribute(positions.flatMap((_, k) => (k % 3 === 2 ? [positions[k - 2]!, positions[k - 1]!, positions[k]!, positions[k - 2]!, positions[k - 1]!, positions[k]!] : [])), 3));
+    trail.setAttribute("end", new THREE.Float32BufferAttribute(positions.flatMap((_, k) => (k % 3 === 0 ? [0, 1] : [])), 1));
+    const trails = new THREE.LineSegments(trail, material(0));
+    trails.renderOrder = 0;
+    trails.visible = false;
+    trails.frustumCulled = points.frustumCulled = false;
+    return [points, trails];
+  }
+
+  /**
+   * Places the stars for this frame. Under the globe's camera the sky turns with the clock: the
+   * stars are drawn where they were a moment ago in the Earth's frame, which smooths out the clock's
+   * steps, and their tails where they were a moment before that. In this view's own camera the
+   * sky keeps still.
+   */
+  private moveStars(): void {
+    const head = (this.stars.material as THREE.ShaderMaterial).uniforms;
+    const trail = (this.starTrails.material as THREE.ShaderMaterial).uniforms;
+    if (!this.following) {
+      this.starsTrailing = false;
+      head.head!.value.identity();
+      head.tail!.value.identity();
+      head.opacity!.value = 1;
+      this.starTrails.visible = false;
+      return;
+    }
+    const sky = new THREE.Quaternion().setFromRotationMatrix(this.earthToScene);
+    const now = performance.now();
+    if (!this.starsTrailing) {
+      this.starHead.copy(sky);
+      this.starTail.copy(sky);
+      this.starsTrailing = true;
+    } else {
+      const elapsed = Math.min(0.25, (now - this.starsAt) / 1000);
+      this.starHead.slerp(sky, 1 - Math.exp(-elapsed / STAR_GLIDE));
+      this.starTail.slerp(this.starHead, 1 - Math.exp(-elapsed / STAR_TRAIL));
+      const excess = this.starTail.angleTo(this.starHead) - THREE.MathUtils.degToRad(STAR_TRAIL_MAX);
+      if (excess > 0) this.starTail.rotateTowards(this.starHead, excess);
+    }
+    this.starsAt = now;
+    const matrix = new THREE.Matrix4();
+    const relative = new THREE.Quaternion();
+    head.head!.value.setFromMatrix4(matrix.makeRotationFromQuaternion(relative.copy(sky).multiply(this.starHead.clone().invert())));
+    head.tail!.value.setFromMatrix4(matrix.makeRotationFromQuaternion(relative.copy(sky).multiply(this.starTail.clone().invert())));
+    const streak = this.blurStars ? THREE.MathUtils.smoothstep(THREE.MathUtils.radToDeg(this.starTail.angleTo(this.starHead)), STAR_TRAIL_SHOWS[0], STAR_TRAIL_SHOWS[1]) : 0;
+    head.opacity!.value = 1 - streak;
+    trail.opacity!.value = streak * STAR_TRAIL_OPACITY;
+    this.starTrails.visible = streak > 0;
+  }
+
+  /** The clock's time, in Julian years since J2000, and the Sun's direction in the globe's frame then (Globe.ts sunDirection). */
+  setTime(years: number, sunInGlobe: THREE.Vector3): void {
+    this.years = years;
+    this.sunInGlobe.copy(sunInGlobe);
+  }
+
+  /**
+   * Draws this view from the globe's camera (in Earth radii, the globe's frame), beneath the
+   * globe: called by the globe every frame while it has the camera.
+   */
+  followGlobe(globeCamera: THREE.PerspectiveCamera): void {
+    if (!this.following) {
+      this.following = true;
+      this.focusId = "Earth";
+      this.focusFrom = null;
+      this.homing = null;
+      this.tooltip.style.display = "none";
+    }
+    this.place();
+    const earth = this.positions.get("Earth")!;
+    this.camera.quaternion.setFromRotationMatrix(this.earthToScene).multiply(globeCamera.quaternion);
+    this.camera.position.copy(globeCamera.position).applyMatrix4(this.earthToScene).multiplyScalar(EARTH_RADIUS_AU).add(earth);
+    this.camera.updateMatrixWorld();
+    this.controls.target.copy(earth);
+    this.draw();
+  }
+
+  /** The closest the camera comes to a body, in AU: for the Earth, where the globe takes over. */
+  private closest(id: string): number {
+    if (id === "Earth") return HANDOFF * 0.98;
+    const body = this.content.solarSystem.find((b) => b.id === id)!;
+    // A body drawn from its map comes right down to CLOSE_RADII, however small (Phobos, Deimos);
+    // the camera stays a little way off the rest.
+    if (id in CLOSE_ART_RADIUS) return CLOSE_RADII * surfaceReach(id) * (body.radiusKm / AU_KM);
+    return Math.max(3 * (body.radiusKm / AU_KM), 2e-6);
+  }
+
+  /** The opening view: the inner Solar System, looking down on the Sun from above the ecliptic. */
+  frameOverview(): void {
+    this.following = false;
+    this.placedYears = Number.NaN;
+    this.place();
+    this.focusId = "Sol";
+    this.focusFrom = null;
+    this.controls.minDistance = this.closest("Sol");
+    const from = new THREE.Vector3();
+    toScene({ x: 0, y: -OVERVIEW_AU * 0.8, z: OVERVIEW_AU * 0.6 }, from);
+    this.controls.target.copy(this.positions.get("Sol")!);
+    this.camera.position.copy(from);
+    this.turnUp();
+    this.controls.update();
+  }
+
+  /** Takes over from the globe: focused on the Earth, the camera where the globe's was (direction in the globe's frame, distance in Earth radii). */
+  enterFromGlobe(direction: THREE.Vector3, distance: number): void {
+    this.following = false;
+    this.placedYears = Number.NaN;
+    this.place();
+    this.focusId = "Earth";
+    this.focusFrom = null;
+    this.controls.minDistance = this.closest("Earth");
+    const at = this.positions.get("Earth")!;
+    const offset = direction.clone().transformDirection(this.earthToScene).multiplyScalar(Math.max(distance * EARTH_RADIUS_AU, this.controls.minDistance));
+    this.controls.target.copy(at);
+    this.camera.position.copy(at).add(offset);
+    this.turnUp();
+    this.controls.update();
+  }
+
+  /** Flies the camera home to the Earth and on into the globe. */
+  returnToEarth(): void {
+    if (this.following || this.homing) return;
+    this.focus("Earth");
+    this.homing = { from: this.camera.position.distanceTo(this.controls.target), start: this.clock.getElapsedTime() };
+  }
+
+  /** Hands over to the globe, the camera keeping its direction (and its distance, as far as the globe allows). */
+  private handBack(glide: boolean): void {
+    const offset = this.camera.position.clone().sub(this.positions.get("Earth")!);
+    const toGlobe = this.earthToScene.clone().transpose();
+    const distance = this.focusId === "Earth" ? offset.length() / EARTH_RADIUS_AU : GLOBE_FARTHEST;
+    this.onEnterEarth(offset.transformDirection(toGlobe), Math.min(GLOBE_FARTHEST, distance), glide);
+  }
+
+  /**
+   * Turns the camera's up from the Earth's axis (as the globe's, so nothing rolls where they
+   * meet) near the Earth to the ecliptic's further out. OrbitControls keeps its own copy of up.
+   */
+  private turnUp(): void {
+    const [near, far] = UP_TURN;
+    const away = this.camera.position.distanceTo(this.positions.get("Earth")!);
+    const t = THREE.MathUtils.clamp(Math.log(away / near) / Math.log(far / near), 0, 1);
+    const up = this.camera.up.copy(EARTH_POLE).lerp(ECLIPTIC_UP, t * t * (3 - 2 * t)).normalize();
+    const controls = this.controls as unknown as { _quat: THREE.Quaternion; _quatInverse: THREE.Quaternion };
+    controls._quat.setFromUnitVectors(up, ECLIPTIC_UP);
+    controls._quatInverse.copy(controls._quat).invert();
+  }
+
+  /** Shows the orbit of the selected body if it is a small one (whose orbit isn't otherwise drawn); null hides it. */
+  showOrbitOf(id: string | null): void {
+    if (this.selectedOrbit?.def.id === id) return;
+    if (this.selectedOrbit) {
+      this.scene.remove(this.selectedOrbit.line);
+      this.selectedOrbit.line.geometry.dispose();
+      (this.selectedOrbit.line.material as THREE.Material).dispose();
+      this.selectedOrbit = null;
+    }
+    // A small sprite, or a body drawn from its maps that has no orbit line of its own (the asteroids).
+    const view = id ? this.byId.get(id) : undefined;
+    const def = id ? (this.dots.find((d) => d.id === id) ?? (view && !view.orbit ? view.def : undefined)) : undefined;
+    if (!def?.orbit) return;
+    const line = new THREE.LineLoop(
+      new THREE.BufferGeometry().setFromPoints(orbitPath(def.orbit, 360).map((p) => toScene(p))),
+      new THREE.LineBasicMaterial({ color: SELECTED_ORBIT.color, transparent: true, opacity: SELECTED_ORBIT.opacity, depthTest: false, depthWrite: false }),
+    );
+    line.renderOrder = 1;
+    this.scene.add(line);
+    this.selectedOrbit = { def, line };
+  }
+
+  /** Swings the camera to a body, keeping its distance and angle. */
+  focus(id: string): void {
+    this.homing = null;
+    if (id === this.focusId) return;
+    this.focusFrom = { from: this.controls.target.clone(), start: this.clock.getElapsedTime() };
+    this.focusId = id;
+    this.controls.minDistance = this.closest(id);
+  }
+
+  setHideBackground(hide: boolean): void {
+    this.hideBackground = hide;
+  }
+
+  setBlurStars(blur: boolean): void {
+    this.blurStars = blur;
+  }
+
+  /** Moves every body to the current time. */
+  private place(): void {
+    if (this.years === this.placedYears || Number.isNaN(this.years)) return;
+    this.placedYears = this.years;
+    for (const [id, p] of solarPositions(this.content, this.years)) toScene(p, this.positions.get(id)!);
+    const sunFromEarth = this.positions.get("Sol")!.clone().sub(this.positions.get("Earth")!).normalize();
+    globeToScene(this.sunInGlobe, sunFromEarth, this.earthToScene);
+    const attr = this.dotPoints.geometry.getAttribute("position") as THREE.BufferAttribute;
+    this.dots.forEach((d, i) => {
+      const p = this.positions.get(d.id)!;
+      attr.setXYZ(i, p.x, p.y, p.z);
+    });
+    attr.needsUpdate = true;
+    this.dotPoints.geometry.computeBoundingSphere();
+  }
+
+  /** CSS pixels per scene unit at a point, for this camera. */
+  private pixelsPerUnit(at: THREE.Vector3): number {
+    return (this.viewHeight / 2) * this.camera.projectionMatrix.elements[5]! / Math.max(1e-12, this.camera.position.distanceTo(at));
+  }
+
+  private animate = (): void => {
+    this.frame = requestAnimationFrame(this.animate);
+    if (this.following) return;
+    this.place();
+    // Zooming speeds up with distance: as on the globe where they meet, much faster out in the system.
+    const away = this.camera.position.distanceTo(this.controls.target);
+    this.controls.zoomSpeed = THREE.MathUtils.clamp(1.5 + 2 * Math.log10(Math.max(1, away / HANDOFF)), 1.5, 6);
+
+    // Follow the focused body (swinging over to it after a new pick).
+    const target = this.positions.get(this.focusId)!.clone();
+    if (this.focusFrom) {
+      const t = Math.min(1, (this.clock.getElapsedTime() - this.focusFrom.start) / FOCUS_SECONDS);
+      const eased = t * t * (3 - 2 * t);
+      target.lerpVectors(this.focusFrom.from, target, eased);
+      if (t >= 1) this.focusFrom = null;
+    }
+    this.camera.position.add(target.clone().sub(this.controls.target));
+    this.controls.target.copy(target);
+    // Flying home: the distance shrinks evenly on a log scale while the camera swings to the Earth.
+    if (this.homing) {
+      const t = Math.min(1, (this.clock.getElapsedTime() - this.homing.start) / HOME_SECONDS);
+      const eased = t * t * (3 - 2 * t);
+      const to = this.controls.minDistance / 0.98;
+      const offset = this.camera.position.clone().sub(target);
+      offset.setLength(Math.exp(THREE.MathUtils.lerp(Math.log(this.homing.from), Math.log(to), eased)));
+      this.camera.position.copy(target).add(offset);
+      if (t >= 1) {
+        this.homing = null;
+        this.controls.update();
+        this.handBack(true);
+        return;
+      }
+    }
+    this.turnUp();
+    this.controls.update();
+    this.camera.updateMatrixWorld();
+    this.draw();
+  };
+
+  /** Sizes, lights and labels the bodies for the camera as it is, and draws the frame. */
+  private draw(): void {
+    const away = this.camera.position.distanceTo(this.controls.target);
+    const distance = this.camera.position.distanceTo(this.controls.target);
+    this.camera.near = distance * 1e-3;
+    this.camera.far = distance * 1e3 + 500;
+    this.camera.updateProjectionMatrix();
+    this.stars.position.copy(this.camera.position);
+    this.stars.scale.setScalar(distance * 100);
+    this.starTrails.position.copy(this.stars.position);
+    this.starTrails.scale.copy(this.stars.scale);
+    this.moveStars();
+
+    const height = this.viewHeight;
+    const unit = 2 / (Math.max(1, height) * this.camera.projectionMatrix.elements[5]!);
+    const sun = this.positions.get("Sol")!;
+    setSmallBodiesSun(this.dotPoints, sun);
+    const view = this.camera.matrixWorldInverse;
+    const screen = new THREE.Vector3();
+    this.mapTick++;
+    const placed = !Number.isNaN(this.placedYears);
+    const focusRadiusKm = this.byId.get(this.focusId)?.def.radiusKm ?? 0;
+    const backgroundHidden = this.hideBackground && (focusRadiusKm / AU_KM) * this.pixelsPerUnit(this.positions.get(this.focusId)!) >= ZOOMED_IN_SHARE * height;
+    this.dotPoints.visible = !backgroundHidden;
+    if (this.selectedOrbit) this.selectedOrbit.line.visible = !backgroundHidden;
+    for (const b of this.bodies) {
+      const at = this.positions.get(b.def.id)!;
+      b.sprite.position.copy(at);
+      // The sprites skip the depth test, so the nearer of two overlapping bodies is drawn last
+      // (between 4 and 5, nearest highest): a moon passing in front of its planet covers it.
+      if (b.def.type !== "star") {
+        const d = this.camera.position.distanceTo(at);
+        b.sprite.renderOrder = 5 - d / (d + 1);
+      }
+      // Close up, a body is drawn at its true size.
+      const truePixels = (b.def.radiusKm / AU_KM) * this.pixelsPerUnit(at);
+      this.resizeArt(b, Math.max(b.baseR, Math.min(CLOSE_ART_RADIUS[b.def.id] ?? MAX_ART_RADIUS, Math.ceil(truePixels / PIXEL))));
+      const pixel = Math.max(PIXEL, truePixels / b.r);
+      const size = b.canvas.width * pixel;
+      b.sprite.scale.set(size * unit, size * unit, 1);
+      // Moons show when their orbit is wide enough on screen, planets when clear of the Sun.
+      const parent = b.def.parent ? this.positions.get(b.def.parent)! : null;
+      const spread = parent ? b.def.orbit!.a * this.pixelsPerUnit(parent) : Infinity;
+      const focused = b.def.id === this.focusId;
+      // Not before the clock has placed the bodies: till then they all sit at the camera, and look huge.
+      if (placed && (focused || !backgroundHidden) && hasMap(b.def.id) && !this.alwaysMapped.has(b.def.id) && (focused || truePixels / PIXEL >= b.baseR * MAP_LOAD_AHEAD)) {
+        if (this.recentMaps.touch(b.def.id, this.mapTick)) this.loadMaps(b.def.id);
+      }
+      b.shown = focused || (!backgroundHidden && spread > (kind(b.def) === "moon" ? MOON_MIN_PIXELS : PLANET_MIN_PIXELS));
+      if (b.comet) {
+        // Far away, the small sprite with its tails; close up, the nucleus with its own.
+        const close = truePixels / PIXEL >= COMET_CLOSE_RADIUS;
+        b.shown &&= close;
+        const dot = b.comet.dot;
+        if (this.dotShown[dot] === close) {
+          this.dotShown[dot] = !close;
+          setSmallBodyShown(this.dotPoints, dot, !close);
+        }
+        b.comet.sprite.position.copy(at);
+        b.comet.sprite.renderOrder = b.sprite.renderOrder + 1e-9;
+        b.comet.sprite.scale.set(b.comet.canvas.width * pixel * unit, b.comet.canvas.width * pixel * unit, 1);
+        b.comet.sprite.visible = b.shown;
+      }
+      // Under the globe the Earth's disc shows only as the globe fades out, and isn't named.
+      const underGlobe = this.following && b.def.id === "Earth";
+      // An asteroid, a lesser dwarf planet or a quiet moon is named only when focused, as the small sprites are.
+      const quiet = b.def.type === "asteroid" || isQuietMoon(b.def) || isLesserDwarf(b.def);
+      const named = b.shown && !underGlobe && (focused || (!quiet && spread > (kind(b.def) === "moon" ? MOON_MIN_PIXELS : LABEL_MIN_PIXELS)));
+      b.sprite.visible = b.shown && !(underGlobe && away < GLOBE_FADE_FROM * EARTH_RADIUS_AU);
+      if (b.orbit) {
+        b.orbit.visible = b.shown && !backgroundHidden;
+        if (parent) b.orbit.position.copy(parent);
+        const look = ORBIT_COLORS[kind(b.def)]!;
+        const material = b.orbit.material as THREE.LineBasicMaterial;
+        const [near, far] = ORBIT_FADE;
+        const fade = kind(b.def) === "moon" ? 1 : THREE.MathUtils.clamp(Math.log(away / near) / Math.log(far / near), 0, 1);
+        material.opacity = (focused ? Math.min(1, look.opacity + 0.35) : look.opacity) * fade;
+      }
+      // Not the Earth's disc while the globe covers it: it's drawn as soon as it shows again.
+      if (b.sprite.visible) {
+        if (b.def.type === "star") this.flicker(b, at);
+        else this.relight(b, sun, at, view);
+        if (b.comet) this.stir(b, sun, at, view);
+      }
+      screen.copy(at).project(this.camera);
+      const onScreen = named && screen.z < 1 && Math.abs(screen.x) < 1.1 && Math.abs(screen.y) < 1.1;
+      b.label.style.display = onScreen ? "" : "none";
+      // Off screen too, so a label doesn't keep the highlight of a body no longer focused.
+      b.label.classList.toggle("focused", focused);
+      if (onScreen) {
+        const x = ((screen.x + 1) / 2) * this.viewWidth;
+        // Below the disc; the Sun's, below the usual reach of its flames.
+        const y = ((1 - screen.y) / 2) * height + ((b.def.type === "star" ? b.r * 1.4 : b.r) * pixel + 2);
+        b.label.style.transform = `translate(${steadyPixel(x)}px, ${steadyPixel(y)}px) translateX(-50%)`;
+      }
+    }
+    for (const id of this.recentMaps.evict(MAPS_KEPT, this.mapTick)) this.forgetMaps(id);
+    if (this.selectedOrbit) this.selectedOrbit.line.position.copy(this.positions.get(this.selectedOrbit.def.parent!)!);
+    // Asteroidal moons, like the moons, show when their orbits are wide enough on screen.
+    this.dots.forEach((d, i) => {
+      if (d.type !== "asteroidalMoon") return;
+      const shown = d.id === this.focusId || d.orbit!.a * this.pixelsPerUnit(this.positions.get(d.parent!)!) > MOON_MIN_PIXELS;
+      if (shown === this.dotShown[i]) return;
+      this.dotShown[i] = shown;
+      setSmallBodyShown(this.dotPoints, i, shown);
+    });
+    // The Sun's name gives way to the focused body's when they crowd together on screen.
+    const sol = this.byId.get("Sol");
+    if (sol && this.focusId !== "Sol") {
+      const toSun = this.positions.get(this.focusId)!.distanceTo(sun) * this.pixelsPerUnit(sun);
+      if (toSun < LABEL_MIN_PIXELS) sol.label.style.display = "none";
+    }
+    runRedraws(this.relights, RELIGHT_BUDGET_MS);
+    this.relights.length = 0;
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  /** Gives a disc a new art radius: a new canvas (and texture, as a texture can't change size). */
+  private resizeArt(b: BodyView, r: number): void {
+    if (r === b.r) return;
+    b.r = r;
+    b.canvas = document.createElement("canvas");
+    b.canvas.width = b.canvas.height = b.def.type === "star" ? sunCanvasSize(r) : canvasSize(b.def.id, r);
+    b.texture.dispose();
+    b.texture = pixelTexture(b.canvas);
+    b.sprite.material.map = b.texture;
+    b.lightKey = "";
+    if (b.comet) {
+      b.comet.canvas = document.createElement("canvas");
+      b.comet.canvas.width = b.comet.canvas.height = cometCanvasSize(r);
+      b.comet.texture.dispose();
+      b.comet.texture = pixelTexture(b.comet.canvas);
+      b.comet.sprite.material.map = b.comet.texture;
+      b.comet.frame = "";
+    }
+  }
+
+  /** Redraws the Sun's next animation frame, when it is due (or its size has changed), turned to the clock's time. */
+  private flicker(b: BodyView, at: THREE.Vector3): void {
+    const every = b.r > 40 ? SUN_FRAME_CLOSE : SUN_FRAME;
+    const frame = Math.floor(this.clock.getElapsedTime() / every);
+    const key = `${b.r}:${every}:${frame}`;
+    if (key === b.lightKey) return;
+    b.lightKey = key;
+    // Before the clock's time is set (the first frame), drawn as the portrait is, unturned.
+    const timed = !Number.isNaN(this.years);
+    drawSun(b.canvas.getContext("2d", { willReadFrequently: true })!, b.r, frame * every, timed ? this.years : 30, timed ? (this.orientOf(b, at)?.orient ?? null) : null);
+    b.texture.needsUpdate = true;
+  }
+
+  /** Redraws a close-up comet's jets, coma and tails when their next frame is due, as active as its distance from the Sun has it. */
+  private stir(b: BodyView, sun: THREE.Vector3, at: THREE.Vector3, view: THREE.Matrix4): void {
+    const comet = b.comet!;
+    const frame = Math.floor(this.clock.getElapsedTime() / COMET_FRAME);
+    const key = `${b.r}:${frame}`;
+    if (key === comet.frame) return;
+    comet.frame = key;
+    const dir = sun.clone().sub(at).normalize().transformDirection(view);
+    drawCometActivity(comet.canvas.getContext("2d", { willReadFrequently: true })!, b.def.id, b.r, { x: dir.x, y: dir.y, z: dir.z }, cometActivity(at.distanceTo(sun)), frame * COMET_FRAME, this.orientOf(b, at)?.orient ?? null);
+    comet.texture.needsUpdate = true;
+  }
+
+  /** View space to a body's own frame (the globe's, for the Earth), and that turn's matrix elements; null for a body with no frame. */
+  private orientOf(b: BodyView, at: THREE.Vector3): { orient: Orient; e: number[] } | null {
+    const toParent = b.def.parent ? this.positions.get(b.def.parent)!.clone().sub(at) : new THREE.Vector3(1, 0, 0);
+    const frame = b.def.id === "Earth" ? this.earthToScene : hasFrame(b.def.id) ? bodyToScene(b.def.id, this.years, toParent) : null;
+    if (!frame) return null;
+    // Camera to scene, then scene to body.
+    const e = frame.clone().transpose().multiply(new THREE.Matrix4().extractRotation(this.camera.matrixWorld)).elements;
+    return { orient: ([x, y, z]) => [e[0]! * x + e[4]! * y + e[8]! * z, e[1]! * x + e[5]! * y + e[9]! * z, e[2]! * x + e[6]! * y + e[10]! * z], e };
+  }
+
+  /** Redraws a disc when its size or the Sun's direction (as seen from the camera) has changed enough, or the Earth has turned. */
+  private relight(b: BodyView, sun: THREE.Vector3, at: THREE.Vector3, view: THREE.Matrix4): void {
+    const dir = sun.clone().sub(at);
+    if (dir.lengthSq() < 1e-20) dir.set(0, 0, 1);
+    dir.normalize().transformDirection(view);
+    const light: Light = { x: dir.x, y: dir.y, z: dir.z };
+    // Finer steps on a big disc, where a jump in the terminator would show.
+    const steps = b.r > 12 ? 40 : 8;
+    const map = this.maps.get(b.def.id) ?? null;
+    const relief = this.reliefs.get(b.def.id) ?? null;
+    let key = `${b.r}:${Math.round(light.x * steps)},${Math.round(light.y * steps)},${Math.round(light.z * steps)}${map ? "m" : ""}${relief ? "s" : ""}`;
+    let orient: Orient | null = null;
+    let pole: [number, number, number] | undefined;
+    const turned = this.orientOf(b, at);
+    if (turned) {
+      const e = turned.e;
+      // Finer on a big close-up disc, where a coarse step would make it jump as it turns.
+      const turnSteps = b.r > MAX_ART_RADIUS ? 1200 : 60;
+      key += `|${[0, 1, 2, 4, 5, 6].map((i) => Math.round(e[i]! * turnSteps)).join(",")}`;
+      orient = turned.orient;
+      // The body's north pole in view space (for its rings).
+      pole = [e[1]!, e[5]!, e[9]!];
+    }
+    if (key === b.lightKey) return;
+    const paint = () => {
+      b.lightKey = key;
+      b.litAt = this.mapTick;
+      drawBody(b.canvas.getContext("2d", { willReadFrequently: true })!, b.def.id, b.r, light, map, orient, pole, relief);
+      b.texture.needsUpdate = true;
+    };
+    // The focused body can't lag, nor can a disc with no art yet (or new maps) wait. The rest take
+    // turns, by size and by how long they've waited, so that the small ones still get theirs.
+    if (b.def.id === this.focusId || !b.lightKey) paint();
+    else this.relights.push({ urgency: b.r * (this.mapTick - b.litAt), run: paint });
+  }
+
+  /** The body under a screen point: the nearest disc or dot within a few pixels of it. */
+  private bodyAt(event: PointerEvent | MouseEvent): string | null {
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    const px = event.clientX - rect.left;
+    const py = event.clientY - rect.top;
+    const screen = new THREE.Vector3();
+    let best: string | null = null;
+    let bestDistance = Infinity;
+    const consider = (id: string, reach: number) => {
+      screen.copy(this.positions.get(id)!).project(this.camera);
+      if (screen.z > 1) return;
+      const d = Math.hypot(((screen.x + 1) / 2) * rect.width - px, ((1 - screen.y) / 2) * rect.height - py);
+      if (d <= reach && d < bestDistance) [best, bestDistance] = [id, d];
+    };
+    for (const b of this.bodies) if (b.shown) consider(b.def.id, Math.max(8, (b.sprite.scale.y / 2) * (rect.height * this.camera.projectionMatrix.elements[5]! / 2) * 0.85));
+    if (this.dotPoints.visible) this.dots.forEach((d, i) => this.dotShown[i] && consider(d.id, 6));
+    return best;
+  }
+
+  private readonly handleDown = (event: PointerEvent): void => {
+    this.pinch.down(event);
+    // A second finger makes it a pinch, not a tap.
+    this.downAt = this.pinch.active ? null : { x: event.clientX, y: event.clientY };
+  };
+
+  private readonly handleUp = (event: PointerEvent): void => {
+    this.pinch.up(event);
+    const down = this.downAt;
+    this.downAt = null;
+    if (!down || Math.abs(event.clientX - down.x) + Math.abs(event.clientY - down.y) > 5) return;
+    const id = this.bodyAt(event);
+    if (!id) return;
+    this.focus(id);
+    this.onSelectBody?.(id);
+  };
+
+  private readonly handleDoubleClick = (event: MouseEvent): void => {
+    if (this.bodyAt(event) === "Earth") this.returnToEarth();
+  };
+
+  private readonly handleCancel = (event: PointerEvent): void => {
+    this.pinch.up(event);
+    this.downAt = null;
+  };
+
+  private readonly handleMove = (event: PointerEvent): void => {
+    const spread = this.pinch.move(event);
+    if (spread !== null) {
+      if (spread > PINCH_IN) this.enterGlobeIfClose();
+      return;
+    }
+    if (this.downAt || event.pointerType === "touch") return;
+    const id = this.bodyAt(event);
+    this.renderer.domElement.style.cursor = id ? "pointer" : "";
+    if (!id) {
+      this.tooltip.style.display = "none";
+      return;
+    }
+    const def = this.content.solarSystem.find((b) => b.id === id)!;
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    this.tooltip.textContent = def.name;
+    this.tooltip.style.display = "";
+    this.tooltip.style.transform = `translate(${event.clientX - rect.left + 12}px, ${event.clientY - rect.top - 8}px)`;
+  };
+
+  private readonly handleLeave = (): void => {
+    this.tooltip.style.display = "none";
+  };
+
+  /** Scrolling on in at the closest zoom on the Earth carries on into the globe. */
+  private readonly handleWheel = (event: WheelEvent): void => {
+    if (event.deltaY < 0) this.enterGlobeIfClose();
+  };
+
+  private enterGlobeIfClose(): void {
+    const close = this.camera.position.distanceTo(this.controls.target) <= this.controls.minDistance * 1.02;
+    if (close && this.focusId === "Earth" && !this.focusFrom && !this.homing) {
+      this.pinch.clear();
+      this.handBack(false);
+    }
+  }
+
+  private resize(): void {
+    const { clientWidth: w, clientHeight: h } = this.container;
+    this.viewWidth = w;
+    this.viewHeight = h;
+    if (w === 0 || h === 0) return;
+    this.renderer.setSize(w, h);
+    this.camera.aspect = w / h;
+    this.camera.updateProjectionMatrix();
+  }
+
+  dispose(): void {
+    for (const id of this.recentMaps.clear()) releaseBodyMaps(id);
+    cancelAnimationFrame(this.frame);
+    this.resizeObserver.disconnect();
+    const canvas = this.renderer.domElement;
+    canvas.removeEventListener("pointerdown", this.handleDown);
+    canvas.removeEventListener("pointerup", this.handleUp);
+    canvas.removeEventListener("pointercancel", this.handleCancel);
+    canvas.removeEventListener("pointermove", this.handleMove);
+    canvas.removeEventListener("pointerleave", this.handleLeave);
+    canvas.removeEventListener("dblclick", this.handleDoubleClick);
+    canvas.removeEventListener("wheel", this.handleWheel);
+    this.controls.dispose();
+    disposeSmallBodies(this.dotPoints);
+    this.scene.traverse((object) => {
+      const o = object as THREE.Mesh;
+      o.geometry?.dispose();
+      const material = o.material as THREE.Material | undefined;
+      if (material) {
+        (material as THREE.SpriteMaterial).map?.dispose();
+        material.dispose();
+      }
+    });
+    this.renderer.dispose();
+    this.renderer.forceContextLoss();
+    canvas.remove();
+    this.labels.remove();
+    this.tooltip.remove();
+  }
+}

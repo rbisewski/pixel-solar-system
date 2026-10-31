@@ -1,0 +1,280 @@
+{
+ "_about": "What JPL's tables don't give, from the published literature (each entry's _source). build_solar.py lays each entry over the body. Orbits are J2000 ecliptic Keplerian elements: a_km, e, i, node, peri, meanAnomaly in degrees, and epochJD.",
+ "Hiʻiaka": {
+  "_source": "Ragozzine & Brown 2009, AJ 137:4766: orbit and mass. Size from Fraser & Brown 2009's estimate, roughly.",
+  "orbit": {
+   "a_km": 49880,
+   "e": 0.0513,
+   "i": 126.356,
+   "node": 206.766,
+   "peri": 154.1,
+   "meanAnomaly": 152.8,
+   "epochJD": 2454615.0
+  },
+  "massKg": 1.79e+19,
+  "radiusKm": 155,
+  "radiusEstimated": true
+ },
+ "Namaka": {
+  "_source": "Ragozzine & Brown 2009, AJ 137:4766: orbit and mass. Size estimated from its brightness relative to Haumea's.",
+  "orbit": {
+   "a_km": 25657,
+   "e": 0.249,
+   "i": 113.013,
+   "node": 205.016,
+   "peri": 178.9,
+   "meanAnomaly": 178.5,
+   "epochJD": 2454615.0
+  },
+  "massKg": 1.79e+18,
+  "radiusKm": 85,
+  "radiusEstimated": true
+ },
+ "Weywot": {
+  "_source": "Proudfoot et al. 2025, PSJ, 'Beyond Point Masses V', constrained fit (J2000 ecliptic): orbit. Size roughly from its occultations.",
+  "orbit": {
+   "a_km": 13329,
+   "e": 0.01111,
+   "i": 13.62,
+   "node": 353.3,
+   "peri": 97,
+   "meanAnomaly": 79,
+   "epochJD": 2454000.0
+  },
+  "radiusKm": 73,
+  "radiusEstimated": true
+ },
+ "Quaoar": {
+  "_source": "Braga-Ribas et al. 2013, ApJ 773:26 (radius from its occultation); Fraser et al. 2013, Icarus 222:357 (mass from Weywot's orbit).",
+  "radiusKm": 555,
+  "massKg": 1.4e+21
+ },
+ "Sedna": {
+  "_source": "Pál et al. 2012, A&A 541:L6 (995 km across, thermal).",
+  "radiusKm": 497.5
+ },
+ "Gonggong": {
+  "_source": "Kiss et al. 2019, Icarus 334:3 (1230 km across).",
+  "radiusKm": 615
+ },
+ "90482Orcus": {
+  "_source": "Thermal measurements, 'TNOs are Cool' (Stansberry et al. 2012; Fornasier et al. 2013; Vilenius et al. 2014; Lellouch et al. 2013).",
+  "radiusKm": 479
+ },
+ "Salacia": {
+  "_source": "Thermal measurements, 'TNOs are Cool' (Stansberry et al. 2012; Fornasier et al. 2013; Vilenius et al. 2014; Lellouch et al. 2013).",
+  "radiusKm": 427
+ },
+ "28978Ixion": {
+  "_source": "Thermal measurements, 'TNOs are Cool' (Stansberry et al. 2012; Fornasier et al. 2013; Vilenius et al. 2014; Lellouch et al. 2013).",
+  "radiusKm": 309
+ },
+ "174567Varda": {
+  "_source": "Thermal measurements, 'TNOs are Cool' (Stansberry et al. 2012; Fornasier et al. 2013; Vilenius et al. 2014; Lellouch et al. 2013).",
+  "radiusKm": 361
+ },
+ "55565KBO": {
+  "_source": "Thermal measurements, 'TNOs are Cool' (Stansberry et al. 2012; Fornasier et al. 2013; Vilenius et al. 2014; Lellouch et al. 2013).",
+  "radiusKm": 384
+ },
+ "Themisto": {
+  "_source": "Sheppard & Jewitt 2003, Nature 423:261, from their magnitudes.",
+  "radiusKm": 4.5,
+  "radiusEstimated": true
+ },
+ "Praxidike": {
+  "_source": "Sheppard & Jewitt 2003, Nature 423:261, from their magnitudes.",
+  "radiusKm": 3.4,
+  "radiusEstimated": true
+ },
+ "Iocaste": {
+  "_source": "Sheppard & Jewitt 2003, Nature 423:261, from their magnitudes.",
+  "radiusKm": 2.6,
+  "radiusEstimated": true
+ },
+ "Taygete": {
+  "_source": "Sheppard & Jewitt 2003, Nature 423:261, from their magnitudes.",
+  "radiusKm": 2.5,
+  "radiusEstimated": true
+ },
+ "Kalyke": {
+  "_source": "Sheppard & Jewitt 2003, Nature 423:261, from their magnitudes.",
+  "radiusKm": 2.6,
+  "radiusEstimated": true
+ },
+ "Megaclite": {
+  "_source": "Sheppard & Jewitt 2003, Nature 423:261, from their magnitudes.",
+  "radiusKm": 2.7,
+  "radiusEstimated": true
+ },
+ "Callirrhoe": {
+  "_source": "Sheppard & Jewitt 2003, Nature 423:261, from their magnitudes.",
+  "radiusKm": 4.3,
+  "radiusEstimated": true
+ },
+ "Daphnis": {
+  "_source": "Thomas et al. 2013, Icarus 226:999.",
+  "radiusKm": 3.8,
+  "radiusEstimated": true
+ },
+ "Pallene": {
+  "_source": "Thomas et al. 2013, Icarus 226:999.",
+  "radiusKm": 2.2,
+  "radiusEstimated": true
+ },
+ "Kiviuq": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 8.5,
+  "radiusEstimated": true
+ },
+ "Ijiraq": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 6,
+  "radiusEstimated": true
+ },
+ "Paaliaq": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 12.5,
+  "radiusEstimated": true
+ },
+ "Skathi": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 4,
+  "radiusEstimated": true
+ },
+ "Albiorix": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 14.3,
+  "radiusEstimated": true
+ },
+ "Erriapus": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 5,
+  "radiusEstimated": true
+ },
+ "Siarnaq": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 19.6,
+  "radiusEstimated": true
+ },
+ "Tarvos": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 7.5,
+  "radiusEstimated": true
+ },
+ "Ymir": {
+  "_source": "Denk et al. 2018, Enceladus and the Icy Moons of Saturn: Cassini ISS, roughly.",
+  "radiusKm": 9.5,
+  "radiusEstimated": true
+ },
+ "Sycorax": {
+  "_source": "Farkas-Takács et al. 2017, AJ 154:119.",
+  "radiusKm": 78.5,
+  "radiusEstimated": true
+ },
+ "Caliban": {
+  "_source": "Farkas-Takács et al. 2017, AJ 154:119.",
+  "radiusKm": 21,
+  "radiusEstimated": true
+ },
+ "Prospero": {
+  "_source": "Sheppard et al. 2005, AJ 129:518, from their magnitudes.",
+  "radiusKm": 25,
+  "radiusEstimated": true
+ },
+ "Setebos": {
+  "_source": "Sheppard et al. 2005, AJ 129:518, from their magnitudes.",
+  "radiusKm": 24,
+  "radiusEstimated": true
+ },
+ "Stephano": {
+  "_source": "Sheppard et al. 2005, AJ 129:518, from their magnitudes.",
+  "radiusKm": 16,
+  "radiusEstimated": true
+ },
+ "Trinculo": {
+  "_source": "Sheppard et al. 2005, AJ 129:518, from their magnitudes.",
+  "radiusKm": 9,
+  "radiusEstimated": true
+ },
+ "Francisco": {
+  "_source": "Sheppard et al. 2005, AJ 129:518, from their magnitudes.",
+  "radiusKm": 11,
+  "radiusEstimated": true
+ },
+ "Margaret": {
+  "_source": "Sheppard et al. 2005, AJ 129:518, from their magnitudes.",
+  "radiusKm": 10,
+  "radiusEstimated": true
+ },
+ "Ferdinand": {
+  "_source": "Sheppard et al. 2005, AJ 129:518, from their magnitudes.",
+  "radiusKm": 10,
+  "radiusEstimated": true
+ },
+ "Cupid": {
+  "_source": "Showalter & Lissauer 2006, Science 311:973; Karkoschka 2001, roughly.",
+  "radiusKm": 9,
+  "radiusEstimated": true
+ },
+ "Perdita": {
+  "_source": "Showalter & Lissauer 2006, Science 311:973; Karkoschka 2001, roughly.",
+  "radiusKm": 15,
+  "radiusEstimated": true
+ },
+ "Mab": {
+  "_source": "Showalter & Lissauer 2006, Science 311:973; Karkoschka 2001, roughly.",
+  "radiusKm": 12,
+  "radiusEstimated": true
+ },
+ "Halimede": {
+  "_source": "Sheppard et al. 2006, AJ 132:171, from their magnitudes.",
+  "radiusKm": 31,
+  "radiusEstimated": true
+ },
+ "Sao": {
+  "_source": "Sheppard et al. 2006, AJ 132:171, from their magnitudes.",
+  "radiusKm": 22,
+  "radiusEstimated": true
+ },
+ "Laomedeia": {
+  "_source": "Sheppard et al. 2006, AJ 132:171, from their magnitudes.",
+  "radiusKm": 21,
+  "radiusEstimated": true
+ },
+ "Psamathe": {
+  "_source": "Sheppard et al. 2006, AJ 132:171, from their magnitudes.",
+  "radiusKm": 20,
+  "radiusEstimated": true
+ },
+ "Neso": {
+  "_source": "Sheppard et al. 2006, AJ 132:171, from their magnitudes.",
+  "radiusKm": 30,
+  "radiusEstimated": true
+ },
+ "Hippocamp": {
+  "_source": "Showalter et al. 2019, Nature 566:350.",
+  "radiusKm": 8.7,
+  "radiusEstimated": true
+ },
+ "S2002N5": {
+  "_source": "Discovery reports (Sheppard, 2024; JWST, 2025), from their magnitudes.",
+  "radiusKm": 11.5,
+  "radiusEstimated": true
+ },
+ "S2023N1": {
+  "_source": "Discovery reports (Sheppard, 2024; JWST, 2025), from their magnitudes.",
+  "radiusKm": 7,
+  "radiusEstimated": true
+ },
+ "S2023U1": {
+  "_source": "Discovery reports (Sheppard, 2024; JWST, 2025), from their magnitudes.",
+  "radiusKm": 4,
+  "radiusEstimated": true
+ },
+ "S2025U1": {
+  "_source": "Discovery reports (Sheppard, 2024; JWST, 2025), from their magnitudes.",
+  "radiusKm": 5,
+  "radiusEstimated": true
+ }
+}

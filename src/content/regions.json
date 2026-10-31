@@ -1,0 +1,1777 @@
+[
+ {
+  "countryId": "afg",
+  "population": 33262214,
+  "areaKm2": 283276
+ },
+ {
+  "countryId": "afg",
+  "population": 10581786,
+  "areaKm2": 403085
+ },
+ {
+  "countryId": "ago",
+  "population": 27594678,
+  "areaKm2": 188839
+ },
+ {
+  "countryId": "ago",
+  "population": 9597697,
+  "areaKm2": 625167
+ },
+ {
+  "countryId": "ago",
+  "population": 1847625,
+  "areaKm2": 452978
+ },
+ {
+  "countryId": "alb",
+  "population": 2349600,
+  "areaKm2": 29314
+ },
+ {
+  "countryId": "and",
+  "population": 82904,
+  "areaKm2": 1401
+ },
+ {
+  "countryId": "are",
+  "population": 11513000,
+  "areaKm2": 84104
+ },
+ {
+  "countryId": "arg",
+  "population": 31473081,
+  "areaKm2": 639320
+ },
+ {
+  "countryId": "arg",
+  "population": 5050587,
+  "areaKm2": 719383
+ },
+ {
+  "countryId": "arg",
+  "population": 9327332,
+  "areaKm2": 1409529
+ },
+ {
+  "countryId": "arm",
+  "population": 3086700,
+  "areaKm2": 27806
+ },
+ {
+  "countryId": "atg",
+  "population": 94209,
+  "areaKm2": 3271
+ },
+ {
+  "countryId": "aus",
+  "population": 17072169,
+  "areaKm2": 1173587
+ },
+ {
+  "countryId": "aus",
+  "population": 3098688,
+  "areaKm2": 2579902
+ },
+ {
+  "countryId": "aus",
+  "population": 4983457,
+  "areaKm2": 1739585
+ },
+ {
+  "countryId": "aus",
+  "population": 2459686,
+  "areaKm2": 2469218
+ },
+ {
+  "countryId": "aut",
+  "population": 9208200,
+  "areaKm2": 77684
+ },
+ {
+  "countryId": "aze",
+  "population": 10247000,
+  "areaKm2": 110284
+ },
+ {
+  "countryId": "bdi",
+  "population": 14390000,
+  "areaKm2": 36448
+ },
+ {
+  "countryId": "bel",
+  "population": 11942000,
+  "areaKm2": 33296
+ },
+ {
+  "countryId": "ben",
+  "population": 14814000,
+  "areaKm2": 124479
+ },
+ {
+  "countryId": "bfa",
+  "population": 18263465,
+  "areaKm2": 201023
+ },
+ {
+  "countryId": "bfa",
+  "population": 5811535,
+  "areaKm2": 106275
+ },
+ {
+  "countryId": "bgd",
+  "population": 109424181,
+  "areaKm2": 37383
+ },
+ {
+  "countryId": "bgd",
+  "population": 36048945,
+  "areaKm2": 32340
+ },
+ {
+  "countryId": "bgd",
+  "population": 15945384,
+  "areaKm2": 42804
+ },
+ {
+  "countryId": "bgd",
+  "population": 14271489,
+  "areaKm2": 45766
+ },
+ {
+  "countryId": "bgr",
+  "population": 6433300,
+  "areaKm2": 124173
+ },
+ {
+  "countryId": "bhr",
+  "population": 1600400,
+  "areaKm2": 3762
+ },
+ {
+  "countryId": "bhs",
+  "population": 403030,
+  "areaKm2": 55083
+ },
+ {
+  "countryId": "bih",
+  "population": 3140100,
+  "areaKm2": 50941
+ },
+ {
+  "countryId": "blr",
+  "population": 9086000,
+  "areaKm2": 195568
+ },
+ {
+  "countryId": "blz",
+  "population": 422920,
+  "areaKm2": 35588
+ },
+ {
+  "countryId": "bol",
+  "population": 5239814,
+  "areaKm2": 453625
+ },
+ {
+  "countryId": "bol",
+  "population": 7342186,
+  "areaKm2": 641362
+ },
+ {
+  "countryId": "bra",
+  "population": 77601711,
+  "areaKm2": 1172187
+ },
+ {
+  "countryId": "bra",
+  "population": 40585400,
+  "areaKm2": 1269463
+ },
+ {
+  "countryId": "bra",
+  "population": 8002665,
+  "areaKm2": 2118164
+ },
+ {
+  "countryId": "bra",
+  "population": 19750663,
+  "areaKm2": 374155
+ },
+ {
+  "countryId": "bra",
+  "population": 16186836,
+  "areaKm2": 2888735
+ },
+ {
+  "countryId": "bra",
+  "population": 50682724,
+  "areaKm2": 651943
+ },
+ {
+  "countryId": "brb",
+  "population": 282620,
+  "areaKm2": 1481
+ },
+ {
+  "countryId": "brn",
+  "population": 466330,
+  "areaKm2": 12891
+ },
+ {
+  "countryId": "btn",
+  "population": 796680,
+  "areaKm2": 51310
+ },
+ {
+  "countryId": "bwa",
+  "population": 2562100,
+  "areaKm2": 561616
+ },
+ {
+  "countryId": "caf",
+  "population": 5513300,
+  "areaKm2": 652340
+ },
+ {
+  "countryId": "can",
+  "population": 15410112,
+  "areaKm2": 1055155
+ },
+ {
+  "countryId": "can",
+  "population": 6223309,
+  "areaKm2": 1483960
+ },
+ {
+  "countryId": "can",
+  "population": 8862392,
+  "areaKm2": 1508634
+ },
+ {
+  "countryId": "can",
+  "population": 1655288,
+  "areaKm2": 2412101
+ },
+ {
+  "countryId": "can",
+  "population": 5173509,
+  "areaKm2": 2046010
+ },
+ {
+  "countryId": "can",
+  "population": 2529811,
+  "areaKm2": 1311060
+ },
+ {
+  "countryId": "can",
+  "population": 1797578,
+  "areaKm2": 675765
+ },
+ {
+  "countryId": "che",
+  "population": 9092400,
+  "areaKm2": 41845
+ },
+ {
+  "countryId": "chl",
+  "population": 19451359,
+  "areaKm2": 585180
+ },
+ {
+  "countryId": "chl",
+  "population": 408641,
+  "areaKm2": 335826
+ },
+ {
+  "countryId": "chn",
+  "population": 217511955,
+  "areaKm2": 388537
+ },
+ {
+  "countryId": "chn",
+  "population": 41450150,
+  "areaKm2": 2633858
+ },
+ {
+  "countryId": "chn",
+  "population": 203696166,
+  "areaKm2": 468760
+ },
+ {
+  "countryId": "chn",
+  "population": 58969116,
+  "areaKm2": 436418
+ },
+ {
+  "countryId": "chn",
+  "population": 65358830,
+  "areaKm2": 458530
+ },
+ {
+  "countryId": "chn",
+  "population": 232275825,
+  "areaKm2": 846803
+ },
+ {
+  "countryId": "chn",
+  "population": 115595890,
+  "areaKm2": 363047
+ },
+ {
+  "countryId": "chn",
+  "population": 125045588,
+  "areaKm2": 427886
+ },
+ {
+  "countryId": "chn",
+  "population": 34029480,
+  "areaKm2": 1201687
+ },
+ {
+  "countryId": "chn",
+  "population": 68745622,
+  "areaKm2": 1220178
+ },
+ {
+  "countryId": "chn",
+  "population": 188196851,
+  "areaKm2": 270248
+ },
+ {
+  "countryId": "chn",
+  "population": 55724526,
+  "areaKm2": 557973
+ },
+ {
+  "countryId": "civ",
+  "population": 23644800,
+  "areaKm2": 106279
+ },
+ {
+  "countryId": "civ",
+  "population": 9067200,
+  "areaKm2": 222713
+ },
+ {
+  "countryId": "cmr",
+  "population": 24896234,
+  "areaKm2": 288180
+ },
+ {
+  "countryId": "cmr",
+  "population": 4982766,
+  "areaKm2": 150433
+ },
+ {
+  "countryId": "cod",
+  "population": 31075650,
+  "areaKm2": 440025
+ },
+ {
+  "countryId": "cod",
+  "population": 21277910,
+  "areaKm2": 580920
+ },
+ {
+  "countryId": "cod",
+  "population": 24477305,
+  "areaKm2": 735632
+ },
+ {
+  "countryId": "cod",
+  "population": 35999134,
+  "areaKm2": 467710
+ },
+ {
+  "countryId": "cog",
+  "population": 6484400,
+  "areaKm2": 367807
+ },
+ {
+  "countryId": "col",
+  "population": 29989002,
+  "areaKm2": 755038
+ },
+ {
+  "countryId": "col",
+  "population": 10521349,
+  "areaKm2": 125443
+ },
+ {
+  "countryId": "col",
+  "population": 12915649,
+  "areaKm2": 320535
+ },
+ {
+  "countryId": "com",
+  "population": 882850,
+  "areaKm2": 6324
+ },
+ {
+  "countryId": "cpv",
+  "population": 527330,
+  "areaKm2": 15724
+ },
+ {
+  "countryId": "cri",
+  "population": 5153000,
+  "areaKm2": 61810
+ },
+ {
+  "countryId": "cub",
+  "population": 10937000,
+  "areaKm2": 161867
+ },
+ {
+  "countryId": "cyp",
+  "population": 1370800,
+  "areaKm2": 15559
+ },
+ {
+  "countryId": "cze",
+  "population": 10887000,
+  "areaKm2": 91631
+ },
+ {
+  "countryId": "deu",
+  "population": 46013960,
+  "areaKm2": 119953
+ },
+ {
+  "countryId": "deu",
+  "population": 21074023,
+  "areaKm2": 137589
+ },
+ {
+  "countryId": "deu",
+  "population": 16403018,
+  "areaKm2": 89181
+ },
+ {
+  "countryId": "dji",
+  "population": 1184100,
+  "areaKm2": 30160
+ },
+ {
+  "countryId": "dma",
+  "population": 65871,
+  "areaKm2": 2200
+ },
+ {
+  "countryId": "dnk",
+  "population": 3792847,
+  "areaKm2": 72202
+ },
+ {
+  "countryId": "dnk",
+  "population": 1685203,
+  "areaKm2": 1523091
+ },
+ {
+  "countryId": "dnk",
+  "population": 531150,
+  "areaKm2": 762961
+ },
+ {
+  "countryId": "dom",
+  "population": 11520000,
+  "areaKm2": 63689
+ },
+ {
+  "countryId": "dza",
+  "population": 39667256,
+  "areaKm2": 270202
+ },
+ {
+  "countryId": "dza",
+  "population": 3294308,
+  "areaKm2": 1271230
+ },
+ {
+  "countryId": "dza",
+  "population": 4473436,
+  "areaKm2": 762509
+ },
+ {
+  "countryId": "ecu",
+  "population": 10812952,
+  "areaKm2": 155394
+ },
+ {
+  "countryId": "ecu",
+  "population": 7477048,
+  "areaKm2": 144121
+ },
+ {
+  "countryId": "egy",
+  "population": 83651795,
+  "areaKm2": 140262
+ },
+ {
+  "countryId": "egy",
+  "population": 2571415,
+  "areaKm2": 27268
+ },
+ {
+  "countryId": "egy",
+  "population": 20909120,
+  "areaKm2": 211776
+ },
+ {
+  "countryId": "egy",
+  "population": 11237670,
+  "areaKm2": 626508
+ },
+ {
+  "countryId": "eri",
+  "population": 3607000,
+  "areaKm2": 149975
+ },
+ {
+  "countryId": "esp",
+  "population": 47729640,
+  "areaKm2": 514813
+ },
+ {
+  "countryId": "esp",
+  "population": 1625360,
+  "areaKm2": 21757
+ },
+ {
+  "countryId": "est",
+  "population": 1366500,
+  "areaKm2": 55461
+ },
+ {
+  "countryId": "eth",
+  "population": 88634926,
+  "areaKm2": 271772
+ },
+ {
+  "countryId": "eth",
+  "population": 12268884,
+  "areaKm2": 164634
+ },
+ {
+  "countryId": "eth",
+  "population": 21835536,
+  "areaKm2": 352936
+ },
+ {
+  "countryId": "eth",
+  "population": 12730653,
+  "areaKm2": 300758
+ },
+ {
+  "countryId": "fin",
+  "population": 5646400,
+  "areaKm2": 356421
+ },
+ {
+  "countryId": "fji",
+  "population": 933150,
+  "areaKm2": 55095
+ },
+ {
+  "countryId": "fra",
+  "population": 67346512,
+  "areaKm2": 685043
+ },
+ {
+  "countryId": "fra",
+  "population": 653364,
+  "areaKm2": 94586
+ },
+ {
+  "countryId": "fra",
+  "population": 720124,
+  "areaKm2": 27230
+ },
+ {
+  "countryId": "fsm",
+  "population": 113680,
+  "areaKm2": 10942
+ },
+ {
+  "countryId": "gab",
+  "population": 2593100,
+  "areaKm2": 261953
+ },
+ {
+  "countryId": "gbr",
+  "population": 69316306,
+  "areaKm2": 318049
+ },
+ {
+  "countryId": "gbr",
+  "population": 25809,
+  "areaKm2": 43373
+ },
+ {
+  "countryId": "gbr",
+  "population": 144886,
+  "areaKm2": 16627
+ },
+ {
+  "countryId": "geo",
+  "population": 3935800,
+  "areaKm2": 72595
+ },
+ {
+  "countryId": "gha",
+  "population": 30352998,
+  "areaKm2": 111104
+ },
+ {
+  "countryId": "gha",
+  "population": 4711002,
+  "areaKm2": 114865
+ },
+ {
+  "countryId": "gin",
+  "population": 15100000,
+  "areaKm2": 271121
+ },
+ {
+  "countryId": "gmb",
+  "population": 2822100,
+  "areaKm2": 21085
+ },
+ {
+  "countryId": "gnb",
+  "population": 2249500,
+  "areaKm2": 48743
+ },
+ {
+  "countryId": "gnq",
+  "population": 1938400,
+  "areaKm2": 39151
+ },
+ {
+  "countryId": "grc",
+  "population": 10414000,
+  "areaKm2": 208375
+ },
+ {
+  "countryId": "grd",
+  "population": 117300,
+  "areaKm2": 2230
+ },
+ {
+  "countryId": "gtm",
+  "population": 18688000,
+  "areaKm2": 112383
+ },
+ {
+  "countryId": "guy",
+  "population": 835990,
+  "areaKm2": 241294
+ },
+ {
+  "countryId": "hnd",
+  "population": 11006000,
+  "areaKm2": 126425
+ },
+ {
+  "countryId": "hrv",
+  "population": 3876200,
+  "areaKm2": 69645
+ },
+ {
+  "countryId": "hti",
+  "population": 11906000,
+  "areaKm2": 39574
+ },
+ {
+  "countryId": "hun",
+  "population": 9514300,
+  "areaKm2": 98076
+ },
+ {
+  "countryId": "idn",
+  "population": 123884803,
+  "areaKm2": 404592
+ },
+ {
+  "countryId": "idn",
+  "population": 44745195,
+  "areaKm2": 401642
+ },
+ {
+  "countryId": "idn",
+  "population": 6197217,
+  "areaKm2": 581898
+ },
+ {
+  "countryId": "idn",
+  "population": 38991727,
+  "areaKm2": 679089
+ },
+ {
+  "countryId": "idn",
+  "population": 71901058,
+  "areaKm2": 310282
+ },
+ {
+  "countryId": "ind",
+  "population": 263712816,
+  "areaKm2": 299577
+ },
+ {
+  "countryId": "ind",
+  "population": 250385423,
+  "areaKm2": 693168
+ },
+ {
+  "countryId": "ind",
+  "population": 203579717,
+  "areaKm2": 339375
+ },
+ {
+  "countryId": "ind",
+  "population": 137976397,
+  "areaKm2": 227340
+ },
+ {
+  "countryId": "ind",
+  "population": 94697529,
+  "areaKm2": 206385
+ },
+ {
+  "countryId": "ind",
+  "population": 145386010,
+  "areaKm2": 236620
+ },
+ {
+  "countryId": "ind",
+  "population": 148679954,
+  "areaKm2": 296954
+ },
+ {
+  "countryId": "ind",
+  "population": 97639305,
+  "areaKm2": 192229
+ },
+ {
+  "countryId": "ind",
+  "population": 67346542,
+  "areaKm2": 442273
+ },
+ {
+  "countryId": "ind",
+  "population": 54496307,
+  "areaKm2": 302835
+ },
+ {
+  "countryId": "irl",
+  "population": 5484400,
+  "areaKm2": 85284
+ },
+ {
+  "countryId": "irn",
+  "population": 54153099,
+  "areaKm2": 356173
+ },
+ {
+  "countryId": "irn",
+  "population": 6549353,
+  "areaKm2": 443227
+ },
+ {
+  "countryId": "irn",
+  "population": 13258141,
+  "areaKm2": 352424
+ },
+ {
+  "countryId": "irn",
+  "population": 18457408,
+  "areaKm2": 477338
+ },
+ {
+  "countryId": "irq",
+  "population": 37256020,
+  "areaKm2": 274371
+ },
+ {
+  "countryId": "irq",
+  "population": 9764980,
+  "areaKm2": 164233
+ },
+ {
+  "countryId": "isl",
+  "population": 392400,
+  "areaKm2": 124046
+ },
+ {
+  "countryId": "isr",
+  "population": 10123000,
+  "areaKm2": 22047
+ },
+ {
+  "countryId": "ita",
+  "population": 19197200,
+  "areaKm2": 113549
+ },
+ {
+  "countryId": "ita",
+  "population": 27728580,
+  "areaKm2": 153733
+ },
+ {
+  "countryId": "ita",
+  "population": 11990220,
+  "areaKm2": 96054
+ },
+ {
+  "countryId": "jam",
+  "population": 2837100,
+  "areaKm2": 18072
+ },
+ {
+  "countryId": "jor",
+  "population": 11521000,
+  "areaKm2": 100525
+ },
+ {
+  "countryId": "jpn",
+  "population": 94410980,
+  "areaKm2": 181185
+ },
+ {
+  "countryId": "jpn",
+  "population": 17633831,
+  "areaKm2": 169660
+ },
+ {
+  "countryId": "jpn",
+  "population": 11325189,
+  "areaKm2": 168439
+ },
+ {
+  "countryId": "kaz",
+  "population": 8767072,
+  "areaKm2": 771814
+ },
+ {
+  "countryId": "kaz",
+  "population": 3136249,
+  "areaKm2": 713809
+ },
+ {
+  "countryId": "kaz",
+  "population": 8940679,
+  "areaKm2": 1178661
+ },
+ {
+  "countryId": "ken",
+  "population": 31420008,
+  "areaKm2": 22057
+ },
+ {
+  "countryId": "ken",
+  "population": 11024761,
+  "areaKm2": 222294
+ },
+ {
+  "countryId": "ken",
+  "population": 15087231,
+  "areaKm2": 336323
+ },
+ {
+  "countryId": "kgz",
+  "population": 7343100,
+  "areaKm2": 211026
+ },
+ {
+  "countryId": "khm",
+  "population": 17848000,
+  "areaKm2": 186256
+ },
+ {
+  "countryId": "kir",
+  "population": 136490,
+  "areaKm2": 23159
+ },
+ {
+  "countryId": "kna",
+  "population": 46922,
+  "areaKm2": 1816
+ },
+ {
+  "countryId": "kor",
+  "population": 32106421,
+  "areaKm2": 54563
+ },
+ {
+  "countryId": "kor",
+  "population": 19578579,
+  "areaKm2": 69493
+ },
+ {
+  "countryId": "kwt",
+  "population": 4865300,
+  "areaKm2": 24532
+ },
+ {
+  "countryId": "lao",
+  "population": 7873000,
+  "areaKm2": 212982
+ },
+ {
+  "countryId": "lbn",
+  "population": 5849400,
+  "areaKm2": 14514
+ },
+ {
+  "countryId": "lbr",
+  "population": 5731200,
+  "areaKm2": 103939
+ },
+ {
+  "countryId": "lby",
+  "population": 4679000,
+  "areaKm2": 721080
+ },
+ {
+  "countryId": "lby",
+  "population": 2779600,
+  "areaKm2": 926002
+ },
+ {
+  "countryId": "lca",
+  "population": 180150,
+  "areaKm2": 1846
+ },
+ {
+  "countryId": "lka",
+  "population": 21756000,
+  "areaKm2": 81021
+ },
+ {
+  "countryId": "lso",
+  "population": 2363300,
+  "areaKm2": 38691
+ },
+ {
+  "countryId": "ltu",
+  "population": 2888800,
+  "areaKm2": 67932
+ },
+ {
+  "countryId": "lux",
+  "population": 686970,
+  "areaKm2": 4912
+ },
+ {
+  "countryId": "lva",
+  "population": 1847800,
+  "areaKm2": 77570
+ },
+ {
+  "countryId": "mar",
+  "population": 36604753,
+  "areaKm2": 363324
+ },
+ {
+  "countryId": "mar",
+  "population": 1826247,
+  "areaKm2": 357609
+ },
+ {
+  "countryId": "mda",
+  "population": 2360500,
+  "areaKm2": 45269
+ },
+ {
+  "countryId": "mdg",
+  "population": 27726774,
+  "areaKm2": 361042
+ },
+ {
+  "countryId": "mdg",
+  "population": 5014226,
+  "areaKm2": 280147
+ },
+ {
+  "countryId": "mdv",
+  "population": 529680,
+  "areaKm2": 36400
+ },
+ {
+  "countryId": "mex",
+  "population": 87305835,
+  "areaKm2": 772058
+ },
+ {
+  "countryId": "mex",
+  "population": 5718877,
+  "areaKm2": 94025
+ },
+ {
+  "countryId": "mex",
+  "population": 18227780,
+  "areaKm2": 730440
+ },
+ {
+  "countryId": "mex",
+  "population": 20697508,
+  "areaKm2": 503249
+ },
+ {
+  "countryId": "mhl",
+  "population": 36282,
+  "areaKm2": 13178
+ },
+ {
+  "countryId": "mkd",
+  "population": 1820900,
+  "areaKm2": 32144
+ },
+ {
+  "countryId": "mli",
+  "population": 20794533,
+  "areaKm2": 327690
+ },
+ {
+  "countryId": "mli",
+  "population": 4404467,
+  "areaKm2": 877446
+ },
+ {
+  "countryId": "mlt",
+  "population": 579700,
+  "areaKm2": 2155
+ },
+ {
+  "countryId": "mmr",
+  "population": 32123309,
+  "areaKm2": 132552
+ },
+ {
+  "countryId": "mmr",
+  "population": 20537380,
+  "areaKm2": 508168
+ },
+ {
+  "countryId": "mmr",
+  "population": 2190311,
+  "areaKm2": 54615
+ },
+ {
+  "countryId": "mne",
+  "population": 623130,
+  "areaKm2": 20109
+ },
+ {
+  "countryId": "mng",
+  "population": 2872061,
+  "areaKm2": 910379
+ },
+ {
+  "countryId": "mng",
+  "population": 696939,
+  "areaKm2": 705281
+ },
+ {
+  "countryId": "moz",
+  "population": 19422216,
+  "areaKm2": 246483
+ },
+ {
+  "countryId": "moz",
+  "population": 16209784,
+  "areaKm2": 536301
+ },
+ {
+  "countryId": "mrt",
+  "population": 5315100,
+  "areaKm2": 1043542
+ },
+ {
+  "countryId": "mus",
+  "population": 1243700,
+  "areaKm2": 6462
+ },
+ {
+  "countryId": "mwi",
+  "population": 12397061,
+  "areaKm2": 98514
+ },
+ {
+  "countryId": "mwi",
+  "population": 9818939,
+  "areaKm2": 48409
+ },
+ {
+  "countryId": "mys",
+  "population": 29865677,
+  "areaKm2": 148684
+ },
+ {
+  "countryId": "mys",
+  "population": 6112323,
+  "areaKm2": 233324
+ },
+ {
+  "countryId": "nam",
+  "population": 3092800,
+  "areaKm2": 868242
+ },
+ {
+  "countryId": "ner",
+  "population": 19614662,
+  "areaKm2": 270175
+ },
+ {
+  "countryId": "ner",
+  "population": 8303338,
+  "areaKm2": 870580
+ },
+ {
+  "countryId": "nga",
+  "population": 112440338,
+  "areaKm2": 116762
+ },
+ {
+  "countryId": "nga",
+  "population": 29147652,
+  "areaKm2": 191833
+ },
+ {
+  "countryId": "nga",
+  "population": 14455371,
+  "areaKm2": 182715
+ },
+ {
+  "countryId": "nga",
+  "population": 42673484,
+  "areaKm2": 126751
+ },
+ {
+  "countryId": "nga",
+  "population": 38813156,
+  "areaKm2": 308234
+ },
+ {
+  "countryId": "nic",
+  "population": 7007500,
+  "areaKm2": 136818
+ },
+ {
+  "countryId": "nld",
+  "population": 18088000,
+  "areaKm2": 56255
+ },
+ {
+  "countryId": "nor",
+  "population": 5610785,
+  "areaKm2": 484247
+ },
+ {
+  "countryId": "nor",
+  "population": 115,
+  "areaKm2": 221
+ },
+ {
+  "countryId": "npl",
+  "population": 26993516,
+  "areaKm2": 100388
+ },
+ {
+  "countryId": "npl",
+  "population": 2624484,
+  "areaKm2": 69779
+ },
+ {
+  "countryId": "nru",
+  "population": 12025,
+  "areaKm2": 761
+ },
+ {
+  "countryId": "nzl",
+  "population": 5324700,
+  "areaKm2": 345804
+ },
+ {
+  "countryId": "omn",
+  "population": 5494700,
+  "areaKm2": 341723
+ },
+ {
+  "countryId": "pak",
+  "population": 99221774,
+  "areaKm2": 195602
+ },
+ {
+  "countryId": "pak",
+  "population": 93871536,
+  "areaKm2": 159262
+ },
+ {
+  "countryId": "pak",
+  "population": 40054109,
+  "areaKm2": 153319
+ },
+ {
+  "countryId": "pak",
+  "population": 14595676,
+  "areaKm2": 32217
+ },
+ {
+  "countryId": "pak",
+  "population": 7476905,
+  "areaKm2": 325379
+ },
+ {
+  "countryId": "pan",
+  "population": 4571200,
+  "areaKm2": 108703
+ },
+ {
+  "countryId": "per",
+  "population": 27804305,
+  "areaKm2": 752694
+ },
+ {
+  "countryId": "per",
+  "population": 6772695,
+  "areaKm2": 569212
+ },
+ {
+  "countryId": "phl",
+  "population": 77098008,
+  "areaKm2": 165336
+ },
+ {
+  "countryId": "phl",
+  "population": 24189428,
+  "areaKm2": 145494
+ },
+ {
+  "countryId": "phl",
+  "population": 15502564,
+  "areaKm2": 164223
+ },
+ {
+  "countryId": "plw",
+  "population": 17663,
+  "areaKm2": 4912
+ },
+ {
+  "countryId": "png",
+  "population": 9222882,
+  "areaKm2": 450614
+ },
+ {
+  "countryId": "png",
+  "population": 1540118,
+  "areaKm2": 145418
+ },
+ {
+  "countryId": "pol",
+  "population": 26162760,
+  "areaKm2": 151851
+ },
+ {
+  "countryId": "pol",
+  "population": 10273240,
+  "areaKm2": 156447
+ },
+ {
+  "countryId": "prk",
+  "population": 20807275,
+  "areaKm2": 91116
+ },
+ {
+  "countryId": "prk",
+  "population": 5763725,
+  "areaKm2": 58882
+ },
+ {
+  "countryId": "prt",
+  "population": 10805000,
+  "areaKm2": 121781
+ },
+ {
+  "countryId": "pry",
+  "population": 7013100,
+  "areaKm2": 425948
+ },
+ {
+  "countryId": "pse",
+  "population": 5413600,
+  "areaKm2": 5181
+ },
+ {
+  "countryId": "qat",
+  "population": 2972200,
+  "areaKm2": 15816
+ },
+ {
+  "countryId": "rou",
+  "population": 13676822,
+  "areaKm2": 123942
+ },
+ {
+  "countryId": "rou",
+  "population": 5343178,
+  "areaKm2": 99957
+ },
+ {
+  "countryId": "rus",
+  "population": 40897055,
+  "areaKm2": 894657
+ },
+ {
+  "countryId": "rus",
+  "population": 3854490,
+  "areaKm2": 759180
+ },
+ {
+  "countryId": "rus",
+  "population": 5604312,
+  "areaKm2": 3028745
+ },
+ {
+  "countryId": "rus",
+  "population": 18298732,
+  "areaKm2": 1960816
+ },
+ {
+  "countryId": "rus",
+  "population": 5972711,
+  "areaKm2": 5569053
+ },
+ {
+  "countryId": "rus",
+  "population": 10074525,
+  "areaKm2": 1090989
+ },
+ {
+  "countryId": "rus",
+  "population": 5015447,
+  "areaKm2": 1561002
+ },
+ {
+  "countryId": "rus",
+  "population": 17952072,
+  "areaKm2": 623439
+ },
+ {
+  "countryId": "rus",
+  "population": 13597470,
+  "areaKm2": 980785
+ },
+ {
+  "countryId": "rus",
+  "population": 22243185,
+  "areaKm2": 787421
+ },
+ {
+  "countryId": "rwa",
+  "population": 14569000,
+  "areaKm2": 25467
+ },
+ {
+  "countryId": "sau",
+  "population": 13371222,
+  "areaKm2": 755953
+ },
+ {
+  "countryId": "sau",
+  "population": 15424648,
+  "areaKm2": 632792
+ },
+ {
+  "countryId": "sau",
+  "population": 8178130,
+  "areaKm2": 528031
+ },
+ {
+  "countryId": "sdn",
+  "population": 44227359,
+  "areaKm2": 1024247
+ },
+ {
+  "countryId": "sdn",
+  "population": 4800915,
+  "areaKm2": 648859
+ },
+ {
+  "countryId": "sdn",
+  "population": 2633726,
+  "areaKm2": 196231
+ },
+ {
+  "countryId": "sds",
+  "population": 8689632,
+  "areaKm2": 352589
+ },
+ {
+  "countryId": "sds",
+  "population": 3499368,
+  "areaKm2": 263961
+ },
+ {
+  "countryId": "sen",
+  "population": 16535816,
+  "areaKm2": 42786
+ },
+ {
+  "countryId": "sen",
+  "population": 2396184,
+  "areaKm2": 146828
+ },
+ {
+  "countryId": "sgp",
+  "population": 6111200,
+  "areaKm2": 2281
+ },
+ {
+  "countryId": "slb",
+  "population": 838640,
+  "areaKm2": 82636
+ },
+ {
+  "countryId": "sle",
+  "population": 8819800,
+  "areaKm2": 68085
+ },
+ {
+  "countryId": "slv",
+  "population": 6365500,
+  "areaKm2": 26604
+ },
+ {
+  "countryId": "som",
+  "population": 12171957,
+  "areaKm2": 397985
+ },
+ {
+  "countryId": "som",
+  "population": 7483043,
+  "areaKm2": 295726
+ },
+ {
+  "countryId": "srb",
+  "population": 6549100,
+  "areaKm2": 75030
+ },
+ {
+  "countryId": "stp",
+  "population": 240250,
+  "areaKm2": 4183
+ },
+ {
+  "countryId": "sur",
+  "population": 639850,
+  "areaKm2": 146005
+ },
+ {
+  "countryId": "svk",
+  "population": 5413800,
+  "areaKm2": 47854
+ },
+ {
+  "countryId": "svn",
+  "population": 2131000,
+  "areaKm2": 28740
+ },
+ {
+  "countryId": "swe",
+  "population": 6282238,
+  "areaKm2": 356361
+ },
+ {
+  "countryId": "swe",
+  "population": 4314762,
+  "areaKm2": 106173
+ },
+ {
+  "countryId": "swz",
+  "population": 1256200,
+  "areaKm2": 22116
+ },
+ {
+  "countryId": "syc",
+  "population": 122730,
+  "areaKm2": 7936
+ },
+ {
+  "countryId": "syr",
+  "population": 13461142,
+  "areaKm2": 108028
+ },
+ {
+  "countryId": "syr",
+  "population": 12158858,
+  "areaKm2": 79887
+ },
+ {
+  "countryId": "tcd",
+  "population": 17035785,
+  "areaKm2": 325765
+ },
+ {
+  "countryId": "tcd",
+  "population": 3968215,
+  "areaKm2": 977141
+ },
+ {
+  "countryId": "tgo",
+  "population": 8591600,
+  "areaKm2": 61295
+ },
+ {
+  "countryId": "tha",
+  "population": 46264098,
+  "areaKm2": 163058
+ },
+ {
+  "countryId": "tha",
+  "population": 7822058,
+  "areaKm2": 99357
+ },
+ {
+  "countryId": "tha",
+  "population": 17533843,
+  "areaKm2": 315584
+ },
+ {
+  "countryId": "tjk",
+  "population": 10787000,
+  "areaKm2": 122675
+ },
+ {
+  "countryId": "tkm",
+  "population": 7618800,
+  "areaKm2": 476842
+ },
+ {
+  "countryId": "tls",
+  "population": 1418500,
+  "areaKm2": 25932
+ },
+ {
+  "countryId": "ton",
+  "population": 103740,
+  "areaKm2": 7156
+ },
+ {
+  "countryId": "tto",
+  "population": 1367800,
+  "areaKm2": 10842
+ },
+ {
+  "countryId": "tun",
+  "population": 12349000,
+  "areaKm2": 176889
+ },
+ {
+  "countryId": "tur",
+  "population": 39250519,
+  "areaKm2": 179188
+ },
+ {
+  "countryId": "tur",
+  "population": 23224867,
+  "areaKm2": 362027
+ },
+ {
+  "countryId": "tur",
+  "population": 23403614,
+  "areaKm2": 285147
+ },
+ {
+  "countryId": "tuv",
+  "population": 9492,
+  "areaKm2": 3396
+ },
+ {
+  "countryId": "twn",
+  "population": 23330000,
+  "areaKm2": 51186
+ },
+ {
+  "countryId": "tza",
+  "population": 46072112,
+  "areaKm2": 332252
+ },
+ {
+  "countryId": "tza",
+  "population": 13908444,
+  "areaKm2": 249805
+ },
+ {
+  "countryId": "tza",
+  "population": 10565444,
+  "areaKm2": 384581
+ },
+ {
+  "countryId": "uga",
+  "population": 41541648,
+  "areaKm2": 161996
+ },
+ {
+  "countryId": "uga",
+  "population": 9843352,
+  "areaKm2": 103699
+ },
+ {
+  "countryId": "ukr",
+  "population": 19863775,
+  "areaKm2": 351809
+ },
+ {
+  "countryId": "ukr",
+  "population": 19116225,
+  "areaKm2": 233301
+ },
+ {
+  "countryId": "ury",
+  "population": 3384700,
+  "areaKm2": 196298
+ },
+ {
+  "countryId": "usa",
+  "population": 83493671,
+  "areaKm2": 2514632
+ },
+ {
+  "countryId": "usa",
+  "population": 83405708,
+  "areaKm2": 708036
+ },
+ {
+  "countryId": "usa",
+  "population": 45754526,
+  "areaKm2": 2103998
+ },
+ {
+  "countryId": "usa",
+  "population": 48282237,
+  "areaKm2": 796435
+ },
+ {
+  "countryId": "usa",
+  "population": 73397668,
+  "areaKm2": 1949496
+ },
+ {
+  "countryId": "usa",
+  "population": 1756465,
+  "areaKm2": 52285
+ },
+ {
+  "countryId": "usa",
+  "population": 1374644,
+  "areaKm2": 1670385
+ },
+ {
+  "countryId": "usa",
+  "population": 4315080,
+  "areaKm2": 20233
+ },
+ {
+  "countryId": "uzb",
+  "population": 31646490,
+  "areaKm2": 155767
+ },
+ {
+  "countryId": "uzb",
+  "population": 5406510,
+  "areaKm2": 321858
+ },
+ {
+  "countryId": "vct",
+  "population": 99924,
+  "areaKm2": 3334
+ },
+ {
+  "countryId": "ven",
+  "population": 17639253,
+  "areaKm2": 680706
+ },
+ {
+  "countryId": "ven",
+  "population": 10877747,
+  "areaKm2": 254356
+ },
+ {
+  "countryId": "vnm",
+  "population": 43885850,
+  "areaKm2": 109442
+ },
+ {
+  "countryId": "vnm",
+  "population": 40130907,
+  "areaKm2": 177638
+ },
+ {
+  "countryId": "vnm",
+  "population": 17583243,
+  "areaKm2": 98542
+ },
+ {
+  "countryId": "vut",
+  "population": 335170,
+  "areaKm2": 43067
+ },
+ {
+  "countryId": "wsm",
+  "population": 219310,
+  "areaKm2": 6281
+ },
+ {
+  "countryId": "xkx",
+  "population": 1576900,
+  "areaKm2": 12590
+ },
+ {
+  "countryId": "yem",
+  "population": 38576547,
+  "areaKm2": 209146
+ },
+ {
+  "countryId": "yem",
+  "population": 3197453,
+  "areaKm2": 288270
+ },
+ {
+  "countryId": "zaf",
+  "population": 45792705,
+  "areaKm2": 553034
+ },
+ {
+  "countryId": "zaf",
+  "population": 12574838,
+  "areaKm2": 498047
+ },
+ {
+  "countryId": "zaf",
+  "population": 6379457,
+  "areaKm2": 166596
+ },
+ {
+  "countryId": "zmb",
+  "population": 11026512,
+  "areaKm2": 380922
+ },
+ {
+  "countryId": "zmb",
+  "population": 10887488,
+  "areaKm2": 390166
+ },
+ {
+  "countryId": "zwe",
+  "population": 10601963,
+  "areaKm2": 161818
+ },
+ {
+  "countryId": "zwe",
+  "population": 6349037,
+  "areaKm2": 246096
+ }
+]

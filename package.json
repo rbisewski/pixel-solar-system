@@ -1,0 +1,30 @@
+{
+  "name": "pixel-solar-system",
+  "version": "0.0.1",
+  "description": "Pixel Solar System: explore the Solar System in pixel art (see SPEC.md)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.astro.json && tsc -p tsconfig.node.json && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings"
+  },
+  "dependencies": {
+    "@fontsource-variable/exo-2": "5.2.8",
+    "@lucide/svelte": "0.544.0",
+    "flag-icons": "^7.6.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@types/node": "^26.6.5",
+    "@types/three": "^0.186.0",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.7.7",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
+  },
+  "private": true,
+  "type": "module"
+}
