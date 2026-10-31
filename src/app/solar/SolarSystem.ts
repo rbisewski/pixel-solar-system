@@ -1601,7 +1601,8 @@ export class SolarSystem {
       const underGlobe = this.following && b.def.id === "Earth";
       // An asteroid, a lesser dwarf planet or a quiet moon is named only when focused, as the small sprites are.
       const quiet = b.def.type === "asteroid" || isQuietMoon(b.def) || isLesserDwarf(b.def);
-      const named = b.shown && !underGlobe && (focused || (!quiet && spread > (kind(b.def) === "moon" ? MOON_MIN_PIXELS : LABEL_MIN_PIXELS)));
+      // A focused comet is named as its small sprite too, while its nucleus isn't shown.
+      const named = (b.shown || (focused && b.comet !== null)) && !underGlobe && (focused || (!quiet && spread > (kind(b.def) === "moon" ? MOON_MIN_PIXELS : LABEL_MIN_PIXELS)));
       b.sprite.visible = b.shown && !(underGlobe && away < GLOBE_FADE_FROM * EARTH_RADIUS_AU);
       if (b.orbit) {
         b.orbit.visible = b.shown && !backgroundHidden;
