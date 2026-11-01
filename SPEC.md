@@ -89,7 +89,7 @@ A panel lists the data and imagery sources with their licenses and credits. Worl
 - Settings: hide objects while running, blur stars, and a UI scale from 75% to 200%.
 - Honour `prefers-reduced-motion` by starting paused with star streaking off.
 - Show a clear message when WebGL is unavailable.
-- Desktop browsers are the primary target. Phones are supported, with touch orbit and pinch zoom and a panel that fits the screen.
+- Desktop browsers are the primary target. Phones are supported, with touch orbit, pinch zoom and two-finger pan and a panel that fits the screen.
 
 ---
 

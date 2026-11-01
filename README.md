@@ -4,7 +4,7 @@ A web app for exploring the Solar System in pixel art. Zoom from a globe of the 
 
 ## Using it
 
-- **Move:** drag to orbit and scroll or pinch to zoom. Zooming out from the globe carries on into the Solar System, and zooming all the way in on the Earth, double-clicking it or pressing Return to Earth comes back.
+- **Move:** drag to orbit and scroll or pinch to zoom. In the Solar System, right-drag or drag with two fingers to pan, out to about 150 AU from the Sun; clicking a body comes back to it. Zooming out from the globe carries on into the Solar System, and zooming all the way in on the Earth, double-clicking it or pressing Return to Earth comes back.
 - **Select:** click a body or a country to open its panel. The search box finds any body or country by name or designation, including those too small to click.
 - **Clock:** Space pauses and resumes, and + and − change the rate. Click the date to jump to any day from 1900 to 2100, and Now returns to the present.
 - **Settings:** interface size, and the motion options. The app starts paused, with star streaks off, if the browser asks for reduced motion.

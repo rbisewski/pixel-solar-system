@@ -57,6 +57,8 @@
   <span class="title">Pixel Solar System</span>
   <Search />
   <span class="spacer"></span>
+  <button class="icon-button" title="Settings" onclick={() => { ui.settingsOpen = !ui.settingsOpen; ui.aboutOpen = false; }}><Icon name="settings" /></button>
+  <button class="icon-button" title="About and sources" onclick={() => { ui.aboutOpen = !ui.aboutOpen; ui.settingsOpen = false; }}><Icon name="info" /></button>
   {#if picking}
     <input bind:this={picker} class="picker" type="date" aria-label="Jump to a date" min={toDateInput(MIN_MS)} max={toDateInput(MAX_MS)} value={pickFrom} onchange={pick} onblur={() => (picking = false)} onkeydown={onPickerKey} />
   {:else}
@@ -71,8 +73,6 @@
     {/each}
   </div>
   <button onclick={() => clock.now()}>Now</button>
-  <button class="icon-button" title="Settings" onclick={() => { ui.settingsOpen = !ui.settingsOpen; ui.aboutOpen = false; }}><Icon name="settings" /></button>
-  <button class="icon-button" title="About and sources" onclick={() => { ui.aboutOpen = !ui.aboutOpen; ui.settingsOpen = false; }}><Icon name="info" /></button>
 </header>
 
 <style>

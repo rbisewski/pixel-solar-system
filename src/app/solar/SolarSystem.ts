@@ -7,6 +7,8 @@
 // it from its planet.
 //
 // The camera orbits a focused body and follows it along its orbit; clicking a body focuses it.
+// Panning (right drag, or two fingers) moves the view off that body, and it stays that far off
+// as the body moves, within a fence around the Sun (panFence.ts); clicking a body comes back to it.
 // The view and the globe are one: the globe is drawn see-through on top of this view, and while
 // it has the camera this view follows it frame by frame (followGlobe, through earthFrame.ts), so
 // the stars, the Sun and the Moon behind the globe are this view's. Pulling out, the globe fades
@@ -23,6 +25,7 @@ import { GLOBE_FADE_FROM, GLOBE_FARTHEST } from "../globe/Globe";
 import { Pinch, PINCH_IN } from "../pinch";
 import { renderScale } from "../renderScale";
 import { Recency } from "./recency";
+import { fencePan } from "./panFence";
 import { runRedraws, type Redraw } from "./redraws";
 import { bodyMap, bodyRelief, canvasSize, cometCanvasSize, drawBody, drawCometActivity, drawSun, hasMap, hasStyle, releaseBodyMaps, sunCanvasSize, surfaceReach, type Light, type MapImage, type Orient, type Relief } from "./bodyArt";
 import { bodyToScene, hasFrame } from "./bodyFrames";
@@ -983,6 +986,14 @@ const ZOOMED_IN_SHARE = 0.05;
 /** Seconds the camera takes to swing to a newly focused body, and to fly home to the Earth. */
 const FOCUS_SECONDS = 0.6;
 const HOME_SECONDS = 1.4;
+/** A change in the look-at point smaller than this share of the camera's distance is rounding (OrbitControls rounds it every frame) or the last of the damping, not a pan. */
+const PAN_NOISE = 1e-6;
+/** Panned off the Earth by less than this share of the camera's distance, zooming on in swings back to it, on the way to the globe. */
+const PAN_SNAP = 0.3;
+/** Panned off by less than this share, zooming on in goes straight to the globe: a pinch's fingers always drift a little, and would otherwise keep it swinging back. */
+const PAN_DRIFT = 0.05;
+/** The share of a pinch's remaining zoom applied each frame, which smooths out the fingers' tremble. */
+const PINCH_EASE = 0.25;
 /** Between these distances from the Earth (AU) the camera's up turns from the Earth's axis to the ecliptic's. */
 const UP_TURN: [number, number] = [HANDOFF, 0.05];
 const ECLIPTIC_UP = new THREE.Vector3(0, 1, 0);
@@ -1089,6 +1100,8 @@ export class SolarSystem {
   private placedYears = Number.NaN;
   private focusId = "Earth";
   private focusFrom: { from: THREE.Vector3; start: number } | null = null;
+  /** How far the view has been panned off the focused body. */
+  private readonly pan = new THREE.Vector3();
   private readonly clock = new THREE.Clock();
   /** Surface maps of the bodies that have one (bodyArt.ts), once loaded. */
   private readonly maps = new Map<string, MapImage>();
@@ -1107,6 +1120,8 @@ export class SolarSystem {
   /** A flight home to the Earth, from a distance in AU. */
   private homing: { from: number; start: number } | null = null;
   private readonly pinch = new Pinch();
+  /** Pinch zoom still to apply, as the log of the factor to bring the camera closer by. */
+  private pinchZoom = 0;
   private frame = 0;
   private downAt: { x: number; y: number } | null = null;
   /** The Sun's direction in the globe's frame, from the game clock, and the globe-to-scene rotation it gives. */
@@ -1137,7 +1152,6 @@ export class SolarSystem {
     this.camera = new THREE.PerspectiveCamera(40, 1, 1e-5, 1e4);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
-    this.controls.enablePan = false;
     this.controls.minDistance = this.closest("Earth");
     this.controls.maxDistance = MAX_DISTANCE;
     this.controls.rotateSpeed = 0.5;
@@ -1346,6 +1360,7 @@ export class SolarSystem {
       this.following = true;
       this.focusId = "Earth";
       this.focusFrom = null;
+      this.pan.set(0, 0, 0);
       this.homing = null;
       this.tooltip.style.display = "none";
     }
@@ -1375,6 +1390,7 @@ export class SolarSystem {
     this.place();
     this.focusId = "Sol";
     this.focusFrom = null;
+    this.pan.set(0, 0, 0);
     this.controls.minDistance = this.closest("Sol");
     const from = new THREE.Vector3();
     toScene({ x: 0, y: -OVERVIEW_AU * 0.8, z: OVERVIEW_AU * 0.6 }, from);
@@ -1391,6 +1407,7 @@ export class SolarSystem {
     this.place();
     this.focusId = "Earth";
     this.focusFrom = null;
+    this.pan.set(0, 0, 0);
     this.controls.minDistance = this.closest("Earth");
     const at = this.positions.get("Earth")!;
     const offset = direction.clone().transformDirection(this.earthToScene).multiplyScalar(Math.max(distance * EARTH_RADIUS_AU, this.controls.minDistance));
@@ -1409,6 +1426,7 @@ export class SolarSystem {
 
   /** Hands over to the globe, the camera keeping its direction (and its distance, as far as the globe allows). */
   private handBack(glide: boolean): void {
+    this.pinchZoom = 0;
     const offset = this.camera.position.clone().sub(this.positions.get("Earth")!);
     const toGlobe = this.earthToScene.clone().transpose();
     const distance = this.focusId === "Earth" ? offset.length() / EARTH_RADIUS_AU : GLOBE_FARTHEST;
@@ -1451,11 +1469,14 @@ export class SolarSystem {
     this.selectedOrbit = { def, line };
   }
 
-  /** Swings the camera to a body, keeping its distance and angle. */
+  /** Swings the camera to a body, keeping its distance and angle; on the focused body, back from any pan. */
   focus(id: string): void {
     this.homing = null;
-    if (id === this.focusId) return;
+    if (id === this.focusId && this.pan.lengthSq() === 0) return;
     this.focusFrom = { from: this.controls.target.clone(), start: this.clock.getElapsedTime() };
+    this.pan.set(0, 0, 0);
+    // A drag's damping would otherwise carry on and pan off the body again.
+    (this.controls as unknown as { _panOffset: THREE.Vector3 })._panOffset.set(0, 0, 0);
     this.focusId = id;
     this.controls.minDistance = this.closest(id);
   }
@@ -1508,8 +1529,11 @@ export class SolarSystem {
       target.lerpVectors(this.focusFrom.from, target, eased);
       if (t >= 1) this.focusFrom = null;
     }
+    const body = target.clone();
+    target.add(this.pan);
     this.camera.position.add(target.clone().sub(this.controls.target));
     this.controls.target.copy(target);
+    this.applyPinch();
     // Flying home: the distance shrinks evenly on a log scale while the camera swings to the Earth.
     if (this.homing) {
       const t = Math.min(1, (this.clock.getElapsedTime() - this.homing.start) / HOME_SECONDS);
@@ -1527,9 +1551,36 @@ export class SolarSystem {
     }
     this.turnUp();
     this.controls.update();
+    this.keepPan(body, target);
     this.camera.updateMatrixWorld();
     this.draw();
   };
+
+  /** Eases the camera in or out by the fingers' spread, at the speed OrbitControls would zoom. */
+  private applyPinch(): void {
+    this.pinchZoom += Math.log(this.pinch.takeZoom()) * this.controls.zoomSpeed;
+    const step = this.pinchZoom * PINCH_EASE;
+    this.pinchZoom -= step;
+    if (this.homing) this.pinchZoom = 0;
+    if (step === 0 || this.homing) return;
+    const offset = this.camera.position.clone().sub(this.controls.target);
+    offset.setLength(THREE.MathUtils.clamp(offset.length() * Math.exp(-step), this.controls.minDistance, this.controls.maxDistance));
+    this.camera.position.copy(this.controls.target).add(offset);
+  }
+
+  /** Two fingers zoom through applyPinch rather than OrbitControls, which zooms by every tremble of the spread. */
+  private syncTouchZoom(): void {
+    this.controls.enableZoom = !this.pinch.active;
+  }
+
+  /** Fences what OrbitControls just did to the look-at point (`from`, for a view on `body`), and keeps it as the pan: the next frame's following would otherwise undo it. */
+  private keepPan(body: THREE.Vector3, from: THREE.Vector3): void {
+    const fenced = fencePan(this.controls.target, this.positions.get("Sol")!, body);
+    this.camera.position.add(fenced.clone().sub(this.controls.target));
+    this.controls.target.copy(fenced);
+    const moved = fenced.sub(from);
+    if (!this.homing && moved.length() > this.camera.position.distanceTo(this.controls.target) * PAN_NOISE) this.pan.add(moved);
+  }
 
   /** Sizes, lights and labels the bodies for the camera as it is, and draws the frame. */
   private draw(): void {
@@ -1764,15 +1815,18 @@ export class SolarSystem {
 
   private readonly handleDown = (event: PointerEvent): void => {
     this.pinch.down(event);
+    this.syncTouchZoom();
     // A second finger makes it a pinch, not a tap.
     this.downAt = this.pinch.active ? null : { x: event.clientX, y: event.clientY };
   };
 
   private readonly handleUp = (event: PointerEvent): void => {
     this.pinch.up(event);
+    this.syncTouchZoom();
     const down = this.downAt;
     this.downAt = null;
     if (!down || Math.abs(event.clientX - down.x) + Math.abs(event.clientY - down.y) > 5) return;
+    if (event.button !== 0) return;
     const id = this.bodyAt(event);
     if (!id) return;
     this.focus(id);
@@ -1785,6 +1839,7 @@ export class SolarSystem {
 
   private readonly handleCancel = (event: PointerEvent): void => {
     this.pinch.up(event);
+    this.syncTouchZoom();
     this.downAt = null;
   };
 
@@ -1818,9 +1873,17 @@ export class SolarSystem {
   };
 
   private enterGlobeIfClose(): void {
-    const close = this.camera.position.distanceTo(this.controls.target) <= this.controls.minDistance * 1.02;
+    const away = this.camera.position.distanceTo(this.controls.target);
+    const close = away <= this.controls.minDistance * 1.02;
     if (close && this.focusId === "Earth" && !this.focusFrom && !this.homing) {
+      const off = this.pan.length() / away;
+      if (off > PAN_SNAP) return;
+      if (off > PAN_DRIFT) {
+        this.focus("Earth");
+        return;
+      }
       this.pinch.clear();
+      this.syncTouchZoom();
       this.handBack(false);
     }
   }
